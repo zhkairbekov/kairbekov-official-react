@@ -1,6 +1,6 @@
 .start_window {
   height: 100vh;
-  background: url("img/background/top-bg.webp") center center/cover no-repeat;
+  background: url("/img/background/top-bg.webp") center center/cover no-repeat;
   overflow: hidden;
     min-height: 600px;
 }
