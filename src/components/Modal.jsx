@@ -55,8 +55,8 @@ const Modal = ({ modalId, isOpen, onClose }) => {
         myModal2: {
             title: 'Downtownastana.com',
             siteUrl: 'https://downtownastana.com/',
-            mockup: '/img/mockup/downtown_mockup.png',
-            screenshot: '/img/sites/downtown_screenshot.png',
+            mockup: '/img/mockup/downtown_mockup.webp',
+            screenshot: '/img/sites/downtown_screenshot.webp',
             content: (
                 <>
                     <h2>🛍️ Saukele.ru — E-commerce экосистема</h2>
@@ -122,8 +122,8 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             title: 'Velobike',
             siteUrl: 'https://kairbekov-velobike.netlify.app/',
             githubUrl: 'https://github.com/zhkairbekov/velobike',
-            mockup: '/img/mockup/velobike_mockup.png',
-            screenshot: '/img/sites/velobike_screenshot.png',
+            mockup: '/img/mockup/velobike_mockup.webp',
+            screenshot: '/img/sites/velobike_screenshot.jpg',
             content: (
                 <>
                     <h2>🚲 Velobike.kz — Adaptive Clone</h2>
@@ -157,8 +157,8 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             title: 'Maze Escape game',
             siteUrl: 'https://kairbekov-alem-js-1.netlify.app/',
             githubUrl: 'https://github.com/zhkairbekov/alem-project-js-1',
-            mockup: '/img/mockup/maze-escape-game_mockup.png',
-            screenshot: '/img/sites/maze-escape-game_screenshot.png',
+            mockup: '/img/mockup/maze-escape-game_mockup.webp',
+            screenshot: '/img/sites/maze-escape-game_screenshot.webp',
             content: (
                 <>
                     <h2>🧩 The Maze Escape: Алгоритмический визуализатор</h2>
@@ -194,8 +194,8 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             title: 'product-catalog',
             siteUrl: 'https://kairbekov-product-catalog.netlify.app/',
             githubUrl: 'https://github.com/zhkairbekov/product-catalog',
-            mockup: '/img/mockup/product-catalog_mockup.png',
-            screenshot: '/img/sites/product-catalog_screenshot.png',
+            mockup: '/img/mockup/product-catalog_mockup.webp',
+            screenshot: '/img/sites/product-catalog_screenshot.webp',
             content: (
                 <>
                     <h2>🛒 Современный каталог товаров</h2>

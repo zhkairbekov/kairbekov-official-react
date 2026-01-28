@@ -19,7 +19,7 @@ const Portfolio = () => {
         {
             id: 'myModal2',
             title: 'Downtownastana.com',
-            image: '/img/mockup/downtown_mockup.png',
+            image: '/img/mockup/downtown_mockup.webp',
             alt: 'Превью сайта Downtownastana.com',
         },
         {
@@ -31,19 +31,19 @@ const Portfolio = () => {
         {
             id: 'myModal4',
             title: 'Velobike',
-            image: '/img/mockup/velobike_mockup.png',
+            image: '/img/mockup/velobike_mockup.webp',
             alt: 'Превью сайта Velobike',
         },
         {
             id: 'myModal5',
             title: 'Maze Escape game',
-            image: '/img/mockup/maze-escape-game_mockup.png',
+            image: '/img/mockup/maze-escape-game_mockup.webp',
             alt: 'Превью сайта Maze Escape game',
         },
         {
             id: 'myModal6',
             title: 'product-catalog',
-            image: '/img/mockup/product-catalog_mockup.png',
+            image: '/img/mockup/product-catalog_mockup.webp',
             alt: 'Превью сайта product-catalog',
         },
     ];
