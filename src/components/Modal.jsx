@@ -22,7 +22,6 @@ const Modal = ({ modalId, isOpen, onClose }) => {
     }
   };
 
-  // Данные модальных окон
   const modalData = {
     myModal1: {
       title: 'Saukele.ru',

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import './CustomCursor.css';
 
 const CustomCursor = () => {
   const cursorRef = useRef(null);
@@ -23,7 +24,7 @@ const CustomCursor = () => {
       // Update cursor position
       cursorPos.current.x = mousePos.current.x;
       cursorPos.current.y = mousePos.current.y;
-      
+
       if (cursor) {
         cursor.style.transform = `translate(${cursorPos.current.x}px, ${cursorPos.current.y}px) translate(-50%, -50%)`;
       }
@@ -31,7 +32,7 @@ const CustomCursor = () => {
       // Update background cursor with smooth follow
       bgPos.current.x += (mousePos.current.x - bgPos.current.x) * 0.1;
       bgPos.current.y += (mousePos.current.y - bgPos.current.y) * 0.1;
-      
+
       if (cursorBg) {
         cursorBg.style.transform = `translate(${bgPos.current.x}px, ${bgPos.current.y}px) translate(-50%, -50%)`;
       }

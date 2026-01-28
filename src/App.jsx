@@ -7,7 +7,7 @@ import Portfolio from './components/Portfolio';
 import Designs from './components/Designs';
 import Licenses from './components/Licenses';
 import Contacts from './components/Contacts';
-import CustomCursor from './components/CustomCursor';
+// import CustomCursor from './components/CustomCursor';
 import './App.css';
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div id="wrapper" className="wrapper">
-      <CustomCursor />
-      
+      {/*<CustomCursor />*/}
+
       <Hero showTopElements={showTopElements} />
       
       <section className="razdel-bottom mb-2"></section>
@@ -47,9 +47,9 @@ function App() {
       <Portfolio />
       
       <section className="razdel-bottom mb-2"></section>
-      
+
       {/*<Designs />*/}
-      
+
       <Licenses />
       
       <section className="razdel-top mt-3"></section>

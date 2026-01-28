@@ -72,7 +72,6 @@ header .SUlogo {
     height: 37px;
 }
 
-/* Mobile styles */
 @media (max-width: 991px) {
     .Rfwrap .menu {
         display: none !important;

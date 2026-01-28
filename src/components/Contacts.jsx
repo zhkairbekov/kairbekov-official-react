@@ -64,17 +64,17 @@ const Contacts = () => {
             </div>
             <div id="footer">
               <div className="iwcontent flex-column">
-                <p>
-                  Meta Platforms Inc. (Facebook, Instagram) признана экстремистской организацией в РФ, её
-                  деятельность запрещена.
-                </p>
+                {/*<p>*/}
+                {/*  Meta Platforms Inc. (Facebook, Instagram) признана экстремистской организацией в РФ, её*/}
+                {/*  деятельность запрещена.*/}
+                {/*</p>*/}
                 <a
                   href="https://www.instagram.com/kairbekov.official"
                   rel="noopener noreferrer"
                   target="_blank"
                   title="Портфолио дизайнера в Instagram"
                 >
-                  ©2019 — Личный бренд и портфолио дизайнера <span>@kairbekov.official</span>
+                  ©2019 — портфолио frontend-разработчика <span>@kairbekov.official</span>
                 </a>
               </div>
             </div>

@@ -1,0 +1,79 @@
+a,
+body,
+button,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+p,
+select,
+span,
+textarea {
+    cursor: none !important;
+}
+
+
+.cursor,
+.cursor-background {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(0, 0);
+}
+
+.cursor {
+    width: 10px;
+    height: 10px;
+    background: #646464;
+    z-index: 10001;
+    transition: transform 0.15s ease-out, background 0.3s;
+}
+
+.cursor-background {
+    width: 40px;
+    height: 40px;
+    background: rgba(151, 151, 151, 0.2);
+    z-index: 10000;
+    transition: width 0.3s, height 0.3s, background 0.3s;
+}
+
+.cursor.clicked,
+.cursor.hovered.clicked {
+    transform: translate(-50%, -50%) scale(0.6);
+}
+
+.cursor-background.clicked,
+.cursor-background.hovered.clicked {
+    width: 20px;
+    height: 20px;
+    background: rgba(50, 50, 50, 0.5);
+}
+
+@media (max-width: 768px) {
+    .cursor,
+    .cursor-background {
+        display: none;
+    }
+
+    a,
+    body,
+    button,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    input,
+    p,
+    select,
+    span,
+    textarea {
+        cursor: auto !important;
+    }
+}
