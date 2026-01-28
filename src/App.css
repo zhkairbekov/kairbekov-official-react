@@ -1,8 +1,9 @@
 /* Start Window / Hero Section */
 .start_window {
-  min-height: 100vh;
-  background: url(/img/background/top-bg.webp) center center/cover no-repeat;
+  height: 100vh;
+  background: url("public/img/background/top-bg.webp") center center/cover no-repeat;
   overflow: hidden;
+    min-height: 600px;
 }
 
 .start_window .text {

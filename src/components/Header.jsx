@@ -104,11 +104,11 @@ const Header = () => {
                     Сайты
                   </a>
                 </li>
-                <li className="text-15px">
-                  <a className="services link" href="#designs" onClick={(e) => scrollToSection(e, 'designs')}>
-                    Дизайны
-                  </a>
-                </li>
+                {/*<li className="text-15px">*/}
+                {/*  <a className="services link" href="#designs" onClick={(e) => scrollToSection(e, 'designs')}>*/}
+                {/*    Дизайны*/}
+                {/*  </a>*/}
+                {/*</li>*/}
                 <li className="text-15px">
                   <a className="about link" href="#licenses" onClick={(e) => scrollToSection(e, 'licenses')}>
                     Сертификаты
@@ -146,11 +146,11 @@ const Header = () => {
                 Сайты
               </a>
             </li>
-            <li className="text-15px">
-              <a className="services link" href="#designs" onClick={(e) => scrollToSection(e, 'designs')}>
-                Дизайны
-              </a>
-            </li>
+            {/*<li className="text-15px">*/}
+            {/*  <a className="services link" href="#designs" onClick={(e) => scrollToSection(e, 'designs')}>*/}
+            {/*    Дизайны*/}
+            {/*  </a>*/}
+            {/*</li>*/}
             <li className="text-15px">
               <a className="about link" href="#licenses" onClick={(e) => scrollToSection(e, 'licenses')}>
                 Сертификаты

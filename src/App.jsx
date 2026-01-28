@@ -48,7 +48,7 @@ function App() {
       
       <section className="razdel-bottom mb-2"></section>
       
-      <Designs />
+      {/*<Designs />*/}
       
       <Licenses />
       
