@@ -46,6 +46,7 @@ const Services = () => {
                     href="https://t.me/kairbekoff"
                     className="i3card"
                     rel="noopener"
+                    target="_blank"
                     aria-label={`Заказать ${service.title}`}
                   >
                     <img src={service.image} alt={service.title} className="w-100" loading="lazy" />

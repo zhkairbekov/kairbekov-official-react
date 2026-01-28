@@ -26,6 +26,7 @@ const Contacts = () => {
                 </a>
                 <a
                   href="https://wa.me/77053062873"
+                  target="_blank"
                   className="contact_1 lkpoint d-flex"
                   title="Написать в WhatsApp"
                 >
