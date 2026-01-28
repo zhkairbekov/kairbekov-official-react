@@ -2,8 +2,8 @@
 @font-face {
   font-family: akony;
   font-style: normal;
-  src: url("public/font/akony/AKONY.woff2") format("woff2"),
-       url("public/font/akony/AKONY.woff") format("woff");
+  src: url("/font/akony/AKONY.woff2") format("woff2"),
+       url("/font/akony/AKONY.woff") format("woff");
   font-weight: 400;
   font-display: swap;
 }
