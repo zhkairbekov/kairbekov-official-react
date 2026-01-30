@@ -30,7 +30,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
     const modalData = {
         myModal1: {
             title: 'Kairbekov official',
-            githubUrl: 'https://github.com/123456789255/kairbekov-official',
+            githubUrl: 'https://github.com/123456789255/kairbekov-official-react',
             mockup: '/img/mockup/kairbekov-official.webp',
             content: (
                 <>
