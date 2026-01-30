@@ -30,7 +30,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
     const modalData = {
         myModal1: {
             title: 'Kairbekov official',
-            githubUrl: 'https://github.com/123456789255/kairbekov-official-react',
+            githubUrl: 'https://github.com/zhkairbekov/kairbekov-official-react',
             mockup: '/img/mockup/kairbekov-official.webp',
             content: (
                 <>
@@ -83,7 +83,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
         myModal3: {
             title: 'Saukele.ru',
             siteUrl: 'https://www.kairbekoff.kz/saukele/',
-            githubUrl: 'https://github.com/123456789255/saukele_online-shop',
+            githubUrl: 'https://github.com/zhkairbekov/saukele_online-shop',
             mockup: '/img/mockup/image78.webp',
             screenshot: '/img/sites/saukele.webp',
             content: (
