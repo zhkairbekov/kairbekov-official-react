@@ -1,35 +1,40 @@
+import { useTranslation } from 'react-i18next';
+
 const Hero = ({ showTopElements }) => {
+  const { t } = useTranslation();
+
   return (
-    <section className="section_1" id="start_window" aria-label="Введение — разработка сайтов и графический дизайн">
+    <section className="section_1" id="start_window" aria-label={t('hero.sectionAria')}>
       <div className="start_window">
         <div className="blure vh-100 vw-100">
           <div className="container">
             <div className="content" role="banner">
               <img
                 src="/img/me.webp"
-                alt="Жанат Каирбеков — веб-разработчик и графический дизайнер"
+                alt={t('hero.photoAlt')}
                 id="top_zhan"
                 className={`top-zhan ${!showTopElements ? 'd-none' : ''}`}
               />
               <img
                 src="/img/ico/top-logo.png"
-                alt="Логотип Kairbekov Official"
+                alt={t('hero.topLogoAlt')}
                 id="top_logo"
                 className={`top-logo ${!showTopElements ? 'd-none' : ''}`}
               />
               <div className="text z-index-100">
                 <h1 className="monoton-regular">KAIRBEKOV</h1>
                 <p className="akony-font">
-                  Разработка сайтов
-                  <br />и графический дизайн
+                  {t('hero.taglineLine1')}
+                  <br />
+                  {t('hero.taglineLine2')}
                 </p>
                 <a
                   rel="noopener noreferrer"
                   href="#services"
                   className="btn-order"
-                  aria-label="Перейти к разделу услуг и заказать"
+                  aria-label={t('hero.orderAria')}
                 >
-                  Заказать
+                  {t('hero.order')}
                 </a>
               </div>
             </div>

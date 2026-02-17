@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from '../i18n';
 import './Header.css';
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHighlighted, setIsHighlighted] = useState(false);
 
@@ -56,23 +59,23 @@ const Header = () => {
       className={`section_2 w-100 pt-4 pb-4 z-index-100 ${isHighlighted ? 'highlight' : ''} ${isMenuOpen ? 'header-fixed' : ''}`}
     >
       <div className="container">
-        <nav className="navbar" role="navigation" aria-label="Основное меню сайта">
+        <nav className="navbar" role="navigation" aria-label={t('header.navAria')}>
           <div className="container w-100">
             <div className="Rfwrap w-100">
               <a 
                 href="#wrapper" 
                 className="logo" 
-                aria-label="Перейти на главную страницу"
+                aria-label={t('header.logoAria')}
                 onClick={(e) => scrollToSection(e, 'wrapper')}
               >
-                <img className="SUlogo" src="/img/ico/logo.png" alt="Логотип Kairbekov Official" />
+                <img className="SUlogo" src="/img/ico/logo.png" alt={t('header.logoAlt')} />
               </a>
 
               <div className="hamb">
                 <button
                   className={`ggfield ${isMenuOpen ? 'active' : ''}`}
                   id="hamb"
-                  aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
+                  aria-label={isMenuOpen ? t('header.closeMenu') : t('header.openMenu')}
                   aria-controls="menu"
                   aria-expanded={isMenuOpen}
                   onClick={toggleMenu}
@@ -86,22 +89,22 @@ const Header = () => {
               <ul className="menu justify-content-end" id="menu">
                 <li className="text-15px">
                   <a className="link" href="#wrapper" onClick={(e) => scrollToSection(e, 'wrapper')}>
-                    Главная
+                    {t('header.menu.home')}
                   </a>
                 </li>
                 <li className="text-15px">
                   <a className="resources link" href="#about" onClick={(e) => scrollToSection(e, 'about')}>
-                    Обо мне
+                    {t('header.menu.about')}
                   </a>
                 </li>
                 <li className="text-15px">
                   <a className="services link" href="#services" onClick={(e) => scrollToSection(e, 'services')}>
-                    Услуги
+                    {t('header.menu.services')}
                   </a>
                 </li>
                 <li className="text-15px">
                   <a className="services link" href="#portfolio" onClick={(e) => scrollToSection(e, 'portfolio')}>
-                    Сайты
+                    {t('header.menu.sites')}
                   </a>
                 </li>
                 {/*<li className="text-15px">*/}
@@ -111,39 +114,69 @@ const Header = () => {
                 {/*</li>*/}
                 <li className="text-15px">
                   <a className="about link" href="#licenses" onClick={(e) => scrollToSection(e, 'licenses')}>
-                    Сертификаты
+                    {t('header.menu.certs')}
                   </a>
                 </li>
                 <li className="text-15px">
                   <a className="about link" href="#contacts" onClick={(e) => scrollToSection(e, 'contacts')}>
-                    Контакты
+                    {t('header.menu.contacts')}
                   </a>
+                </li>
+
+                <li className="text-15px" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <button
+                    type="button"
+                    className="link"
+                    onClick={() => changeLanguage('ru')}
+                    aria-label={t('lang.ru')}
+                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'ru' ? 1 : 0.6 }}
+                  >
+                    {t('lang.ru')}
+                  </button>
+                  <button
+                    type="button"
+                    className="link"
+                    onClick={() => changeLanguage('kk')}
+                    aria-label={t('lang.kk')}
+                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'kk' ? 1 : 0.6 }}
+                  >
+                    {t('lang.kk')}
+                  </button>
+                  <button
+                    type="button"
+                    className="link"
+                    onClick={() => changeLanguage('en')}
+                    aria-label={t('lang.en')}
+                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'en' ? 1 : 0.6 }}
+                  >
+                    {t('lang.en')}
+                  </button>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
 
-        <div className={`popup blure ${isMenuOpen ? 'open' : ''}`} id="popup">
+        <div className={`popup ${isMenuOpen ? 'open' : ''}`} id="popup">
           <ul className="menu">
             <li className="text-15px">
               <a className="link" href="#wrapper" onClick={(e) => scrollToSection(e, 'wrapper')}>
-                Главная
+                {t('header.menu.home')}
               </a>
             </li>
             <li className="text-15px">
               <a className="resources link" href="#about" onClick={(e) => scrollToSection(e, 'about')}>
-                Обо мне
+                {t('header.menu.about')}
               </a>
             </li>
             <li className="text-15px">
               <a className="services link" href="#services" onClick={(e) => scrollToSection(e, 'services')}>
-                Услуги
+                {t('header.menu.services')}
               </a>
             </li>
             <li className="text-15px">
               <a className="services link" href="#portfolio" onClick={(e) => scrollToSection(e, 'portfolio')}>
-                Сайты
+                {t('header.menu.sites')}
               </a>
             </li>
             {/*<li className="text-15px">*/}
@@ -153,13 +186,43 @@ const Header = () => {
             {/*</li>*/}
             <li className="text-15px">
               <a className="about link" href="#licenses" onClick={(e) => scrollToSection(e, 'licenses')}>
-                Сертификаты
+                {t('header.menu.certs')}
               </a>
             </li>
             <li className="text-15px">
               <a className="about link" href="#contacts" onClick={(e) => scrollToSection(e, 'contacts')}>
-                Контакты
+                {t('header.menu.contacts')}
               </a>
+            </li>
+
+            <li className="text-15px" style={{ display: 'flex', gap: '10px' }}>
+              <button
+                type="button"
+                className="link"
+                onClick={() => changeLanguage('ru')}
+                aria-label={t('lang.ru')}
+                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'ru' ? 1 : 0.6 }}
+              >
+                {t('lang.ru')}
+              </button>
+              <button
+                type="button"
+                className="link"
+                onClick={() => changeLanguage('kk')}
+                aria-label={t('lang.kk')}
+                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'kk' ? 1 : 0.6 }}
+              >
+                {t('lang.kk')}
+              </button>
+              <button
+                type="button"
+                className="link"
+                onClick={() => changeLanguage('en')}
+                aria-label={t('lang.en')}
+                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'en' ? 1 : 0.6 }}
+              >
+                {t('lang.en')}
+              </button>
             </li>
           </ul>
         </div>

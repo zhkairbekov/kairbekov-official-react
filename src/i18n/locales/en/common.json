@@ -1,0 +1,237 @@
+{
+  "lang": {
+    "ru": "RU",
+    "kk": "KZ",
+    "en": "EN"
+  },
+  "header": {
+    "navAria": "Main site navigation",
+    "logoAria": "Go to the home section",
+    "logoAlt": "Kairbekov Official logo",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "sites": "Websites",
+      "certs": "Certificates",
+      "contacts": "Contacts"
+    }
+  },
+  "hero": {
+    "sectionAria": "Intro — website development and graphic design",
+    "photoAlt": "Zhanat Kairbekov — web developer and graphic designer",
+    "topLogoAlt": "Kairbekov Official logo",
+    "taglineLine1": "Website development",
+    "taglineLine2": "and graphic design",
+    "order": "Order",
+    "orderAria": "Go to services and place an order"
+  },
+  "about": {
+    "sectionAria": "About me and my skills",
+    "title": "Hi — I'm Zhanat Kairbekov",
+    "aboutIconAlt": "About section icon",
+    "aboutIconSmallAlt": "About icon",
+    "skillsIconAlt": "Skills icon",
+    "projectsIconAlt": "Experience icon",
+    "aboutTitle": "About",
+    "skillsTitle": "Skills",
+    "projectsTitle": "Projects",
+    "aboutText": [
+      "I'm a junior frontend developer and a graduate of OmAEiP with a degree in “Information Systems and Programming”. I work with a modern frontend stack and keep expanding into backend.",
+      "I'm currently studying at Alem School (Astana Hub), building pet projects and improving my stack: JavaScript, TypeScript, React. In parallel, I'm learning Go for backend development.",
+      "Recently I built a website for the Downtown Astana business center and have experience creating responsive interfaces with a focus on performance and SEO. Open to collaboration and freelance projects."
+    ],
+    "skillsText": [
+      "<strong>Frontend:</strong> HTML5, CSS3 (vanilla, SCSS), responsive and cross‑browser layout, JavaScript (ES6+), TypeScript, React (hooks, routing), Vite, Webpack, Git.",
+      "<strong>Tools & ecosystem:</strong> Figma, npm, REST API, forms & validation, load optimization, basic CI/CD skills.",
+      "<strong>Backend / other:</strong> Go, PHP (Laravel), basic knowledge of Node.js and SQL — for end‑to‑end app development.",
+      "<strong>Also:</strong> SEO, performance, accessibility (a11y), analytics and error monitoring."
+    ],
+    "projectsText": [
+      "<strong>Kairbekov Official:</strong> personal website with custom UI effects, responsive layout and SEO optimization.",
+      "<strong>Downtown Astana:</strong> business center website — responsive design, image optimization and performance improvements.",
+      "<strong>Saukele:</strong> Laravel diploma project — full cycle: design, backend implementation, database integration.",
+      "<strong>Velobike (clone):</strong> responsive clone of velobike.kz — careful work with grids and mobile layout."
+    ]
+  },
+  "services": {
+    "sectionAria": "Web development and design services",
+    "title": "My services",
+    "order": "Order",
+    "orderAria": "Order: {{title}}",
+    "items": [
+      {
+        "image": "/img/slider/1.webp",
+        "title": "Landing Page development",
+        "description": "I'll create a unique, responsive and modern website with an individual design focused on increasing sales and attracting customers."
+      }
+    ]
+  },
+  "portfolio": {
+    "sectionAria": "Website portfolio",
+    "title": "My websites",
+    "openProjectAria": "Open project: {{title}}",
+    "viewProject": "View project",
+    "projects": [
+      {
+        "id": "myModal1",
+        "title": "Kairbekov official",
+        "image": "/img/mockup/kairbekov-official.webp",
+        "alt": "Preview of the Kairbekov Official personal website"
+      },
+      {
+        "id": "myModal2",
+        "title": "Downtownastana.com",
+        "image": "/img/mockup/downtown_mockup.webp",
+        "alt": "Preview of Downtownastana.com"
+      },
+      {
+        "id": "myModal3",
+        "title": "Saukele.ru",
+        "image": "/img/mockup/image78.webp",
+        "alt": "Saukele.ru homepage preview — national accessories shop"
+      },
+      {
+        "id": "myModal4",
+        "title": "Velobike",
+        "image": "/img/mockup/velobike_mockup.webp",
+        "alt": "Preview of Velobike website"
+      },
+      {
+        "id": "myModal5",
+        "title": "Maze Escape game",
+        "image": "/img/mockup/maze-escape-game_mockup.webp",
+        "alt": "Preview of Maze Escape game website"
+      },
+      {
+        "id": "myModal6",
+        "title": "product-catalog",
+        "image": "/img/mockup/product-catalog_mockup.webp",
+        "alt": "Preview of product-catalog website"
+      }
+    ]
+  },
+  "licenses": {
+    "title": "My certificates and qualifications",
+    "items": [
+      {
+        "pdf": "/img/license/pdf/Контент-менеджер.pdf",
+        "image": "/img/license/contentManager.png",
+        "alt": "Certificate of completing the content manager course",
+        "caption": "Certificate “Content Manager”: content operations, promotion and marketing"
+      },
+      {
+        "pdf": "/img/license/pdf/Администратор-базовый.pdf",
+        "image": "/img/license/adminBase.png",
+        "alt": "Basic website administrator certificate",
+        "caption": "Certificate “Basic Administrator”: skills for working with websites and CMS"
+      }
+    ]
+  },
+  "contacts": {
+    "sectionAria": "Contact information",
+    "title": "Get in touch",
+    "githubTitle": "Open GitHub profile",
+    "githubAlt": "GitHub profile of a graphic designer and web developer",
+    "whatsappTitle": "Message on WhatsApp",
+    "whatsappAlt": "Kazakhstan icon — WhatsApp contact",
+    "telegramTitle": "Message on Telegram",
+    "telegramAlt": "Telegram account: kairbekoff",
+    "instagramTitle": "Designer portfolio on Instagram",
+    "instagramAlt": "Instagram profile: kairbekov.official",
+    "footerTitle": "Designer portfolio on Instagram",
+    "footerCopyright": "©2019 — frontend developer portfolio <1>@kairbekov.official</1>"
+  },
+  "modal": {
+    "closeTitle": "Close",
+    "openSite": "Open website",
+    "openSiteAria": "Open website: {{title}}",
+    "openGithub": "Open project GitHub",
+    "openGithubAria": "Open GitHub repository for {{title}}",
+    "mockupAlt": "Mockup {{title}}",
+    "screenshotAlt": "Screenshots {{title}}",
+    "projects": {
+      "myModal1": {
+        "h2": "🚀 Personal portfolio website",
+        "p1": "A modern Single Page Application (SPA), rebuilt from a classic stack to a powerful combo of <1>React 18</1> and <3>Vite</3>.",
+        "p2": "<1>Key highlights:</1>",
+        "features": [
+          "Component architecture for easier maintenance.",
+          "Using <1>React Hooks</1> (useState, useEffect) for state and animations.",
+          "Optimized Vite build for fast loading.",
+          "Interactive <1>Custom Cursor</1> and advanced CSS effects.",
+          "Fully responsive and deployed via <1>Netlify</1>."
+        ]
+      },
+      "myModal2": {
+        "h2": "🏢 downtownastana.com — Business center website on Laravel (Docker + Make)",
+        "p1": "A full-featured business center website with an admin panel for managing content, tenants, service orders and more. Built with <1>Laravel</1>, focusing on scalability, security and convenient administration.",
+        "p2": "<1>Technical details:</1>",
+        "features": [
+          "<1>Infrastructure:</1> Containerization with <3>Docker</3> and <5>Docker Compose</5> for easy deployment and scaling (PHP, Nginx, MySQL/PostgreSQL, Redis).",
+          "<1>Automation:</1> <3>Makefile</3> for common tasks: build, migrations, seeding, deploy (SSH or CI/CD with GitHub Actions).",
+          "<1>Admin panel:</1> <3>Filament PHP</3> with custom CRUD, analytics and role support.",
+          "<1>Storage & media:</1> <3>Storage Link</3>, S3-compatible storage, image optimization, document uploads.",
+          "<1>Backend:</1> Eloquent models/migrations, Artisan commands, queues, notifications, payments, PDF generation.",
+          "<1>Extra:</1> APIs for mobile, Redis caching, Telescope, security (CSRF, rate limiting), SEO meta tags."
+        ],
+        "note": "This project showcases full‑stack skills: from database and backend logic to frontend and deployment — focused on real business needs in Astana."
+      },
+      "myModal3": {
+        "h2": "🛍️ Saukele Online Shop",
+        "p1": "A professional <1>E-commerce</1> solution built for the Omsk regional public organization <3>“Kazakhs of Omsk”</3> — a full platform for selling products with national identity.",
+        "p2": "<1>Technical specs:</1>",
+        "features": [
+          "Built with the powerful PHP framework <1>Laravel</1>.",
+          "Using <1>Blade</1> templates for fast, dynamic UI.",
+          "Secure cart and order management.",
+          "A unique custom design aligned with the organization’s branding."
+        ],
+        "legalTitle": "Legal information:",
+        "legalText": "This project is intellectual property. Copyright for the code and design belongs to the developer <1> Zhanat Kairbekov</1>. Client: “Kazakhs of Omsk”."
+      },
+      "myModal4": {
+        "h2": "🚲 Velobike.kz — Adaptive clone",
+        "p1": "A detailed replica of a popular bike rental service, made as a learning project. Main focus: <1>pixel‑perfect</1> layout and clean UX.",
+        "p2": "<1>Implemented features:</1>",
+        "features": [
+          "<1>Multilingual:</1> Full Russian and Kazakh support via separate structures.",
+          "<1>Custom JS:</1> Custom slider, responsive burger menu and interactive dropdowns.",
+          "<1>Layout:</1> Complex responsive grid working across all devices (Mobile First).",
+          "<1>Performance:</1> Fully static project with optimized assets for fast loading."
+        ],
+        "disclaimerTitle": "Disclaimer:",
+        "disclaimerText": "Created for educational purposes only. All content and brand rights belong to the original Velobike.kz service."
+      },
+      "myModal5": {
+        "h2": "🧩 The Maze Escape: Algorithm visualizer",
+        "p1": "An interactive app visualizing <1>BFS (Breadth‑First Search)</1>. It finds the shortest path in a maze and shows the algorithm step by step.",
+        "p2": "<1>Technical details:</1>",
+        "features": [
+          "<1>Algorithm:</1> BFS guarantees the shortest path in an unweighted graph.",
+          "<1>Data structure:</1> Queues and parent nodes for efficient path reconstruction.",
+          "<1>Visualization:</1> Step-by-step matrix states: <3>0</3> free, <5>1</5> wall, <7>2</7> visited, <9>3</9> final path.",
+          "<1>Scalability:</1> Supports maps from simple 5x5 to complex 30x30 mazes."
+        ],
+        "csTitle": "💡 Computer Science case:",
+        "csText": "This project demonstrates graph skills, understanding of time complexity <1>O(V + E)</1>, and translating math abstractions into UI."
+      },
+      "myModal6": {
+        "h2": "🛒 Modern product catalog",
+        "p1": "A dynamic web app showing advanced work with <1>React</1> and animation libraries. It integrates with an external API to fetch up-to-date product data.",
+        "p2": "<1>Stack & solutions:</1>",
+        "features": [
+          "<1>Framer Motion:</1> Orchestrated animations (staggered list, smooth filtering transitions, hover micro-interactions).",
+          "<1>API integration:</1> Async work with <3>FakeStoreAPI</3> via Fetch API, with loading and error states.",
+          "<1>SCSS & BEM:</1> Modular styling architecture for maintainability.",
+          "<1>Responsive design:</1> Adaptive grid for all screen sizes."
+        ],
+        "uxTitle": "✨ UX/UI focus:",
+        "uxText": "Special attention to micro‑interactions and interface states (empty states, loading skeleton) for a premium feel."
+      }
+    }
+  }
+}
+

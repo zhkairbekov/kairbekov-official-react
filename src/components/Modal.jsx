@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import './Modal.css';
 
 const Modal = ({ modalId, isOpen, onClose }) => {
+    const { t } = useTranslation();
+
     useEffect(() => {
         if (isOpen) {
             document.body.classList.add('noscroll');
@@ -34,20 +37,19 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             mockup: '/img/mockup/kairbekov-official.webp',
             content: (
                 <>
-                    <h2>🚀 Персональный веб-сайт-портфолио</h2>
+                    <h2>{t('modal.projects.myModal1.h2')}</h2>
                     <p>
-                        Современное Single Page Application (SPA), переработанное с классического стека на
-                        мощную связку <strong>React 18</strong> и <strong>Vite</strong>.
+                        <Trans i18nKey="modal.projects.myModal1.p1" components={{ 1: <strong />, 3: <strong /> }} />
                     </p>
                     <p>
-                        <strong>Ключевые особенности обновления:</strong>
+                        <Trans i18nKey="modal.projects.myModal1.p2" components={{ 1: <strong /> }} />
                     </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px' }}>
-                        <li>Компонентная архитектура для легкой поддержки кода.</li>
-                        <li>Использование <strong>React Hooks</strong> (useState, useEffect) для управления состоянием и анимациями.</li>
-                        <li>Оптимизированная сборка через Vite для мгновенной загрузки.</li>
-                        <li>Интерактивный <strong>Custom Cursor</strong> и сложные CSS-эффекты.</li>
-                        <li>Полная адаптивность и автоматизированный деплой через <strong>Netlify</strong>.</li>
+                        {t('modal.projects.myModal1.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans i18nKey={`modal.projects.myModal1.features.${idx}`} components={{ 1: <strong /> }} />
+                          </li>
+                        ))}
                     </ul>
                 </>
             ),
@@ -59,21 +61,22 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             screenshot: '/img/sites/downtown_screenshot.webp',
             content: (
                 <>
-                    <h2>🏢 downtownastana.com — Сайт для Бизнес-Центра на Laravel (Docker + Make)</h2>
+                    <h2>{t('modal.projects.myModal2.h2')}</h2>
                     <p>
-                        Полноценный сайт бизнес-центра с интегрированной админ-панелью для управления контентом, арендаторами, заказами услуг и другими аспектами. Разработан на фреймворке <strong>Laravel</strong>, с акцентом на масштабируемость, безопасность и удобство администрирования. Проект включает фронтенд на Blade (или React/Vue по необходимости), backend-логику и интеграции для бизнес-процессов.
+                        <Trans i18nKey="modal.projects.myModal2.p1" components={{ 1: <strong /> }} />
                     </p>
-                    <p><strong>Технические особенности:</strong></p>
+                    <p>
+                      <Trans i18nKey="modal.projects.myModal2.p2" components={{ 1: <strong /> }} />
+                    </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px', listStyle: 'disc' }}>
-                        <li><strong>Инфраструктура:</strong> Контейнеризация с <strong>Docker</strong> и <strong>Docker Compose</strong> для легкого развертывания и масштабирования (включая контейнеры для PHP, Nginx, MySQL/PostgreSQL и Redis).</li>
-                        <li><strong>Автоматизация:</strong> <strong>Makefile</strong> для упрощения задач: сборка, запуск миграций, сидинг БД, деплой на сервер (e.g., via SSH или CI/CD с GitHub Actions).</li>
-                        <li><strong>Админ-панель:</strong> <strong>Filament PHP</strong> для кастомной панели управления: CRUD для страниц, арендаторов, услуг, заказов, уведомлений и аналитики. Поддержка ролей (admin, manager, tenant) с Laravel Sanctum или Jetstream.</li>
-                        <li><strong>Хранилище и медиа:</strong> <strong>Storage Link</strong> с S3-совместимым хранилищем (e.g., MinIO или AWS), автоматическая оптимизация изображений с Intervention Image, поддержка загрузки файлов для документов аренды.</li>
-                        <li><strong>Backend:</strong> Сложные миграции с Eloquent (модели для tenants, services, bookings), кастомные Artisan-команды для отчетов/бэкапов, очереди (Queues) с Horizon для email-уведомлений, обработки платежей (интеграция с Stripe или local payment gateways) и фоновых задач вроде генерации PDF-договоров.</li>
-                        <li><strong>Дополнительно:</strong> API endpoints для мобильного приложения (если нужно), кэширование с Redis, логирование с Laravel Telescope, безопасность (CSRF, rate limiting, validation), и SEO-оптимизация с мета-тегами.</li>
+                        {t('modal.projects.myModal2.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans i18nKey={`modal.projects.myModal2.features.${idx}`} components={{ 1: <strong />, 3: <strong />, 5: <strong /> }} />
+                          </li>
+                        ))}
                     </ul>
                     <p style={{ marginTop: '10px', fontStyle: 'italic' }}>
-                        Этот проект идеально демонстрирует full-stack навыки: от проектирования БД и backend-логики до фронтенда и деплоя, с фокусом на реальные бизнес-потребности центра в Астане.
+                        {t('modal.projects.myModal2.note')}
                     </p>
                 </>
             ),
@@ -86,18 +89,20 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             screenshot: '/img/sites/saukele.webp',
             content: (
                 <>
-                    <h2>🛍️ Saukele Online Shop</h2>
+                    <h2>{t('modal.projects.myModal3.h2')}</h2>
                     <p>
-                        Профессиональное <strong>E-commerce</strong> решение, разработанное для Омской региональной общественной организации <strong>«Казахи Омска»</strong>.
-                        Сайт представляет собой полноценную платформу для реализации продукции с национальным колоритом.
+                        <Trans i18nKey="modal.projects.myModal3.p1" components={{ 1: <strong />, 3: <strong /> }} />
                     </p>
 
-                    <p><strong>Технические характеристики:</strong></p>
+                    <p>
+                      <Trans i18nKey="modal.projects.myModal3.p2" components={{ 1: <strong /> }} />
+                    </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px', listStyle: 'disc' }}>
-                        <li>Разработано на базе мощного PHP-фреймворка <strong>Laravel</strong>.</li>
-                        <li>Использование шаблонизатора <strong>Blade</strong> для создания динамических и быстрых интерфейсов.</li>
-                        <li>Архитектура включает защищенную систему управления корзиной и заказами.</li>
-                        <li>Собственный уникальный дизайн, адаптированный под брендинг организации.</li>
+                        {t('modal.projects.myModal3.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans i18nKey={`modal.projects.myModal3.features.${idx}`} components={{ 1: <strong /> }} />
+                          </li>
+                        ))}
                     </ul>
 
                     <div style={{
@@ -107,10 +112,9 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                         backgroundColor: '#eee',
                         fontSize: '0.9rem'
                     }}>
-                        <p><strong>Правовая информация:</strong></p>
+                        <p><strong>{t('modal.projects.myModal3.legalTitle')}</strong></p>
                         <p>
-                            Проект является интеллектуальной собственностью. Авторские права на программный код и дизайн принадлежат разработчику
-                            <strong> Каирбекову Жанату</strong>. Заказчик: ОРОО «Казахи Омска».
+                            <Trans i18nKey="modal.projects.myModal3.legalText" components={{ 1: <strong /> }} />
                         </p>
                     </div>
                 </>
@@ -124,18 +128,20 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             screenshot: '/img/sites/velobike_screenshot.jpg',
             content: (
                 <>
-                    <h2>🚲 Velobike.kz — Adaptive Clone</h2>
+                    <h2>{t('modal.projects.myModal4.h2')}</h2>
                     <p>
-                        Детальная реплика популярного сервиса проката велосипедов, выполненная в рамках учебного проекта.
-                        Основной упор сделан на <strong>pixel-perfect</strong> верстку и чистый пользовательский опыт.
+                        <Trans i18nKey="modal.projects.myModal4.p1" components={{ 1: <strong /> }} />
                     </p>
 
-                    <p><strong>Реализованный функционал:</strong></p>
+                    <p>
+                      <Trans i18nKey="modal.projects.myModal4.p2" components={{ 1: <strong /> }} />
+                    </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px', listStyle: 'disc' }}>
-                        <li><strong>Multilingual:</strong> Полноценная поддержка русского и казахского языков через независимые структуры.</li>
-                        <li><strong>Custom JS:</strong> Самописный слайдер, адаптивное бургер-меню и интерактивные выпадающие списки (dropdown).</li>
-                        <li><strong>Layout:</strong> Сложная адаптивная сетка, корректно работающая на всех типах устройств (Mobile First).</li>
-                        <li><strong>Performance:</strong> Полностью статический проект с оптимизированными ассетами для мгновенной загрузки.</li>
+                        {t('modal.projects.myModal4.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans i18nKey={`modal.projects.myModal4.features.${idx}`} components={{ 1: <strong /> }} />
+                          </li>
+                        ))}
                     </ul>
 
                     <div style={{
@@ -145,8 +151,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                         backgroundColor: '#fff3cd',
                         fontSize: '0.85rem'
                     }}>
-                        <strong>Disclaimer:</strong> Проект создан исключительно в образовательных целях для демонстрации навыков верстки.
-                        Все права на контент и бренд принадлежат оригинальному сервису Velobike.kz.
+                        <strong>{t('modal.projects.myModal4.disclaimerTitle')}</strong> {t('modal.projects.myModal4.disclaimerText')}
                     </div>
                 </>
             ),
@@ -159,20 +164,25 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             screenshot: '/img/sites/maze-escape-game_screenshot.webp',
             content: (
                 <>
-                    <h2>🧩 The Maze Escape: Алгоритмический визуализатор</h2>
+                    <h2>{t('modal.projects.myModal5.h2')}</h2>
                     <p>
-                        Интерактивное приложение для визуализации алгоритма <strong>BFS (Breadth-First Search)</strong>.
-                        Проект решает задачу поиска кратчайшего пути в лабиринте, демонстрируя пошаговую работу логики.
+                        <Trans i18nKey="modal.projects.myModal5.p1" components={{ 1: <strong /> }} />
                     </p>
 
 
 
-                    <p><strong>Технические детали:</strong></p>
+                    <p>
+                      <Trans i18nKey="modal.projects.myModal5.p2" components={{ 1: <strong /> }} />
+                    </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px', listStyle: 'disc' }}>
-                        <li><strong>Algorithm:</strong> Поиск в ширину (BFS), гарантирующий нахождение кратчайшего пути в невзвешенном графе.</li>
-                        <li><strong>Data Structure:</strong> Использование очередей (Queue) и родительских узлов для эффективного восстановления пути.</li>
-                        <li><strong>Visualization:</strong> Пошаговое изменение состояний матрицы: <code>0</code> (свободно), <code>1</code> (стена), <code>2</code> (посещено), <code>3</code> (финальный путь).</li>
-                        <li><strong>Scalability:</strong> Обработка различных типов карт — от простых 5x5 до сложных лабиринтов 30x30.</li>
+                        {t('modal.projects.myModal5.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans
+                              i18nKey={`modal.projects.myModal5.features.${idx}`}
+                              components={{ 1: <strong />, 3: <code />, 5: <code />, 7: <code />, 9: <code /> }}
+                            />
+                          </li>
+                        ))}
                     </ul>
 
                     <div style={{
@@ -183,7 +193,8 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                         backgroundColor: '#ebf5fb',
                         fontSize: '0.9rem'
                     }}>
-                        <strong>💡 Computer Science Case:</strong> Данный проект демонстрирует навыки работы с графами, понимание временной сложности <code>O(V + E)</code> и умение перекладывать математические абстракции в визуальный интерфейс.
+                        <strong>{t('modal.projects.myModal5.csTitle')}</strong>{' '}
+                        <Trans i18nKey="modal.projects.myModal5.csText" components={{ 1: <code /> }} />
                     </div>
                 </>
             ),
@@ -196,18 +207,20 @@ const Modal = ({ modalId, isOpen, onClose }) => {
             screenshot: '/img/sites/product-catalog_screenshot.webp',
             content: (
                 <>
-                    <h2>🛒 Современный каталог товаров</h2>
+                    <h2>{t('modal.projects.myModal6.h2')}</h2>
                     <p>
-                        Динамическое веб-приложение, демонстрирующее продвинутую работу с <strong>React</strong> и
-                        библиотеками анимаций. Проект интегрирован с внешним API для получения актуальных данных о товарах.
+                        <Trans i18nKey="modal.projects.myModal6.p1" components={{ 1: <strong /> }} />
                     </p>
 
-                    <p><strong>Технологический стек и решения:</strong></p>
+                    <p>
+                      <Trans i18nKey="modal.projects.myModal6.p2" components={{ 1: <strong /> }} />
+                    </p>
                     <ul style={{ color: '#000', paddingLeft: '20px', marginTop: '10px', listStyle: 'disc' }}>
-                        <li><strong>Framer Motion:</strong> Реализованы сложные оркестрованные анимации (постепенное появление списка, плавные переходы при фильтрации и интерактивные hover-эффекты).</li>
-                        <li><strong>API Integration:</strong> Асинхронное взаимодействие с <em>FakeStoreAPI</em> через Fetch API с обработкой состояний загрузки (Loader) и ошибок.</li>
-                        <li><strong>SCSS & БЭМ:</strong> Строгая модульная архитектура стилей по методологии БЭМ, обеспечивающая масштабируемость и чистоту кода.</li>
-                        <li><strong>Responsive Design:</strong> Адаптивная сетка, оптимизированная под все типы экранов — от смартфонов до широкоформатных мониторов.</li>
+                        {t('modal.projects.myModal6.features', { returnObjects: true }).map((item, idx) => (
+                          <li key={idx}>
+                            <Trans i18nKey={`modal.projects.myModal6.features.${idx}`} components={{ 1: <strong />, 3: <em /> }} />
+                          </li>
+                        ))}
                     </ul>
 
                     <div style={{
@@ -218,7 +231,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                         backgroundColor: '#f0f1ff',
                         fontSize: '0.9rem'
                     }}>
-                        <strong>✨ UX/UI Focus:</strong> Особое внимание уделено микровзаимодействиям и состояниям интерфейса (Empty states, Loading skeleton), что создает ощущение дорогого и качественного продукта.
+                        <strong>{t('modal.projects.myModal6.uxTitle')}</strong> {t('modal.projects.myModal6.uxText')}
                     </div>
                 </>
             ),
@@ -233,7 +246,7 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                 <div className="modal-header">
                     <h5 className="modal-title mb-0">{data.title}</h5>
                     <span
-                        title="Закрыть"
+                        title={t('modal.closeTitle')}
                         className="closeModal"
                         onClick={onClose}
                         style={{ float: 'right', cursor: 'pointer' }}>&times;
@@ -251,9 +264,9 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                                 target="_blank"
                                 href={data.siteUrl}
                                 className="pfbutton"
-                                aria-label={`Открыть сайт ${data.title}`}
+                                aria-label={t('modal.openSiteAria', { title: data.title })}
                             >
-                                Открыть сайт
+                                {t('modal.openSite')}
                             </a>
                         )}
                         {data.githubUrl && (
@@ -262,15 +275,17 @@ const Modal = ({ modalId, isOpen, onClose }) => {
                                 target="_blank"
                                 href={data.githubUrl}
                                 className="pfbutton"
-                                aria-label={`Открыть GitHub репозиторий проекта ${data.title}`}
+                                aria-label={t('modal.openGithubAria', { title: data.title })}
                             >
-                                Открыть github проекта
+                                {t('modal.openGithub')}
                             </a>
                         )}
                     </div>
                     <div className="modal-images"> {/* Новая обертка для изображений */}
-                        <img src={data.mockup} alt={`Мокап ${data.title}`} loading="lazy" />
-                        {data.screenshot && <img src={data.screenshot} alt={`Скриншоты ${data.title}`} loading="lazy" />}
+                        <img src={data.mockup} alt={t('modal.mockupAlt', { title: data.title })} loading="lazy" />
+                        {data.screenshot && (
+                          <img src={data.screenshot} alt={t('modal.screenshotAlt', { title: data.title })} loading="lazy" />
+                        )}
                     </div>
                 </div>
             </div>
