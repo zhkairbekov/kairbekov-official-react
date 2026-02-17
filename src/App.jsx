@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-import Designs from './components/Designs';
-import Licenses from './components/Licenses';
-import Contacts from './components/Contacts';
+const About = lazy(() => import('./components/About'));
+const Services = lazy(() => import('./components/Services'));
+const Portfolio = lazy(() => import('./components/Portfolio'));
+// const Designs = lazy(() => import('./components/Designs'));
+const Licenses = lazy(() => import('./components/Licenses'));
+const Contacts = lazy(() => import('./components/Contacts'));
 // import CustomCursor from './components/CustomCursor';
 import './App.css';
 
@@ -35,26 +35,36 @@ function App() {
       <Header />
       
       <section className="razdel-top mt-3"></section>
-      
-      <About />
+
+      <Suspense fallback={null}>
+        <About />
+      </Suspense>
       
       <section className="razdel-bottom mb-2"></section>
       
-      <Services />
+      <Suspense fallback={null}>
+        <Services />
+      </Suspense>
       
       <section className="razdel-top mt-3"></section>
       
-      <Portfolio />
+      <Suspense fallback={null}>
+        <Portfolio />
+      </Suspense>
       
       <section className="razdel-bottom mb-2"></section>
 
-      {/*<Designs />*/}
+      {/*<Suspense fallback={null}><Designs /></Suspense>*/}
 
-      <Licenses />
+      <Suspense fallback={null}>
+        <Licenses />
+      </Suspense>
       
       <section className="razdel-top mt-3"></section>
       
-      <Contacts />
+      <Suspense fallback={null}>
+        <Contacts />
+      </Suspense>
     </div>
   );
 }

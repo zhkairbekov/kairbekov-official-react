@@ -123,34 +123,19 @@ const Header = () => {
                   </a>
                 </li>
 
-                <li className="text-15px" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <button
-                    type="button"
-                    className="link"
-                    onClick={() => changeLanguage('ru')}
-                    aria-label={t('lang.ru')}
-                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'ru' ? 1 : 0.6 }}
+                <li className="text-15px" style={{ display: 'flex', alignItems: 'center' }}>
+                  <label htmlFor="lang-select" className="visually-hidden">Language</label>
+                  <select
+                    id="lang-select"
+                    className="lang-select"
+                    aria-label="Select language"
+                    value={i18n.resolvedLanguage || i18n.language}
+                    onChange={(e) => changeLanguage(e.target.value)}
                   >
-                    {t('lang.ru')}
-                  </button>
-                  <button
-                    type="button"
-                    className="link"
-                    onClick={() => changeLanguage('kk')}
-                    aria-label={t('lang.kk')}
-                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'kk' ? 1 : 0.6 }}
-                  >
-                    {t('lang.kk')}
-                  </button>
-                  <button
-                    type="button"
-                    className="link"
-                    onClick={() => changeLanguage('en')}
-                    aria-label={t('lang.en')}
-                    style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'en' ? 1 : 0.6 }}
-                  >
-                    {t('lang.en')}
-                  </button>
+                    <option value="ru">{t('lang.ru')}</option>
+                    <option value="kk">{t('lang.kk')}</option>
+                    <option value="en">{t('lang.en')}</option>
+                  </select>
                 </li>
               </ul>
             </div>
@@ -195,34 +180,19 @@ const Header = () => {
               </a>
             </li>
 
-            <li className="text-15px" style={{ display: 'flex', gap: '10px' }}>
-              <button
-                type="button"
-                className="link"
-                onClick={() => changeLanguage('ru')}
-                aria-label={t('lang.ru')}
-                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'ru' ? 1 : 0.6 }}
+            <li className="text-15px" style={{ display: 'flex', justifyContent: 'center' }}>
+              <label htmlFor="lang-select-mobile" className="visually-hidden">Language</label>
+              <select
+                id="lang-select-mobile"
+                className="lang-select lang-select--mobile"
+                aria-label="Select language"
+                value={i18n.resolvedLanguage || i18n.language}
+                onChange={(e) => changeLanguage(e.target.value)}
               >
-                {t('lang.ru')}
-              </button>
-              <button
-                type="button"
-                className="link"
-                onClick={() => changeLanguage('kk')}
-                aria-label={t('lang.kk')}
-                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'kk' ? 1 : 0.6 }}
-              >
-                {t('lang.kk')}
-              </button>
-              <button
-                type="button"
-                className="link"
-                onClick={() => changeLanguage('en')}
-                aria-label={t('lang.en')}
-                style={{ opacity: (i18n.resolvedLanguage || i18n.language) === 'en' ? 1 : 0.6 }}
-              >
-                {t('lang.en')}
-              </button>
+                <option value="ru">{t('lang.ru')}</option>
+                <option value="kk">{t('lang.kk')}</option>
+                <option value="en">{t('lang.en')}</option>
+              </select>
             </li>
           </ul>
         </div>

@@ -14,12 +14,16 @@ const Hero = ({ showTopElements }) => {
                 alt={t('hero.photoAlt')}
                 id="top_zhan"
                 className={`top-zhan ${!showTopElements ? 'd-none' : ''}`}
+                fetchpriority="high"
+                decoding="async"
               />
               <img
                 src="/img/ico/top-logo.png"
                 alt={t('hero.topLogoAlt')}
                 id="top_logo"
                 className={`top-logo ${!showTopElements ? 'd-none' : ''}`}
+                fetchpriority="high"
+                decoding="async"
               />
               <div className="text z-index-100">
                 <h1 className="monoton-regular">KAIRBEKOV</h1>
