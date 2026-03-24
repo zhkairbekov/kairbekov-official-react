@@ -14,8 +14,10 @@ const Header = () => {
       setIsHighlighted(scrollY >= window.innerHeight);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () =>
+      window.removeEventListener('scroll', handleScroll, { passive: true });
   }, []);
 
   const toggleMenu = () => {
@@ -37,7 +39,7 @@ const Header = () => {
 
     const screenWidth = window.innerWidth;
     let offset = -55;
-    
+
     if (screenWidth <= 768) {
       offset = -53;
     } else if (screenWidth <= 1199) {
@@ -54,17 +56,17 @@ const Header = () => {
   };
 
   return (
-    <header 
-      id="header" 
+    <header
+      id="header"
       className={`section_2 w-100 pt-4 pb-4 z-index-100 ${isHighlighted ? 'highlight' : ''} ${isMenuOpen ? 'header-fixed' : ''}`}
     >
       <div className="container">
-        <nav className="navbar" role="navigation" aria-label={t('header.navAria')}>
+        <nav className="navbar" aria-label={t('header.navAria')}>
           <div className="container w-100">
             <div className="Rfwrap w-100">
-              <a 
-                href="#wrapper" 
-                className="logo" 
+              <a
+                href="#wrapper"
+                className="logo"
                 aria-label={t('header.logoAria')}
                 onClick={(e) => scrollToSection(e, 'wrapper')}
               >

@@ -43,7 +43,7 @@ header {
 
 .Rfwrap .menu li a,
 .menu li a,
-.menu li button{
+.menu li button {
     display: flex;
     align-items: center;
     font-size: 20px;
@@ -79,9 +79,8 @@ header {
     cursor: pointer;
 }
 
-.lang-select:focus {
-    outline: 2px solid #6f6f6f;
-    outline-offset: 2px;
+.lang-select:focus, .lang-select:focus-visible {
+    outline: none;
 }
 
 .visually-hidden {
@@ -202,7 +201,7 @@ header .SUlogo {
     }
 
     .popup .menu li button {
-                width: max-content;
+        width: max-content;
         margin: 16px;
         padding: 8px;
     }
@@ -235,6 +234,7 @@ header .SUlogo {
 }
 
 @media (max-width: 991px) {
+
     .Rfwrap .menu,
     .Rfwrap .menu li {
         width: auto;

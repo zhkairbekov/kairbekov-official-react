@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Modal from './Modal';
 import './Portfolio.css';
@@ -17,21 +17,20 @@ const Portfolio = () => {
                         <div className="container">
                             <div className="content">
                                 <h2 className="title bold">{t('portfolio.title')}</h2>
-                                <hr/>
-                                <ul className="tgcards w-100" style={{listStyle: 'none', padding: 0, margin: 0}}>
+                                <hr />
+                                <ul className="tgcards w-100" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                                     {projects.map((project) => (
                                         <li key={project.id}>
-                                            <a
+                                            <button
                                                 className="tgcard openModal"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    setOpenModal(project.id);
-                                                }}
-                                                aria-label={t('portfolio.openProjectAria', { title: project.title })}>
-                                                <img src={project.image} alt={project.alt} loading="lazy"/>
+                                                onClick={() => setOpenModal(project.id)}
+                                                aria-label={t('portfolio.openProjectAria', { title: project.title })}
+                                                type="button" // важно!
+                                            >
+                                                <img src={project.image} alt={project.alt} loading="lazy" />
                                                 <h4>{project.title}</h4>
                                                 <p className="jvbutton">{t('portfolio.viewProject')}</p>
-                                            </a>
+                                            </button>
                                         </li>
                                     ))}
                                 </ul>
@@ -41,7 +40,6 @@ const Portfolio = () => {
                 </div>
             </section>
 
-            {/* Заменяем кучу строк на одну универсальную */}
             {openModal && (
                 <Modal
                     modalId={openModal}

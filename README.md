@@ -96,44 +96,6 @@ npm run preview
 
 ---
 
-## 🌐 Деплой на Netlify
-
-### Способ 1: Через GitHub (Рекомендуется)
-
-1. Загрузите проект в GitHub репозиторий
-2. Зайдите на [Netlify](https://app.netlify.com)
-3. Нажмите "Add new site" → "Import an existing project"
-4. Выберите ваш GitHub репозиторий
-5. Настройки сборки:
-    - **Build command:** `npm run build`
-    - **Publish directory:** `dist`
-6. Нажмите "Deploy site"
-
-### Способ 2: Через Netlify CLI
-
-```bash
-# Установите Netlify CLI
-npm install -g netlify-cli
-
-# Войдите в аккаунт
-netlify login
-
-# Инициализируйте проект
-netlify init
-
-# Соберите и задеплойте
-npm run build
-netlify deploy --prod
-```
-
-### Способ 3: Drag & Drop
-
-1. Соберите проект: `npm run build`
-2. Зайдите на [Netlify Drop](https://app.netlify.com/drop)
-3. Перетащите папку `dist/` в окно браузера
-
----
-
 ## 📱 Адаптивность
 
 Сайт полностью адаптивен для:
