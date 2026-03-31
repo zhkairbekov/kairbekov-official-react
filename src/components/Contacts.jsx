@@ -25,7 +25,7 @@ const Contacts = () => {
                     alt={t('contacts.githubAlt')}
                     loading="lazy"
                   />
-                  <p>GitHub: zhkairbekov</p>
+                  <p>GitHub</p>
                 </a>
                 <a
                   href="https://www.linkedin.com/in/zhanat-kairbekov-963816372/"
@@ -47,7 +47,7 @@ const Contacts = () => {
                   title={t('contacts.telegramTitle')}
                 >
                   <img src="/img/ico/telegram.png" alt={t('contacts.telegramAlt')} loading="lazy" />
-                  <p>@kairbekoff</p>
+                  <p>Telegram</p>
                 </a>
                 <a
                   href="https://www.instagram.com/kairbekov.official"
@@ -61,7 +61,7 @@ const Contacts = () => {
                     alt={t('contacts.instagramAlt')}
                     loading="lazy"
                   />
-                  <p>@kairbekov.official</p>
+                  <p>Instagram</p>
                 </a>
               </address>
             </div>
