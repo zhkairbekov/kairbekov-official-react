@@ -28,17 +28,16 @@ const Contacts = () => {
                   <p>GitHub: zhkairbekov</p>
                 </a>
                 <a
-                  href="https://wa.me/77053062873"
+                  href="https://www.linkedin.com/in/zhanat-kairbekov-963816372/"
                   target="_blank"
                   className="contact_1 lkpoint d-flex"
-                  title={t('contacts.whatsappTitle')}
                 >
                   <img
-                    src="/img/ico/kazakhstan.png"
-                    alt={t('contacts.whatsappAlt')}
+                    src="/img/ico/linkedin.png"
+                    alt={t('contacts.linkedinAlt')}
                     loading="lazy"
                   />
-                  <p>+7 (705) 306 28-73</p>
+                  <p>LinkedIn</p>
                 </a>
                 <a
                   href="https://t.me/kairbekoff"
@@ -48,7 +47,7 @@ const Contacts = () => {
                   title={t('contacts.telegramTitle')}
                 >
                   <img src="/img/ico/telegram.png" alt={t('contacts.telegramAlt')} loading="lazy" />
-                  <p>Telegram: @kairbekoff</p>
+                  <p>@kairbekoff</p>
                 </a>
                 <a
                   href="https://www.instagram.com/kairbekov.official"
@@ -62,7 +61,7 @@ const Contacts = () => {
                     alt={t('contacts.instagramAlt')}
                     loading="lazy"
                   />
-                  <p>Instagram: @kairbekov.official</p>
+                  <p>@kairbekov.official</p>
                 </a>
               </address>
             </div>

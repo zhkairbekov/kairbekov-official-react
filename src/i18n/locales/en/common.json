@@ -141,6 +141,7 @@
     "telegramAlt": "Telegram account: kairbekoff",
     "instagramTitle": "Designer portfolio on Instagram",
     "instagramAlt": "Instagram profile: kairbekov.official",
+    "linkedinAlt": "LinkedIn icon",
     "footerTitle": "Designer portfolio on Instagram",
     "footerCopyright": "©2019 — frontend developer portfolio <1>@kairbekov.official</1>"
   },
@@ -234,4 +235,3 @@
     }
   }
 }
-
