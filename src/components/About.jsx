@@ -32,9 +32,24 @@ function CountUp({ value, inView }) {
 }
 
 const SKILLS = [
-  "React", "TypeScript", "Next.js", "Node.js", "SCSS", "Tailwind",
-  "Framer Motion", "Figma", "Git", "REST API", "Laravel", "PHP",
-  "MySQL", "Vite", "i18n", "Canvas API", "Three.js", "GSAP",
+  "React",
+  "TypeScript",
+  "Next.js",
+  "Node.js",
+  "SCSS",
+  "Tailwind",
+  "Framer Motion",
+  "Figma",
+  "Git",
+  "REST API",
+  "Laravel",
+  "PHP",
+  "MySQL",
+  "Vite",
+  "i18n",
+  "Canvas API",
+  "Three.js",
+  "GSAP",
 ];
 
 export default function About() {
@@ -42,7 +57,10 @@ export default function About() {
   const ref = useRef(null);
   const statsRef = useRef(null);
   const inView = useInView(statsRef, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
   const raccY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
@@ -57,12 +75,17 @@ export default function About() {
       ];
 
   return (
-    <section id="about" ref={ref} className="relative py-24 md:py-40 overflow-hidden">
+    <section
+      id="about"
+      ref={ref}
+      className="relative py-24 md:py-40 overflow-hidden"
+    >
       {/* Wavy amber glow bg */}
       <motion.div
         style={{
           y: bgY,
-          background: "radial-gradient(circle, hsl(38 95% 60% / 0.07) 0%, transparent 65%)",
+          background:
+            "radial-gradient(circle, hsl(38 95% 60% / 0.07) 0%, transparent 65%)",
           filter: "blur(60px)",
         }}
         className="absolute -top-60 -right-40 w-[700px] h-[700px] rounded-full pointer-events-none"
@@ -162,12 +185,18 @@ export default function About() {
                   "bottom-0 left-0 border-b-2 border-l-2",
                   "bottom-0 right-0 border-b-2 border-r-2",
                 ].map((cls, i) => (
-                  <div key={i} className={`absolute w-5 h-5 border-primary ${cls}`} />
+                  <div
+                    key={i}
+                    className={`absolute w-5 h-5 border-primary ${cls}`}
+                  />
                 ))}
 
                 <div
                   className="absolute inset-0 rounded-full pointer-events-none"
-                  style={{ background: "radial-gradient(circle, hsl(38 95% 60% / 0.12) 0%, transparent 70%)" }}
+                  style={{
+                    background:
+                      "radial-gradient(circle, hsl(38 95% 60% / 0.12) 0%, transparent 70%)",
+                  }}
                 />
                 <RaccoonLogo size={180} glowing animated />
               </div>
@@ -188,7 +217,10 @@ export default function About() {
         </div>
 
         {/* Stats row */}
-        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
+        <div
+          ref={statsRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border"
+        >
           {stats.map((s, i) => (
             <motion.div
               key={i}
@@ -200,7 +232,7 @@ export default function About() {
             >
               <span
                 className="font-display font-black text-primary leading-none"
-                style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}
+                style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
               >
                 <CountUp value={s.val} inView={inView} />
               </span>
@@ -213,7 +245,10 @@ export default function About() {
 
         {/* Skills marquee */}
         <div className="mt-16 overflow-hidden border-t border-b border-border/50 py-4">
-          <div className="flex gap-8 animate-marquee whitespace-nowrap" aria-hidden>
+          <div
+            className="flex gap-8 animate-marquee whitespace-nowrap"
+            aria-hidden
+          >
             {[...SKILLS, ...SKILLS].map((s, i) => (
               <span
                 key={i}
