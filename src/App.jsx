@@ -1,71 +1,75 @@
-import { useState, useEffect, Suspense, lazy } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-const About = lazy(() => import('./components/About'));
-const Services = lazy(() => import('./components/Services'));
-const Portfolio = lazy(() => import('./components/Portfolio'));
-// const Designs = lazy(() => import('./components/Designs'));
-const Licenses = lazy(() => import('./components/Licenses'));
-const Contacts = lazy(() => import('./components/Contacts'));
-// import CustomCursor from './components/CustomCursor';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Lenis from "lenis";
+import { ThemeProvider } from "./lib/theme-provider";
+import "./lib/i18n";
+import Preloader from "./components/Preloader";
+import Cursor from "./components/Cursor";
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Services from "./components/Services";
+import Process from "./components/Process";
+import Journey from "./components/Journey";
+import Certificates from "./components/Certificates";
+import Portfolio from "./components/Portfolio";
+import Contacts from "./components/Contacts";
 
-function App() {
-  const [showTopElements, setShowTopElements] = useState(true);
+function AppContent() {
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      const height = window.innerHeight;
-      setShowTopElements(height >= 590);
-    };
+    const lenis = new Lenis({
+      duration: 1.35,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, []);
 
   return (
-    <div id="wrapper" className="wrapper">
-      {/*<CustomCursor />*/}
+    <div className="relative w-full bg-background text-foreground min-h-screen">
+      <Preloader onComplete={() => setReady(true)} />
+      <Cursor />
 
-      <Hero showTopElements={showTopElements} />
-      
-      <section className="razdel-bottom mb-2"></section>
-      
-      <Header />
-      
-      <section className="razdel-top mt-3"></section>
-
-      <Suspense fallback={null}>
-        <About />
-      </Suspense>
-      
-      <section className="razdel-bottom mb-2"></section>
-      
-      <Suspense fallback={null}>
-        <Services />
-      </Suspense>
-      
-      <section className="razdel-top mt-3"></section>
-      
-      <Suspense fallback={null}>
-        <Portfolio />
-      </Suspense>
-      
-      <section className="razdel-bottom mb-2"></section>
-
-      {/*<Suspense fallback={null}><Designs /></Suspense>*/}
-
-      <Suspense fallback={null}>
-        <Licenses />
-      </Suspense>
-      
-      <section className="razdel-top mt-3"></section>
-      
-      <Suspense fallback={null}>
-        <Contacts />
-      </Suspense>
+      <div
+        style={{
+          opacity: ready ? 1 : 0,
+          transition: "opacity 0.6s ease 0.1s",
+          pointerEvents: ready ? "auto" : "none",
+        }}
+      >
+        <Navigation />
+        <main className="relative z-10 w-full overflow-x-hidden">
+          <Hero />
+          <About />
+          <Services />
+          <Process />
+          <Portfolio />
+          <Journey />
+          <Certificates />
+          <Contacts />
+        </main>
+      </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider defaultTheme="dark" storageKey="theme">
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
