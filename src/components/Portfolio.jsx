@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
@@ -73,7 +73,6 @@ function ProjectDescription({ projectId }) {
   const { t, i18n } = useTranslation();
   const key = `portfolio.projects.${projectId}`;
 
-  // Если описания нет — ничего не рендерим
   if (!i18n.exists(`${key}.h2`)) return null;
 
   const features = t(`${key}.features`, { returnObjects: true });
@@ -287,7 +286,8 @@ export default function Portfolio() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
+            // ↓ overflow-y-auto даёт скролл внутри оверлея, убираем flex items-center
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl overflow-y-auto flex items-start justify-center p-4 md:p-8"
             onClick={() => setSelected(null)}
           >
             <motion.div
@@ -296,7 +296,8 @@ export default function Portfolio() {
               exit={{ opacity: 0, y: 32, scale: 0.96 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-card border border-border w-full max-w-4xl overflow-hidden"
+              // ↓ mx-auto + my-auto центрирует когда места хватает; overflow-hidden оставляем для скругления
+              className="bg-card border border-border w-full max-w-4xl my-auto overflow-hidden"
             >
               <div className="h-[3px] bg-primary" />
 

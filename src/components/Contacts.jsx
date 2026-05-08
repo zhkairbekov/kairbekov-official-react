@@ -49,7 +49,7 @@ export default function Contacts() {
         </div>
       </div>
 
-      <div className="relative py-24 md:py-40">
+      <div className="relative py-24 md:pt-40 pb-[40px]">
         {/* Subtle glow */}
         <div
           className="absolute inset-0 pointer-events-none"

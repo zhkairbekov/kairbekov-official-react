@@ -157,7 +157,7 @@
   }
 
   .text-stroke-primary {
-    -webkit-text-stroke: 1.5px hsl(var(--primary));
+    -webkit-text-stroke: 5px hsl(var(--primary));
     color: transparent;
   }
 
@@ -366,4 +366,11 @@
   html.devtools-open * {
     cursor: auto !important;
   }
+}
+
+.no-scroll {
+  overflow: hidden !important;
+  touch-action: none;
+  /* Отключает свайпы на мобилках */
+  -webkit-overflow-scrolling: none;
 }

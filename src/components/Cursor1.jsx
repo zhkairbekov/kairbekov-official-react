@@ -1,40 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-
-const DEV_TOOLS_THRESHOLD = 160;
-
-function checkDevTools() {
-  return (
-    window.outerWidth - window.innerWidth > DEV_TOOLS_THRESHOLD ||
-    window.outerHeight - window.innerHeight > DEV_TOOLS_THRESHOLD
-  );
-}
+import devtools from "devtools-detect";
 
 function useDevToolsOpen() {
-  const [isOpen, setIsOpen] = useState(() => checkDevTools());
+  const [isOpen, setIsOpen] = useState(() => devtools.isOpen);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      const open = checkDevTools();
-      setIsOpen((prev) => {
-        if (prev !== open) {
-          document.body.classList.toggle("devtools-open", open);
-        }
-        return open;
-      });
-    }, 500);
+    const html = document.documentElement;
 
-    const open = checkDevTools();
-    document.body.classList.toggle("devtools-open", open);
+    const handler = (e) => {
+      setIsOpen(e.detail.isOpen);
+      html.classList.toggle("devtools-open", e.detail.isOpen);
+    };
 
-    return () => clearInterval(id);
+    html.classList.toggle("devtools-open", devtools.isOpen);
+    window.addEventListener(devtools.eventName, handler);
+
+    return () => {
+      window.removeEventListener(devtools.eventName, handler);
+      html.classList.remove("devtools-open");
+    };
   }, []);
 
   return isOpen;
 }
 
 function useIsTouch() {
-  const [isTouch, setIsTouch] = React.useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
     setIsTouch(window.matchMedia("(hover: none), (pointer: coarse)").matches);
   }, []);
@@ -55,7 +47,6 @@ export default function Cursor() {
   const springY = useSpring(mouseY, springCfg);
 
   const [isHovering, setIsHovering] = useState(false);
-  const [isLink, setIsLink] = useState(false);
   const [label, setLabel] = useState("");
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -71,21 +62,18 @@ export default function Cursor() {
 
     const onOver = (e) => {
       const el = e.target;
+      const card = el.closest("[data-cursor-label]");
       const link = el.closest("a");
       const btn = el.closest("button");
-      const card = el.closest("[data-cursor-label]");
 
       if (card) {
         setLabel(card.dataset.cursorLabel || "VIEW");
         setIsHovering(true);
-        setIsLink(false);
       } else if (link || btn) {
         setLabel("");
         setIsHovering(true);
-        setIsLink(true);
       } else {
         setIsHovering(false);
-        setIsLink(false);
         setLabel("");
       }
     };
@@ -112,8 +100,9 @@ export default function Cursor() {
     };
   }, [mouseX, mouseY, dotX, dotY, isVisible]);
 
-  if (isTouch || devToolsOpen) return null;
+  if (isTouch) return null;
 
+  const cursorVisible = isVisible && !devToolsOpen;
   const size = isHovering ? (label ? 88 : 52) : 36;
 
   return (
@@ -127,12 +116,12 @@ export default function Cursor() {
           translateY: "-50%",
           mixBlendMode: isHovering && label ? "normal" : "difference",
           backgroundColor: isHovering && label ? "hsl(38 95% 60%)" : "white",
-          opacity: isVisible ? 1 : 0,
         }}
         animate={{
           width: size,
           height: size,
           scale: isClicking ? 0.78 : 1,
+          opacity: cursorVisible ? 1 : 0,
         }}
         transition={{ type: "spring", stiffness: 280, damping: 26 }}
       >
@@ -159,8 +148,11 @@ export default function Cursor() {
           height: 5,
           backgroundColor: "hsl(38 95% 60%)",
           mixBlendMode: "normal",
-          opacity: isVisible && !isHovering ? 1 : 0,
         }}
+        animate={{
+          opacity: cursorVisible && !isHovering ? 1 : 0,
+        }}
+        transition={{ duration: 0.15 }}
       />
     </>
   );
