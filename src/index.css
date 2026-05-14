@@ -371,6 +371,4 @@
 .no-scroll {
   overflow: hidden !important;
   touch-action: none;
-  /* Отключает свайпы на мобилках */
-  -webkit-overflow-scrolling: none;
 }
