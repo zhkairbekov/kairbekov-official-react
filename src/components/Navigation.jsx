@@ -27,6 +27,7 @@ export default function Navigation() {
 
   const scroll = (id) => {
     setOpen(false);
+    window.dispatchEvent(new CustomEvent("nav-scroll"));
     setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 340);
   };
 

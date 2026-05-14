@@ -12,7 +12,7 @@ const PROJECTS = [
       "https://kairbekov-official.netlify.app/img/mockup/kairbekov-official.webp",
     github: "https://github.com/zhkairbekov/kairbekov-official-react",
     tags: ["React", "Vite", "i18n", "CSS3"],
-    year: "2024",
+    year: "2022",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const PROJECTS = [
       "https://kairbekov-official.netlify.app/img/mockup/downtown_mockup.webp",
     site: "https://downtownastana.com/",
     tags: ["HTML5", "SCSS", "JavaScript"],
-    year: "2024",
+    year: "2026",
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const PROJECTS = [
     github: "https://github.com/zhkairbekov/velobike",
     site: "https://kairbekov-velobike.netlify.app/",
     tags: ["HTML", "CSS", "JS"],
-    year: "2023",
+    year: "2025",
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const PROJECTS = [
     github: "https://github.com/zhkairbekov/alem-project-js-1",
     site: "https://kairbekov-alem-js-1.netlify.app/",
     tags: ["JavaScript", "Canvas API"],
-    year: "2024",
+    year: "2025",
   },
   {
     id: 6,
@@ -65,7 +65,7 @@ const PROJECTS = [
     github: "https://github.com/zhkairbekov/product-catalog",
     site: "https://kairbekov-product-catalog.netlify.app/",
     tags: ["React", "API"],
-    year: "2024",
+    year: "2025",
   },
 ];
 
@@ -159,6 +159,23 @@ export default function Portfolio() {
     if (!listRef.current) return;
     const rect = listRef.current.getBoundingClientRect();
     setImgPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }, []);
+
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selected]);
+
+  useEffect(() => {
+    const handleNavScroll = () => setSelected(null);
+    window.addEventListener("nav-scroll", handleNavScroll);
+    return () => window.removeEventListener("nav-scroll", handleNavScroll);
   }, []);
 
   return (
@@ -286,81 +303,82 @@ export default function Portfolio() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            // ↓ overflow-y-auto даёт скролл внутри оверлея, убираем flex items-center
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl overflow-y-auto flex items-start justify-center p-4 md:p-22"
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl overflow-y-auto"
             onClick={() => setSelected(null)}
+            data-lenis-prevent="true"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 32, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 32, scale: 0.96 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              // ↓ mx-auto + my-auto центрирует когда места хватает; overflow-hidden оставляем для скругления
-              className="bg-card border border-border w-full max-w-4xl my-auto overflow-hidden"
-            >
-              <div className="h-[3px] bg-primary" />
+            <div className="flex min-h-full justify-center pt-[81px] pb-[16px] md:px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 32, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 32, scale: 0.96 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-card border border-border w-full max-w-4xl overflow-hidden relative"
+              >
+                <div className="h-[3px] bg-primary" />
 
-              <div className="relative aspect-video overflow-hidden bg-muted">
-                <img
-                  src={selected.image}
-                  alt={selected.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-6 font-display font-black text-white text-2xl md:text-4xl">
-                  {selected.title}
-                </div>
-              </div>
-
-              <div className="p-6 md:p-10">
-                <div className="flex items-start justify-between gap-4 mb-6">
-                  <div className="flex flex-wrap gap-2">
-                    {selected.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-mono-custom tracking-[0.18em] uppercase px-3 py-1.5 border border-border text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div className="relative aspect-video overflow-hidden bg-muted">
+                  <img
+                    src={selected.image}
+                    alt={selected.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute bottom-4 left-6 font-display font-black text-white text-2xl md:text-4xl">
+                    {selected.title}
                   </div>
-                  <button
-                    onClick={() => setSelected(null)}
-                    className="p-2 border border-border hover:bg-secondary hover:border-primary transition-colors shrink-0"
-                  >
-                    <X size={16} />
-                  </button>
                 </div>
 
-                <ProjectDescription projectId={selected.id} />
+                <div className="p-6 md:p-10">
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div className="flex flex-wrap gap-2">
+                      {selected.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-mono-custom tracking-[0.18em] uppercase px-3 py-1.5 border border-border text-muted-foreground"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setSelected(null)}
+                      className="p-2 border border-border hover:bg-secondary hover:border-primary transition-colors shrink-0"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
 
-                <div className="flex flex-wrap gap-3 mt-8">
-                  {selected.site && (
-                    <a
-                      href={selected.site}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-bold text-xs tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
-                    >
-                      <ExternalLink size={14} />
-                      {t("portfolio.viewSite")}
-                    </a>
-                  )}
-                  {selected.github && (
-                    <a
-                      href={selected.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 border border-border hover:bg-secondary font-display font-bold text-xs tracking-[0.2em] uppercase transition-colors"
-                    >
-                      <Github size={14} />
-                      {t("portfolio.viewCode")}
-                    </a>
-                  )}
+                  <ProjectDescription projectId={selected.id} />
+
+                  <div className="flex flex-wrap gap-3 mt-8">
+                    {selected.site && (
+                      <a
+                        href={selected.site}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-bold text-xs tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
+                      >
+                        <ExternalLink size={14} />
+                        {t("portfolio.viewSite")}
+                      </a>
+                    )}
+                    {selected.github && (
+                      <a
+                        href={selected.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 border border-border hover:bg-secondary font-display font-bold text-xs tracking-[0.2em] uppercase transition-colors"
+                      >
+                        <Github size={14} />
+                        {t("portfolio.viewCode")}
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
