@@ -7,20 +7,34 @@ function CountUp({ value, inView }) {
   const num = parseInt(value);
   const suffix = value.replace(/^\d+/, "");
   const isNumeric = !isNaN(num);
-  const [display, setDisplay] = React.useState(isNumeric ? 0 : value);
+  const startVal = isNumeric && num >= 2000 ? 2000 : 0;
+  const [display, setDisplay] = React.useState(isNumeric ? startVal : value);
 
   React.useEffect(() => {
     if (!inView || !isNumeric) return;
-    let start = 0;
-    const duration = 1600;
-    const step = duration / num;
-    const t = setInterval(() => {
-      start += 1;
-      setDisplay(start);
-      if (start >= num) clearInterval(t);
-    }, step);
-    return () => clearInterval(t);
-  }, [inView, num, isNumeric]);
+    
+    let startTime = null;
+    const duration = 3000; // 3 seconds
+    
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      // Плавное замедление к концу (easeOutCubic)
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      
+      setDisplay(Math.floor(startVal + (num - startVal) * easeOut));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setDisplay(num);
+      }
+    };
+    
+    const rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
+  }, [inView, num, isNumeric, startVal]);
 
   if (!isNumeric) return <span>{value}</span>;
   return (
@@ -32,10 +46,10 @@ function CountUp({ value, inView }) {
 }
 
 const SKILLS = [
+  "HTML",
   "React",
-  "TypeScript",
-  "Next.js",
-  "Node.js",
+  "JavaScript",
+  "CSS",
   "SCSS",
   "Tailwind",
   "Framer Motion",
