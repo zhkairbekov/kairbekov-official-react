@@ -7,31 +7,31 @@ function CountUp({ value, inView }) {
   const num = parseInt(value);
   const suffix = value.replace(/^\d+/, "");
   const isNumeric = !isNaN(num);
-  const startVal = isNumeric && num >= 2000 ? 2000 : 0;
+  const startVal = isNumeric && num >= 1000 ? 1000 : 0;
   const [display, setDisplay] = React.useState(isNumeric ? startVal : value);
 
   React.useEffect(() => {
     if (!inView || !isNumeric) return;
-    
+
     let startTime = null;
-    const duration = 3000; // 3 seconds
-    
+    const duration = 5000; // 5 seconds
+
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      
+
       // Плавное замедление к концу (easeOutCubic)
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      
+
       setDisplay(Math.floor(startVal + (num - startVal) * easeOut));
-      
+
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
         setDisplay(num);
       }
     };
-    
+
     const rafId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafId);
   }, [inView, num, isNumeric, startVal]);
@@ -82,11 +82,11 @@ export default function About() {
   const stats = Array.isArray(rawStats)
     ? rawStats
     : [
-        { val: "2023", label: "Год старта" },
-        { val: "6+", label: "Проектов" },
-        { val: "3", label: "Языка" },
-        { val: "∞", label: "Стремлений" },
-      ];
+      { val: "2023", label: "Год старта" },
+      { val: "6+", label: "Проектов" },
+      { val: "3", label: "Языка" },
+      { val: "∞", label: "Стремлений" },
+    ];
 
   return (
     <section
@@ -212,7 +212,7 @@ export default function About() {
                       "radial-gradient(circle, hsl(38 95% 60% / 0.12) 0%, transparent 70%)",
                   }}
                 />
-                <RaccoonLogo size={180} glowing animated />
+                <RaccoonLogo size={272} glowing animated />
               </div>
 
               <motion.div

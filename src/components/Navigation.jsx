@@ -53,8 +53,8 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between">
 
           {/* Logo */}
-          <button onClick={() => scroll("home")} className="flex items-center gap-2.5">
-            <RaccoonLogo size={34} />
+          <button onClick={() => scroll("home")} className="flex items-center">
+            <RaccoonLogo size={50} />
             <div className="flex flex-col leading-none">
               <span className="font-display font-black text-[12px] tracking-widest uppercase text-foreground">
                 Zhanat

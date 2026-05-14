@@ -134,14 +134,14 @@ export default function Hero() {
                   {i === 1 ? (
                     <span
                       className="font-display font-black leading-[0.86] tracking-tighter text-stroke"
-                      style={{ fontSize: "clamp(2.5rem, 15vw, 11rem)" }}
+                      style={{ fontSize: "clamp(2.5rem, 15vw, 8rem)" }}
                     >
                       {word}
                     </span>
                   ) : (
                     <span
                       className="font-display font-black leading-[0.86] tracking-tighter text-foreground"
-                      style={{ fontSize: "clamp(2.5rem, 15vw, 11rem)" }}
+                      style={{ fontSize: "clamp(2.5rem, 15vw, 8rem)" }}
                     >
                       {word}
                     </span>
@@ -247,7 +247,7 @@ export default function Hero() {
                 animate={{ y: [0, -14, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <RaccoonLogo size={300} glowing animated />
+                <RaccoonLogo size={400} glowing animated />
               </motion.div>
 
               {/* Floating badges */}
