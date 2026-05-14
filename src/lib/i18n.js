@@ -228,6 +228,7 @@ const resources = {
       certs: {
         sectionLabel: "Образование",
         title: "Образование и сертификаты",
+        viewPdf: "Открыть PDF",
         items: [
           {
             year: "2020–2023",
@@ -240,12 +241,20 @@ const resources = {
             org: "Онлайн-курс",
             title: "Контент-менеджер — управление, продвижение и маркетинг",
             type: "Сертификат",
+            media: {
+              image: "/img/license/contentManager.png",
+              pdf: "/img/license/Контент-менеджер.pdf"
+            }
           },
           {
             year: "2024",
             org: "Онлайн-курс",
             title: "Администратор базового уровня — работа с сайтами и CMS",
             type: "Сертификат",
+            media: {
+              image: "/img/license/adminBase.png",
+              pdf: "/img/license/Администратор-базовый.pdf"
+            }
           },
           {
             year: "2025",
@@ -493,6 +502,7 @@ const resources = {
       certs: {
         sectionLabel: "Білім",
         title: "Білім және сертификаттар",
+        viewPdf: "PDF ашу",
         items: [
           {
             year: "2020–2023",
@@ -505,12 +515,20 @@ const resources = {
             org: "Онлайн-курс",
             title: "Контент-менеджер — басқару, жылжыту және маркетинг",
             type: "Сертификат",
+            media: {
+              image: "/img/license/contentManager.png",
+              pdf: "/img/license/Контент-менеджер.pdf"
+            }
           },
           {
             year: "2024",
             org: "Онлайн-курс",
             title: "Базалық деңгейдегі администратор — сайттармен жұмыс",
             type: "Сертификат",
+            media: {
+              image: "/img/license/adminBase.png",
+              pdf: "/img/license/Администратор-базовый.pdf"
+            }
           },
           {
             year: "2025",
@@ -758,6 +776,7 @@ const resources = {
       certs: {
         sectionLabel: "Education",
         title: "Education & certificates",
+        viewPdf: "View PDF",
         items: [
           {
             year: "2020–2023",
@@ -770,12 +789,20 @@ const resources = {
             org: "Online course",
             title: "Content Manager — management, promotion and marketing",
             type: "Certificate",
+            media: {
+              image: "/img/license/contentManager.png",
+              pdf: "/img/license/Контент-менеджер.pdf"
+            }
           },
           {
             year: "2024",
             org: "Online course",
             title: "Basic Administrator — website and CMS skills",
             type: "Certificate",
+            media: {
+              image: "/img/license/adminBase.png",
+              pdf: "/img/license/Администратор-базовый.pdf"
+            }
           },
           {
             year: "2025",
