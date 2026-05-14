@@ -287,7 +287,7 @@ export default function Portfolio() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             // ↓ overflow-y-auto даёт скролл внутри оверлея, убираем flex items-center
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl overflow-y-auto flex items-start justify-center p-4 md:p-8"
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl overflow-y-auto flex items-start justify-center p-4 md:p-22"
             onClick={() => setSelected(null)}
           >
             <motion.div
