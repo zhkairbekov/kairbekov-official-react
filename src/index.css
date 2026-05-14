@@ -362,8 +362,8 @@
     cursor: none !important;
   }
 
-  html.devtools-open,
-  html.devtools-open * {
+  body.devtools-open,
+  body.devtools-open * {
     cursor: auto !important;
   }
 }
