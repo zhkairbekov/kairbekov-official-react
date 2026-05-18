@@ -1,7 +1,12 @@
+//about section
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import RaccoonLogo from "./RaccoonLogo";
+import SectionHeader from "./components/SectionHeader";
+import Marquee from "./Marquee";
+import StatCard from "./components/StatCard";
+import HapticLink from "./components/HapticLink";
 
 function CountUp({ value, inView }) {
   const num = parseInt(value);
@@ -105,23 +110,7 @@ export default function About() {
       />
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="flex items-center gap-4 mb-16 md:mb-20">
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-[11px] font-mono-custom tracking-[0.3em] uppercase text-muted-foreground"
-          >
-            / {t("about.sectionLabel")}
-          </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex-1 h-px bg-border origin-left"
-          />
-        </div>
+        <SectionHeader label={t("about.sectionLabel")} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_440px] gap-16 lg:gap-24 items-center mb-24 md:mb-32">
           <div>
@@ -156,22 +145,24 @@ export default function About() {
               transition={{ delay: 0.45 }}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
-              <a
+              <HapticLink
                 href="https://t.me/kairbekoff"
                 target="_blank"
                 rel="noreferrer"
+                haptic="success" // подтверждающий паттерн
                 className="inline-flex items-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 bg-primary text-primary-foreground font-display font-bold text-xs tracking-[0.2em] uppercase hover:opacity-90 transition-opacity"
               >
                 {t("contacts.cta")} →
-              </a>
-              <a
+              </HapticLink>
+              <HapticLink
                 href="https://github.com/zhkairbekov"
                 target="_blank"
                 rel="noreferrer"
+                haptic="light"
                 className="font-mono-custom text-[10px] tracking-[0.22em] uppercase text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
               >
                 <span className="w-6 h-px bg-muted-foreground" /> GitHub
-              </a>
+              </HapticLink>
             </motion.div>
           </div>
 
@@ -227,42 +218,27 @@ export default function About() {
           className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border"
         >
           {stats.map((s, i) => (
-            <motion.div
+            <StatCard
               key={i}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-background p-8 md:p-10 flex flex-col gap-2"
-            >
-              <span
-                className="font-display font-black text-primary leading-none"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-              >
-                <CountUp value={s.val} inView={inView} />
-              </span>
-              <span className="font-mono-custom text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
-                {s.label}
-              </span>
-            </motion.div>
+              value={<CountUp value={s.val} inView={inView} />}
+              label={s.label}
+              index={i}
+            />
           ))}
         </div>
 
         <div className="mt-16 overflow-hidden border-t border-b border-border/50 py-4">
-          <div
-            className="flex gap-8 animate-marquee whitespace-nowrap"
-            aria-hidden
-          >
-            {[...SKILLS, ...SKILLS].map((s, i) => (
+          <Marquee ariaHidden>
+            {SKILLS.map((s) => (
               <span
-                key={i}
+                key={s}
                 className="font-mono-custom text-[11px] tracking-[0.22em] uppercase text-muted-foreground flex items-center gap-8"
               >
                 {s}
                 <span className="w-1 h-1 rounded-full bg-primary inline-block" />
               </span>
             ))}
-          </div>
+          </Marquee>
         </div>
       </div>
     </section>

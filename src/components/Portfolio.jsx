@@ -2,6 +2,10 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
+import SectionHeader from "./components/SectionHeader";
+import SectionTitle from "./components/SectionTitle";
+import InfoBlock from "./components/InfoBlock";
+import TagBadge from "./components/TagBadge";
 
 const PROJECTS = [
   {
@@ -77,6 +81,13 @@ function ProjectDescription({ projectId }) {
 
   const features = t(`${key}.features`, { returnObjects: true });
 
+  const infoBlocks = [
+    { titleKey: "legalTitle", textKey: "legalText" },
+    { titleKey: "disclaimerTitle", textKey: "disclaimerText" },
+    { titleKey: "csTitle", textKey: "csText" },
+    { titleKey: "uxTitle", textKey: "uxText" },
+  ].filter((block) => i18n.exists(`${key}.${block.titleKey}`));
+
   return (
     <div className="border-t border-border/40 space-y-4">
       <h4 className="font-display font-bold text-base md:text-lg">
@@ -104,46 +115,16 @@ function ProjectDescription({ projectId }) {
       )}
 
       {i18n.exists(`${key}.note`) && (
-        <p className="text-xs text-muted-foreground/70 italic border-l-2 border-primary/30 pl-3">
-          {t(`${key}.note`)}
-        </p>
+        <InfoBlock text={t(`${key}.note`)} variant="border-left" />
       )}
 
-      {i18n.exists(`${key}.legalTitle`) && (
-        <div className="text-xs text-muted-foreground/70 border border-border/50 px-3 py-2">
-          <span className="font-semibold text-foreground/60">
-            {t(`${key}.legalTitle`)}
-          </span>{" "}
-          {t(`${key}.legalText`)}
-        </div>
-      )}
-
-      {i18n.exists(`${key}.disclaimerTitle`) && (
-        <div className="text-xs text-muted-foreground/70 border border-border/50 px-3 py-2">
-          <span className="font-semibold text-foreground/60">
-            {t(`${key}.disclaimerTitle`)}
-          </span>{" "}
-          {t(`${key}.disclaimerText`)}
-        </div>
-      )}
-
-      {i18n.exists(`${key}.csTitle`) && (
-        <div className="text-xs text-muted-foreground/70">
-          <span className="font-semibold text-foreground/60">
-            {t(`${key}.csTitle`)}
-          </span>{" "}
-          {t(`${key}.csText`)}
-        </div>
-      )}
-
-      {i18n.exists(`${key}.uxTitle`) && (
-        <div className="text-xs text-muted-foreground/70">
-          <span className="font-semibold text-foreground/60">
-            {t(`${key}.uxTitle`)}
-          </span>{" "}
-          {t(`${key}.uxText`)}
-        </div>
-      )}
+      {infoBlocks.map((block) => (
+        <InfoBlock
+          key={block.titleKey}
+          title={t(`${key}.${block.titleKey}`)}
+          text={t(`${key}.${block.textKey}`)}
+        />
+      ))}
     </div>
   );
 }
@@ -186,37 +167,14 @@ export default function Portfolio() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="flex items-center gap-4 mb-16 md:mb-24">
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-[11px] font-mono-custom tracking-[0.3em] uppercase text-muted-foreground"
-          >
-            / {t("portfolio.sectionLabel")}
-          </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1 h-px bg-border origin-left"
-          />
+          <SectionHeader label={t("portfolio.sectionLabel")} />
           <span className="font-mono-custom text-[10px] tracking-[0.2em] text-muted-foreground shrink-0">
             {PROJECTS.length} {t("portfolio.sectionLabel").toLowerCase()}
           </span>
         </div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="font-display font-black tracking-tight mb-16 md:mb-24"
-          style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
-        >
-          {t("portfolio.title")}
-        </motion.h2>
+        <SectionTitle>{t("portfolio.title")}</SectionTitle>
+        <div className="mb-16 md:mb-24" />
 
         <div ref={listRef} className="relative" onMouseMove={onMouseMove}>
           <AnimatePresence>
@@ -271,12 +229,9 @@ export default function Portfolio() {
               <div className="relative flex items-center gap-4 sm:gap-6 pl-10 sm:pl-0 z-10">
                 <div className="hidden sm:flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] font-mono-custom tracking-[0.15em] uppercase px-2 py-1 border border-border text-muted-foreground group-hover:border-primary/40 transition-colors"
-                    >
+                    <TagBadge key={tag} variant="interactive">
                       {tag}
-                    </span>
+                    </TagBadge>
                   ))}
                 </div>
                 <span className="text-xs font-mono-custom text-muted-foreground shrink-0">
@@ -330,12 +285,9 @@ export default function Portfolio() {
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <div className="flex flex-wrap gap-2">
                       {selected.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] font-mono-custom tracking-[0.18em] uppercase px-3 py-1.5 border border-border text-muted-foreground"
-                        >
+                        <TagBadge key={tag} variant="default">
                           {tag}
-                        </span>
+                        </TagBadge>
                       ))}
                     </div>
                     <button

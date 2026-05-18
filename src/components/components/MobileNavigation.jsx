@@ -1,8 +1,10 @@
+//mobile navigation
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../lib/theme-provider";
-import RaccoonLogo from "./RaccoonLogo";
+import { useTheme } from "../../lib/theme-provider";
+import RaccoonLogo from "../RaccoonLogo";
+import { useHaptic } from "../../hooks/useHaptic";
 
 const navIds = [
   "home",
@@ -147,6 +149,8 @@ const MoonIcon = () => (
   </svg>
 );
 
+const haptic = useHaptic();
+
 export default function MobileNavigation() {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = useTheme();
@@ -201,6 +205,7 @@ export default function MobileNavigation() {
   }, [open]);
 
   const scroll = (id) => {
+    haptic("light");
     setOpen(false);
     window.dispatchEvent(new CustomEvent("nav-scroll"));
     setTimeout(
@@ -290,9 +295,14 @@ export default function MobileNavigation() {
                 <button
                   key={id}
                   onClick={() => {
+                    haptic("medium");
                     setOpen(false);
                     scroll(id);
                   }}
+                  // onClick={() => {
+                  //   setOpen(false);
+                  //   scroll(id);
+                  // }}
                   className="flex-1 flex flex-col items-center justify-center gap-[3px] relative transition-colors"
                   aria-label={t(`nav.${id}`)}
                 >
@@ -495,7 +505,7 @@ export default function MobileNavigation() {
                 if (info.offset.y > 120 || info.velocity.y > 500)
                   setOpen(false);
               }}
-              className="fixed left-0 right-0 bottom-0 z-50 flex flex-col"
+              className="fixed left-0 right-0 bottom-0 z-40 flex flex-col"
               style={{
                 maxHeight: "82dvh",
                 borderRadius: "20px 20px 0 0",

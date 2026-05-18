@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../lib/theme-provider";
-import RaccoonLogo from "./RaccoonLogo";
+import { useTheme } from "../../lib/theme-provider";
+import RaccoonLogo from "../RaccoonLogo";
 
 const navIds = [
   "home",

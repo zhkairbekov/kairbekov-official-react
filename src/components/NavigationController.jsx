@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Navigation from "./Navigation";
-import MobileNavigation from "./MobileNavigation";
+import Navigation from "./components/Navigation";
+import MobileNavigation from "./components/MobileNavigation";
 
 const BREAKPOINT = 762;
 

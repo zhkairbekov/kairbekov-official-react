@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "./lib/theme-provider";
 import "./lib/i18n";
+import { useHtmlLang } from "./lib/use-html-lang";
 import Preloader from "./components/Preloader";
 import Cursor from "./components/Cursor";
 import Navigation from "./components/NavigationController";
@@ -16,6 +17,8 @@ import NavigationController from "./components/NavigationController";
 
 function AppContent() {
   const [ready, setReady] = useState(false);
+
+  useHtmlLang();
 
   useEffect(() => {
     // Initialize Lenis for smooth scrolling

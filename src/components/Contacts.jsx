@@ -1,7 +1,11 @@
+//contacts section
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Github, Instagram, Linkedin, Send, ArrowUpRight } from "lucide-react";
+import SectionHeader from "./components/SectionHeader";
+import Marquee from "./Marquee";
+import HapticLink from "./components/HapticLink";
 
 const socials = [
   {
@@ -36,7 +40,7 @@ export default function Contacts() {
   return (
     <section id="contacts" className="relative overflow-hidden md:pb-16">
       <div className="bg-primary text-primary-foreground py-3 overflow-hidden border-b border-primary/30">
-        <div className="flex gap-0 animate-marquee whitespace-nowrap">
+        <Marquee ariaHidden={true}>
           {Array.from({ length: 8 }).map((_, i) => (
             <span
               key={i}
@@ -45,7 +49,7 @@ export default function Contacts() {
               {t("contacts.title")} · LET&apos;S BUILD ·
             </span>
           ))}
-        </div>
+        </Marquee>
       </div>
 
       <div className="relative py-24 md:pt-40 pb-[40px]">
@@ -58,24 +62,7 @@ export default function Contacts() {
         />
 
         <div className="relative max-w-7xl mx-auto px-6 md:px-10">
-          <div className="flex items-center gap-4 mb-16 md:mb-24">
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-[11px] font-mono-custom tracking-[0.3em] uppercase text-muted-foreground"
-            >
-              / {t("contacts.sectionLabel")}
-            </motion.p>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex-1 h-px bg-border origin-left"
-            />
-          </div>
+          <SectionHeader label={t("contacts.sectionLabel")} />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-start">
             <div>
@@ -141,16 +128,17 @@ export default function Contacts() {
                 className="divide-y divide-border/50"
               >
                 {socials.map((social, i) => (
-                  <motion.a
+                  <HapticLink
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
+                    haptic="double"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.25 + i * 0.08 }}
-                    className="group flex items-center justify-between py-5 hover:pl-2 transition-all duration-300"
+                    className="group flex items-center justify-between py-5 ..."
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-muted-foreground group-hover:text-primary transition-colors">
@@ -169,7 +157,7 @@ export default function Contacts() {
                       size={16}
                       className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                     />
-                  </motion.a>
+                  </HapticLink>
                 ))}
               </motion.div>
             </div>

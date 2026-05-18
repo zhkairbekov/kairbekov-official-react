@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Code2, Palette, Cpu, Globe, Plus, Minus } from "lucide-react";
+import SectionHeader from "./components/SectionHeader";
+import SectionTitle from "./components/SectionTitle";
+import TagBadge from "./components/TagBadge";
 
 const ICONS = [
   <Code2 size={22} strokeWidth={1.5} />,
@@ -23,35 +26,10 @@ export default function Services() {
       <div className="absolute top-0 left-0 w-[3px] h-full bg-primary/25" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="flex items-center gap-4 mb-16 md:mb-20">
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-[11px] font-mono-custom tracking-[0.3em] uppercase text-muted-foreground"
-          >
-            / {t("services.sectionLabel")}
-          </motion.p>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex-1 h-px bg-border origin-left"
-          />
-        </div>
+        <SectionHeader label={t("services.sectionLabel")} />
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-20 items-start mb-16 md:mb-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="font-display font-black tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
-          >
-            {t("services.title")}
-          </motion.h2>
+          <SectionTitle>{t("services.title")}</SectionTitle>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -141,12 +119,9 @@ export default function Services() {
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {(svc.tags || []).map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-[10px] font-mono-custom tracking-[0.18em] uppercase px-3 py-1.5 border border-border text-muted-foreground"
-                            >
+                            <TagBadge key={tag} variant="default">
                               {tag}
-                            </span>
+                            </TagBadge>
                           ))}
                         </div>
                       </div>
