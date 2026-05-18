@@ -10,11 +10,16 @@ export default function Preloader({ onComplete }) {
 
   useEffect(() => {
     console.log("[Preloader] Mount");
-    
+
     const isPageReload =
       performance?.getEntriesByType?.("navigation")?.[0]?.type === "reload";
 
-    console.log("[Preloader] isPageReload:", isPageReload, "shown:", preloaderShownInMemory);
+    console.log(
+      "[Preloader] isPageReload:",
+      isPageReload,
+      "shown:",
+      preloaderShownInMemory,
+    );
 
     // Skip preloader if already shown in this session (but not on page reload)
     if (preloaderShownInMemory && !isPageReload) {
@@ -42,10 +47,10 @@ export default function Preloader({ onComplete }) {
       clearInterval(timer);
       console.log("[Preloader] Animation complete");
       setCount(100);
-      
+
       // Mark as shown
       preloaderShownInMemory = true;
-      
+
       // Wait for curtain animation, then finish
       setTimeout(() => {
         console.log("[Preloader] Curtain animation done, calling onComplete");
