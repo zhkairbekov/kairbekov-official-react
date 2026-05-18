@@ -1,4 +1,3 @@
-//about section
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";

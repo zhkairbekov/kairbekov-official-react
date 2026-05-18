@@ -18,7 +18,6 @@ export default function HeroCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Throttle mousemove listener for better performance
     let lastUpdateTime = 0;
     const throttleDelay = 16; // ~60fps
     const onMove = (e) => {

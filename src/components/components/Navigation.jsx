@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme-provider";
 import RaccoonLogo from "../RaccoonLogo";
+import { useThemeTransition } from "../../hooks/useThemeTransition";
 
 const navIds = [
   "home",
@@ -54,7 +55,8 @@ const MoonIcon = () => (
 
 export default function Navigation() {
   const { t, i18n } = useTranslation();
-  const { theme, setTheme } = useTheme();
+  const toggleTheme = useThemeTransition(); 
+  const btnRef = useRef(null); 
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -118,11 +120,8 @@ export default function Navigation() {
     i18n.changeLanguage(LANGS[(i + 1) % LANGS.length]);
   };
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
-
   return (
     <>
-      {/* ── Desktop navbar ─────────────────────────────────────────── */}
       <motion.nav
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -158,7 +157,8 @@ export default function Navigation() {
             </button>
 
             <button
-              onClick={toggleTheme}
+              ref={btnRef}
+              onClick={() => toggleTheme(btnRef.current)}
               className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
               aria-label="Toggle theme"
             >
@@ -175,7 +175,6 @@ export default function Navigation() {
               </AnimatePresence>
             </button>
 
-            {/* Hamburger */}
             <button
               onClick={() => setOpen((v) => !v)}
               className="flex flex-col justify-center items-end gap-[5px] w-9 h-9 ml-1"
@@ -201,7 +200,6 @@ export default function Navigation() {
         </div>
       </motion.nav>
 
-      {/* ── Desktop full-screen overlay ────────────────────────────── */}
       <AnimatePresence>
         {open && (
           <motion.div

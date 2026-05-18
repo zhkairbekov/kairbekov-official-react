@@ -21,7 +21,6 @@ function AppContent() {
   useHtmlLang();
 
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
     const initLenis = async () => {
       try {
         const { default: Lenis } = await import("lenis");
@@ -48,7 +47,6 @@ function AppContent() {
       }
     };
 
-    // Load Lenis after content is ready for better performance
     const timer = setTimeout(() => {
       initLenis();
     }, 1500);

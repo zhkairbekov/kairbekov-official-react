@@ -31,8 +31,6 @@ export default function HapticLink({
       onClick(e);
     }
 
-    // Если есть href и ссылка открывается в новой вкладке — всё ок без delay.
-    // Если же переход в той же вкладке — даём вибрации 80 мс до навигации.
     if (href && target !== "_blank") {
       e.preventDefault();
       setTimeout(() => {

@@ -1,10 +1,10 @@
-//mobile navigation
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useDragControls } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../lib/theme-provider";
 import RaccoonLogo from "../RaccoonLogo";
 import { useHaptic } from "../../hooks/useHaptic";
+import { useThemeTransition } from "../../hooks/useThemeTransition";
 
 const navIds = [
   "home",
@@ -149,11 +149,12 @@ const MoonIcon = () => (
   </svg>
 );
 
-const haptic = useHaptic();
-
 export default function MobileNavigation() {
   const { t, i18n } = useTranslation();
-  const { theme, setTheme } = useTheme();
+  const haptic = useHaptic();
+  const toggleTheme = useThemeTransition();
+  const btnRef = useRef(null);
+  const topBtnRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -220,11 +221,8 @@ export default function MobileNavigation() {
     i18n.changeLanguage(LANGS[(i + 1) % LANGS.length]);
   };
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
-
   return (
     <div className="md:hidden">
-      {/* ── Top bar ──────────────────────────────────────────────────── */}
       <motion.div
         initial={{ y: -56, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -259,7 +257,8 @@ export default function MobileNavigation() {
               {i18n.language.toUpperCase()}
             </button>
             <button
-              onClick={toggleTheme}
+              ref={topBtnRef}
+              onClick={() => toggleTheme(topBtnRef.current)}
               className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
               aria-label="Toggle theme"
             >
@@ -279,7 +278,6 @@ export default function MobileNavigation() {
         </div>
       </motion.div>
 
-      {/* ── Bottom tab bar ───────────────────────────────────────────── */}
       <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -288,7 +286,6 @@ export default function MobileNavigation() {
       >
         <div className="bg-background/92 backdrop-blur-2xl border-t border-border/60 shadow-[0_-4px_32px_rgba(0,0,0,0.12)] overflow-visible">
           <div className="flex items-stretch h-[62px] overflow-visible relative">
-            {/* Левые табы */}
             {BOTTOM_TABS.slice(0, 2).map(({ id, icon }) => {
               const isActive = activeSection === id && !open;
               return (
@@ -299,10 +296,6 @@ export default function MobileNavigation() {
                     setOpen(false);
                     scroll(id);
                   }}
-                  // onClick={() => {
-                  //   setOpen(false);
-                  //   scroll(id);
-                  // }}
                   className="flex-1 flex flex-col items-center justify-center gap-[3px] relative transition-colors"
                   aria-label={t(`nav.${id}`)}
                 >
@@ -337,7 +330,6 @@ export default function MobileNavigation() {
               );
             })}
 
-            {/* Центральная кнопка Home */}
             <div className="relative w-16 shrink-0 flex items-end justify-center">
               <motion.button
                 onClick={() => scroll("home")}
@@ -370,7 +362,6 @@ export default function MobileNavigation() {
               </motion.button>
             </div>
 
-            {/* Правый таб */}
             {BOTTOM_TABS.slice(2).map(({ id, icon }) => {
               const isActive = activeSection === id && !open;
               return (
@@ -414,7 +405,6 @@ export default function MobileNavigation() {
               );
             })}
 
-            {/* Кнопка меню */}
             <button
               onClick={() => setOpen((v) => !v)}
               className="flex-1 flex flex-col items-center justify-center gap-[3px] relative"
@@ -467,7 +457,6 @@ export default function MobileNavigation() {
             </button>
           </div>
 
-          {/* Safe area для iPhone */}
           <div
             className="h-safe-area-inset-bottom"
             style={{ height: "env(safe-area-inset-bottom)" }}
@@ -475,11 +464,9 @@ export default function MobileNavigation() {
         </div>
       </motion.div>
 
-      {/* ── Bottom Sheet ─────────────────────────────────────────────── */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -489,7 +476,6 @@ export default function MobileNavigation() {
               onClick={() => setOpen(false)}
             />
 
-            {/* Sheet */}
             <motion.div
               ref={sheetRef}
               initial={{ y: "100%" }}
@@ -498,7 +484,7 @@ export default function MobileNavigation() {
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               drag="y"
               dragControls={dragControls}
-              dragListener={false} // слушаем только с handle
+              dragListener={false}
               dragConstraints={{ top: 0 }}
               dragElastic={{ top: 0, bottom: 0.3 }}
               onDragEnd={(_, info) => {
@@ -514,14 +500,12 @@ export default function MobileNavigation() {
                 paddingBottom: "calc(100px + env(safe-area-inset-bottom))",
               }}
             >
-              {/* Drag handle — единственная зона для drag */}
               <div
                 className="flex-shrink-0 flex flex-col items-center pt-3 pb-2 cursor-grab active:cursor-grabbing"
                 onPointerDown={(e) => dragControls.start(e)}
               >
                 <div className="w-10 h-1 rounded-full bg-border" />
 
-                {/* Заголовок шапки */}
                 <div className="flex items-center justify-between w-full px-5 mt-3">
                   <span className="font-mono-custom text-[9px] tracking-[0.3em] uppercase text-primary">
                     {t("nav.menu") || "Menu"}
@@ -547,10 +531,8 @@ export default function MobileNavigation() {
                 </div>
               </div>
 
-              {/* Разделитель */}
               <div className="h-px bg-border/40 mx-5 flex-shrink-0" />
 
-              {/* Список пунктов — скроллится */}
               <div className="flex-1 overflow-y-auto overscroll-contain px-5">
                 <nav className="flex flex-col py-1">
                   {navIds.map((id, i) => (
@@ -572,7 +554,6 @@ export default function MobileNavigation() {
                         ${activeSection === id ? "pl-1" : ""}
                       `}
                     >
-                      {/* Активный индикатор слева */}
                       <span
                         className="w-[2px] h-6 rounded-full flex-shrink-0 transition-colors duration-200"
                         style={{
@@ -598,7 +579,6 @@ export default function MobileNavigation() {
                         {t(`nav.${id}`)}
                       </span>
 
-                      {/* Стрелка справа */}
                       <motion.svg
                         className="ml-auto flex-shrink-0"
                         width="14"
@@ -624,7 +604,6 @@ export default function MobileNavigation() {
                   ))}
                 </nav>
 
-                {/* Подвал шита */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -640,7 +619,6 @@ export default function MobileNavigation() {
                     </span>
                   </div>
 
-                  {/* Переключение языка */}
                   <div className="flex gap-1.5">
                     {["RU", "KK", "EN"].map((lang) => (
                       <button
@@ -658,7 +636,8 @@ export default function MobileNavigation() {
                   </div>
 
                   <button
-                    onClick={toggleTheme}
+                    ref={btnRef}
+                    onClick={() => toggleTheme(btnRef.current)}
                     className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
                     aria-label="Toggle theme"
                   >

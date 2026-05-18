@@ -98,13 +98,11 @@ export default function Hero() {
   const yUp = useTransform(scrollY, [0, 600], [0, 100]);
   const [canvasReady, setCanvasReady] = useState(false);
 
-  // Lazy load canvas after initial render for better FCP
   useEffect(() => {
     const timer = setTimeout(() => setCanvasReady(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
-  // Debounced mousemove listener - skip on mobile for performance
   useEffect(() => {
     if (isNarrow) return; // Disable on mobile
 

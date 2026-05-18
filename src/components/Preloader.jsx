@@ -14,7 +14,6 @@ export default function Preloader({ onComplete }) {
     const isPageReload =
       performance?.getEntriesByType?.("navigation")?.[0]?.type === "reload";
 
-    // Skip preloader if already shown in this session (but not on page reload)
     if (preloaderShownInMemory && !isPageReload) {
       setDone(true);
       setTimeout(() => onComplete(), 0);
@@ -31,21 +30,18 @@ export default function Preloader({ onComplete }) {
       setCount(current);
     }, interval);
 
-    // Complete preloader after duration + delays
     const completeTimer = setTimeout(() => {
       clearInterval(timer);
       setCount(100);
 
-      // Mark as shown
       preloaderShownInMemory = true;
 
-      // Wait for curtain animation, then finish
       setTimeout(() => {
         setDone(true);
         setTimeout(() => {
           onComplete();
         }, 50);
-      }, 900); // Match curtain transition duration
+      }, 900);
     }, duration + 400);
 
     return () => {
