@@ -9,15 +9,24 @@ export default function Preloader({ onComplete }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    console.log("[Preloader] Mount");
+    
     const isPageReload =
       performance?.getEntriesByType?.("navigation")?.[0]?.type === "reload";
 
+    console.log("[Preloader] isPageReload:", isPageReload, "shown:", preloaderShownInMemory);
+
+    // Skip preloader if already shown in this session (but not on page reload)
     if (preloaderShownInMemory && !isPageReload) {
+      console.log("[Preloader] Skipping, calling onComplete immediately");
       setDone(true);
-      onComplete();
+      setTimeout(() => onComplete(), 0);
       return;
     }
 
+    console.log("[Preloader] Starting animation...");
+
+    // Animate progress bar
     let current = 0;
     const target = 100;
     const duration = 1000;
@@ -26,17 +35,32 @@ export default function Preloader({ onComplete }) {
     const timer = setInterval(() => {
       current += 1;
       setCount(current);
-      if (current >= target) {
-        clearInterval(timer);
-        setTimeout(() => {
-          setDone(true);
-          preloaderShownInMemory = true;
-          setTimeout(onComplete, 800);
-        }, 400);
-      }
     }, interval);
 
-    return () => clearInterval(timer);
+    // Complete preloader after duration + delays
+    const completeTimer = setTimeout(() => {
+      clearInterval(timer);
+      console.log("[Preloader] Animation complete");
+      setCount(100);
+      
+      // Mark as shown
+      preloaderShownInMemory = true;
+      
+      // Wait for curtain animation, then finish
+      setTimeout(() => {
+        console.log("[Preloader] Curtain animation done, calling onComplete");
+        setDone(true);
+        setTimeout(() => {
+          console.log("[Preloader] Calling onComplete callback");
+          onComplete();
+        }, 50);
+      }, 900); // Match curtain transition duration
+    }, duration + 400);
+
+    return () => {
+      clearInterval(timer);
+      clearTimeout(completeTimer);
+    };
   }, [onComplete]);
 
   return (
