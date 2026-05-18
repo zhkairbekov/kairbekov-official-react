@@ -166,7 +166,7 @@ export default function Portfolio() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="flex items-center gap-4 mb-16 md:mb-24">
+        <div className="flex items-center gap-4 mb-16 md:mb-24 justify-between">
           <SectionHeader label={t("portfolio.sectionLabel")} />
           <span className="font-mono-custom text-[10px] tracking-[0.2em] text-muted-foreground shrink-0">
             {PROJECTS.length} {t("portfolio.sectionLabel").toLowerCase()}

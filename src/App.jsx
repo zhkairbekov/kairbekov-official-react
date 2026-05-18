@@ -14,6 +14,7 @@ import Certificates from "./components/Certificates";
 import Portfolio from "./components/Portfolio";
 import Contacts from "./components/Contacts";
 import NavigationController from "./components/NavigationController";
+import Terminal from "./components/Terminal";
 
 function AppContent() {
   const [ready, setReady] = useState(false);
@@ -74,6 +75,7 @@ function AppContent() {
       >
         <NavigationController />
         <main className="relative z-10 w-full overflow-x-hidden">
+          <Terminal />
           <Hero />
           <About />
           <Services />
