@@ -1,5 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useScroll,
+} from "framer-motion";
 import { useTranslation } from "react-i18next";
 import HeroCanvas from "./HeroCanvas";
 import RaccoonLogo from "./RaccoonLogo";
@@ -46,7 +52,10 @@ function MagBtn({ children, onClick }) {
         x.set((e.clientX - r.left - r.width / 2) * 0.38);
         y.set((e.clientY - r.top - r.height / 2) * 0.38);
       }}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
       onClick={onClick}
       className="inline-block"
     >
@@ -57,7 +66,10 @@ function MagBtn({ children, onClick }) {
 
 export default function Hero() {
   const { t } = useTranslation();
-  const roles = useMemo(() => [t("hero.role1"), t("hero.role2"), t("hero.role3")], [t]);
+  const roles = useMemo(
+    () => [t("hero.role1"), t("hero.role2"), t("hero.role3")],
+    [t],
+  );
   const typed = useTypewriter(roles);
 
   const rawX = useMotionValue(0);
@@ -84,7 +96,10 @@ export default function Hero() {
   const LINE_DELAY = [0.15, 0.28, 0.41];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+    >
       <HeroCanvas />
       <div className="absolute inset-0 scanlines z-[1] pointer-events-none opacity-50" />
 
@@ -92,7 +107,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          backgroundImage: "linear-gradient(hsl(var(--border)/0.4) 1px,transparent 1px),linear-gradient(90deg,hsl(var(--border)/0.4) 1px,transparent 1px)",
+          backgroundImage:
+            "linear-gradient(hsl(var(--border)/0.4) 1px,transparent 1px),linear-gradient(90deg,hsl(var(--border)/0.4) 1px,transparent 1px)",
           backgroundSize: "72px 72px",
           opacity: 0.3,
         }}
@@ -103,9 +119,11 @@ export default function Hero() {
         className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 pt-24 md:pt-28 pb-10 md:pb-16"
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-6 items-center">
-
           {/* ─── Left: Typography ─── */}
-          <motion.div style={{ x: txtX }} className="flex-1 flex flex-col justify-center w-full">
+          <motion.div
+            style={{ x: txtX }}
+            className="flex-1 flex flex-col justify-center w-full"
+          >
             {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -128,7 +146,11 @@ export default function Hero() {
                 <motion.div
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 1, delay: LINE_DELAY[i], ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    duration: 1,
+                    delay: LINE_DELAY[i],
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="flex items-center gap-4"
                 >
                   {i === 1 ? (
@@ -150,7 +172,11 @@ export default function Hero() {
                     <motion.div
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ delay: 0.85, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        delay: 0.85,
+                        duration: 0.7,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                       className="hidden md:block flex-1 h-1 bg-primary origin-left"
                     />
                   )}
@@ -170,7 +196,9 @@ export default function Hero() {
                   Zhanat Kairbekov
                 </p>
                 <div className="flex items-center gap-1.5 h-7">
-                  <span className="text-primary font-display font-bold text-base md:text-lg">{typed}</span>
+                  <span className="text-primary font-display font-bold text-base md:text-lg">
+                    {typed}
+                  </span>
                   <motion.span
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 1, repeat: Infinity }}
@@ -193,13 +221,23 @@ export default function Hero() {
               transition={{ delay: 1.1, duration: 0.6 }}
               className="mt-7 md:mt-10 flex flex-wrap items-center gap-3 sm:gap-5"
             >
-              <MagBtn onClick={() => document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" })}>
+              <MagBtn
+                onClick={() =>
+                  document
+                    .getElementById("contacts")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
                 <span className="block px-5 sm:px-8 py-3 sm:py-4 bg-primary text-primary-foreground font-display font-bold text-xs sm:text-sm tracking-[0.18em] uppercase">
                   {t("hero.cta")} →
                 </span>
               </MagBtn>
               <button
-                onClick={() => document.getElementById("sites")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() =>
+                  document
+                    .getElementById("sites")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="group flex items-center gap-3 font-mono-custom text-[10px] tracking-[0.22em] uppercase text-muted-foreground hover:text-foreground transition-colors"
               >
                 <span className="w-6 h-px bg-muted-foreground group-hover:w-10 group-hover:bg-foreground transition-all duration-300" />
@@ -216,14 +254,19 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, scale: 0.75, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                duration: 1.2,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="relative"
             >
               {/* Glow */}
               <div
                 className="absolute inset-0 rounded-full pointer-events-none"
                 style={{
-                  background: "radial-gradient(circle at 50% 55%, hsl(38 95% 60% / 0.18) 0%, transparent 70%)",
+                  background:
+                    "radial-gradient(circle at 50% 55%, hsl(38 95% 60% / 0.18) 0%, transparent 70%)",
                   transform: "scale(1.3)",
                   filter: "blur(20px)",
                 }}
@@ -245,7 +288,11 @@ export default function Hero() {
               {/* Raccoon */}
               <motion.div
                 animate={{ y: [0, -14, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 4.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <RaccoonLogo size={400} glowing animated />
               </motion.div>
@@ -268,30 +315,43 @@ export default function Hero() {
                 transition={{ delay: 1.9, duration: 0.6 }}
                 className="absolute -right-[60px] bottom-[30%] bg-primary text-primary-foreground px-3 py-2"
               >
-                <p className="text-[9px] font-mono-custom tracking-[0.2em] uppercase font-bold">Astana, KZ</p>
-                <p className="text-[9px] font-mono-custom opacity-70">Since 2019</p>
+                <p className="text-[9px] font-mono-custom tracking-[0.2em] uppercase font-bold">
+                  Astana, KZ
+                </p>
+                <p className="text-[9px] font-mono-custom opacity-70">
+                  Since 2019
+                </p>
               </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 1 }}
         style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="absolute bottom-[100px] md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-12 bg-gradient-to-b from-primary to-transparent"
-        />
-        <span className="text-[9px] font-mono-custom tracking-[0.4em] uppercase text-muted-foreground">
-          {t("hero.scrollLabel")}
-        </span>
+        <button
+          onClick={() =>
+            document
+              .getElementById("about")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+          className="flex flex-col items-center gap-2 group cursor-pointer"
+          aria-label="Scroll to next section"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-12 bg-gradient-to-b from-primary to-transparent group-hover:from-primary/60 transition-opacity"
+          />
+          <span className="text-[9px] font-mono-custom tracking-[0.4em] uppercase text-muted-foreground group-hover:text-primary transition-colors duration-200">
+            {t("hero.scrollLabel")}
+          </span>
+        </button>
       </motion.div>
     </section>
   );

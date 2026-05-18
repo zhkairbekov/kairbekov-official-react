@@ -357,7 +357,7 @@
   pointer-events: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
   * {
     cursor: none !important;
   }
@@ -366,9 +366,4 @@
   body.devtools-open * {
     cursor: auto !important;
   }
-}
-
-.no-scroll {
-  overflow: hidden !important;
-  touch-action: none;
 }

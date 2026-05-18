@@ -13,6 +13,8 @@ const resources = {
         journey: "История",
         certs: "Образование",
         contacts: "Контакты",
+        menu: "Меню",
+        closeMenu: "Закрыть",
       },
       hero: {
         tagline: "Разработка сайтов и графический дизайн",
@@ -82,7 +84,7 @@ const resources = {
           {
             title: "Разработка сайтов",
             desc: "Адаптивный и быстрый сайт с индивидуальным дизайном, направленный на увеличение продаж. Оптимизация под SEO и все устройства.",
-            tags: ["React", "TypeScript", "Vite", "SCSS", "Next.js"],
+            tags: ["React", "JavaScript", "PHP", "SCSS", "Laravel"],
           },
           {
             title: "Графический дизайн",
@@ -243,8 +245,8 @@ const resources = {
             type: "Сертификат",
             media: {
               image: "/img/license/contentManager.png",
-              pdf: "/img/license/Контент-менеджер.pdf"
-            }
+              pdf: "/img/license/Контент-менеджер.pdf",
+            },
           },
           {
             year: "2024",
@@ -253,8 +255,8 @@ const resources = {
             type: "Сертификат",
             media: {
               image: "/img/license/adminBase.png",
-              pdf: "/img/license/Администратор-базовый.pdf"
-            }
+              pdf: "/img/license/Администратор-базовый.pdf",
+            },
           },
           {
             year: "2025",
@@ -293,6 +295,8 @@ const resources = {
         journey: "Тарих",
         certs: "Білім",
         contacts: "Байланыс",
+        menu: "Мәзір",
+        closeMenu: "Жабу",
       },
       hero: {
         tagline: "Сайт жасау және графикалық дизайн",
@@ -517,8 +521,8 @@ const resources = {
             type: "Сертификат",
             media: {
               image: "/img/license/contentManager.png",
-              pdf: "/img/license/Контент-менеджер.pdf"
-            }
+              pdf: "/img/license/Контент-менеджер.pdf",
+            },
           },
           {
             year: "2024",
@@ -527,8 +531,8 @@ const resources = {
             type: "Сертификат",
             media: {
               image: "/img/license/adminBase.png",
-              pdf: "/img/license/Администратор-базовый.pdf"
-            }
+              pdf: "/img/license/Администратор-базовый.pdf",
+            },
           },
           {
             year: "2025",
@@ -567,6 +571,8 @@ const resources = {
         journey: "Journey",
         certs: "Education",
         contacts: "Contact",
+        menu: "Menu",
+        closeMenu: "Close",
       },
       hero: {
         tagline: "Website development and graphic design",
@@ -791,8 +797,8 @@ const resources = {
             type: "Certificate",
             media: {
               image: "/img/license/contentManager.png",
-              pdf: "/img/license/Контент-менеджер.pdf"
-            }
+              pdf: "/img/license/Контент-менеджер.pdf",
+            },
           },
           {
             year: "2024",
@@ -801,8 +807,8 @@ const resources = {
             type: "Certificate",
             media: {
               image: "/img/license/adminBase.png",
-              pdf: "/img/license/Администратор-базовый.pdf"
-            }
+              pdf: "/img/license/Администратор-базовый.pdf",
+            },
           },
           {
             year: "2025",

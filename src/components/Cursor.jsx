@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const DEV_TOOLS_THRESHOLD = 160;
@@ -33,16 +33,32 @@ function useDevToolsOpen() {
   return isOpen;
 }
 
+/** True on any touch / coarse-pointer device (phones, tablets). */
 function useIsTouch() {
-  const [isTouch, setIsTouch] = React.useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
     setIsTouch(window.matchMedia("(hover: none), (pointer: coarse)").matches);
   }, []);
   return isTouch;
 }
 
+/** True when the viewport is narrower than 768 px (Tailwind's `md` breakpoint).
+ *  Updates live on resize so rotating a tablet also hides the cursor correctly. */
+function useIsNarrow() {
+  const [isNarrow, setIsNarrow] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => setIsNarrow(e.matches);
+    mq.addEventListener("change", handler);
+    setIsNarrow(mq.matches); // sync immediately
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return isNarrow;
+}
+
 export default function Cursor() {
   const isTouch = useIsTouch();
+  const isNarrow = useIsNarrow();
   const devToolsOpen = useDevToolsOpen();
 
   const mouseX = useMotionValue(-200);
@@ -112,7 +128,9 @@ export default function Cursor() {
     };
   }, [mouseX, mouseY, dotX, dotY, isVisible]);
 
-  if (isTouch || devToolsOpen) return null;
+  // Hide on touch devices, narrow viewports (<768px), or when devtools are open.
+  // Native cursor is restored by the CSS change (cursor:none only fires at >=768px).
+  if (isTouch || isNarrow || devToolsOpen) return null;
 
   const size = isHovering ? (label ? 88 : 52) : 36;
 

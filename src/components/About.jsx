@@ -7,14 +7,14 @@ function CountUp({ value, inView }) {
   const num = parseInt(value);
   const suffix = value.replace(/^\d+/, "");
   const isNumeric = !isNaN(num);
-  const startVal = isNumeric && num >= 1000 ? 1000 : 0;
+  const startVal = isNumeric && num >= 1500 ? 1500 : 0;
   const [display, setDisplay] = React.useState(isNumeric ? startVal : value);
 
   React.useEffect(() => {
     if (!inView || !isNumeric) return;
 
     let startTime = null;
-    const duration = 5000; // 5 seconds
+    const duration = 3000; // 5 seconds
 
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime;
@@ -82,11 +82,11 @@ export default function About() {
   const stats = Array.isArray(rawStats)
     ? rawStats
     : [
-      { val: "2023", label: "Год старта" },
-      { val: "6+", label: "Проектов" },
-      { val: "3", label: "Языка" },
-      { val: "∞", label: "Стремлений" },
-    ];
+        { val: "2023", label: "Год старта" },
+        { val: "6+", label: "Проектов" },
+        { val: "3", label: "Языка" },
+        { val: "∞", label: "Стремлений" },
+      ];
 
   return (
     <section
@@ -132,7 +132,7 @@ export default function About() {
           <div>
             <div className="overflow-hidden mb-2">
               <motion.h2
-                initial={{ opacity: 0, y: 100, rotate: 2 }}
+                initial={{ opacity: 0, y: 50, rotate: 2 }}
                 whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
