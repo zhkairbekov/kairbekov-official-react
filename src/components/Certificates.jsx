@@ -5,8 +5,15 @@ import { GraduationCap, Award, BookOpen, ExternalLink, X } from "lucide-react";
 
 function getIcon(type) {
   const t = type.toLowerCase();
-  if (t.includes("диплом") || t.includes("diploma")) return <GraduationCap size={22} strokeWidth={1.5} />;
-  if (t.includes("обучен") || t.includes("study") || t.includes("оқу") || t.includes("intensiv")) return <BookOpen size={22} strokeWidth={1.5} />;
+  if (t.includes("диплом") || t.includes("diploma"))
+    return <GraduationCap size={22} strokeWidth={1.5} />;
+  if (
+    t.includes("обучен") ||
+    t.includes("study") ||
+    t.includes("оқу") ||
+    t.includes("intensiv")
+  )
+    return <BookOpen size={22} strokeWidth={1.5} />;
   return <Award size={22} strokeWidth={1.5} />;
 }
 
@@ -37,7 +44,10 @@ export default function Certificates() {
   }, [selected]);
 
   return (
-    <section id="certs" className="relative py-24 md:py-40 overflow-hidden bg-secondary/20">
+    <section
+      id="certs"
+      className="relative py-24 md:py-40 overflow-hidden bg-secondary/20"
+    >
       <div className="absolute top-0 right-0 pointer-events-none select-none">
         <span
           className="font-display font-black text-stroke opacity-[0.025] leading-none whitespace-nowrap"
@@ -111,8 +121,9 @@ export default function Certificates() {
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => item.media && setSelected(item)}
                 data-cursor-label={item.media ? "VIEW" : undefined}
-                className={`group relative bg-background p-8 md:p-10 overflow-hidden ${item.media ? "cursor-pointer" : ""
-                  }`}
+                className={`group relative bg-background p-8 md:p-10 overflow-hidden ${
+                  item.media ? "cursor-pointer" : ""
+                }`}
               >
                 <motion.div
                   className="absolute inset-0 bg-primary/6"
@@ -128,7 +139,9 @@ export default function Certificates() {
                     <div className="p-3 border border-border text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
                       {getIcon(item.type)}
                     </div>
-                    <span className="font-mono-custom text-xs text-muted-foreground">{item.year}</span>
+                    <span className="font-mono-custom text-xs text-muted-foreground">
+                      {item.year}
+                    </span>
                   </div>
 
                   <span className="inline-block text-[9px] font-mono-custom tracking-[0.22em] uppercase px-2 py-1 bg-primary/10 text-primary mb-4">
@@ -138,7 +151,9 @@ export default function Certificates() {
                   <h3 className="font-display font-bold text-lg md:text-xl leading-snug mb-2 group-hover:text-primary transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="text-sm font-mono-custom text-muted-foreground">{item.org}</p>
+                  <p className="text-sm font-mono-custom text-muted-foreground">
+                    {item.org}
+                  </p>
                 </div>
 
                 <div className="absolute bottom-3 right-5 font-display font-black text-8xl text-foreground/[0.03] select-none pointer-events-none leading-none">
@@ -161,7 +176,7 @@ export default function Certificates() {
             onClick={() => setSelected(null)}
             data-lenis-prevent="true"
           >
-            <div className="flex min-h-full justify-center pt-[81px] pb-[16px] md:px-4">
+            <div className="flex min-h-full justify-center pt-[81px] pb-[99px] md:px-4">
               <motion.div
                 initial={{ opacity: 0, y: 32, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
