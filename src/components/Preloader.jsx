@@ -17,7 +17,7 @@ export default function Preloader({ onComplete }) {
 
     let current = 0;
     const target = 100;
-    const duration = 2000; // Further reduced for faster loading
+    const duration = 2000; // 2 seconds for the progress bar to fill
     const interval = duration / target;
 
     const timer = setInterval(() => {
@@ -28,8 +28,8 @@ export default function Preloader({ onComplete }) {
         setTimeout(() => {
           setDone(true);
           sessionStorage.setItem("preloaderShown", "true");
-          setTimeout(onComplete, 600); // Reduced from 950ms
-        }, 100);
+          setTimeout(onComplete, 800); // Increased for smoother transition
+        }, 400); // Increased to show full progress bar longer
       }
     }, interval);
 
