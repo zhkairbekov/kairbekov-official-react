@@ -3,7 +3,7 @@ import { ThemeProvider } from "./lib/theme-provider";
 import "./lib/i18n";
 import Preloader from "./components/Preloader";
 import Cursor from "./components/Cursor";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/NavigationController";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Services from "./components/Services";
@@ -12,6 +12,7 @@ import Journey from "./components/Journey";
 import Certificates from "./components/Certificates";
 import Portfolio from "./components/Portfolio";
 import Contacts from "./components/Contacts";
+import NavigationController from "./components/NavigationController";
 
 function AppContent() {
   const [ready, setReady] = useState(false);
@@ -70,7 +71,7 @@ function AppContent() {
           pointerEvents: ready ? "auto" : "none",
         }}
       >
-        <Navigation />
+        <NavigationController />
         <main className="relative z-10 w-full overflow-x-hidden">
           <Hero />
           <About />

@@ -34,7 +34,7 @@ export default function Contacts() {
   const { t } = useTranslation();
 
   return (
-    <section id="contacts" className="relative overflow-hidden">
+    <section id="contacts" className="relative overflow-hidden md:pb-16">
       <div className="bg-primary text-primary-foreground py-3 overflow-hidden border-b border-primary/30">
         <div className="flex gap-0 animate-marquee whitespace-nowrap">
           {Array.from({ length: 8 }).map((_, i) => (
