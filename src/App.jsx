@@ -58,7 +58,6 @@ function AppContent() {
     <div className="relative w-full bg-background text-foreground min-h-screen">
       <Preloader
         onComplete={() => {
-          console.log("[App] Preloader complete, setting ready=true");
           setReady(true);
         }}
       />
