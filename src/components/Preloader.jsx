@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import RaccoonLogo from "./RaccoonLogo";
 
+let preloaderShownInMemory = false;
+
 export default function Preloader({ onComplete }) {
   const [count, setCount] = useState(0);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // Check if preloader was already shown (only show once per session)
-    const preloaderShown = sessionStorage.getItem("preloaderShown");
-    if (preloaderShown) {
+    const isPageReload = window.performance?.navigation?.type === 1;
+
+    if (preloaderShownInMemory && !isPageReload) {
       setDone(true);
       onComplete();
       return;
@@ -17,7 +19,7 @@ export default function Preloader({ onComplete }) {
 
     let current = 0;
     const target = 100;
-    const duration = 2000; // 2 seconds for the progress bar to fill
+    const duration = 1000;
     const interval = duration / target;
 
     const timer = setInterval(() => {
@@ -27,9 +29,9 @@ export default function Preloader({ onComplete }) {
         clearInterval(timer);
         setTimeout(() => {
           setDone(true);
-          sessionStorage.setItem("preloaderShown", "true");
-          setTimeout(onComplete, 800); // Increased for smoother transition
-        }, 400); // Increased to show full progress bar longer
+          preloaderShownInMemory = true;
+          setTimeout(onComplete, 800);
+        }, 400);
       }
     }, interval);
 
