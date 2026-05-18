@@ -9,7 +9,8 @@ export default function Preloader({ onComplete }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const isPageReload = window.performance?.navigation?.type === 1;
+    const isPageReload =
+      performance?.getEntriesByType?.("navigation")?.[0]?.type === "reload";
 
     if (preloaderShownInMemory && !isPageReload) {
       setDone(true);

@@ -17,35 +17,41 @@ function AppContent() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Lazy load Lenis for smooth scrolling (not critical for initial paint)
-    // Load after main content is rendered for better performance
-    const timer = setTimeout(() => {
-      import("lenis")
-        .then((module) => {
-          const Lenis = module.default;
-          const lenis = new Lenis({
-            duration: 1.35,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
-          });
-          window.lenis = lenis;
+    // Initialize Lenis for smooth scrolling
+    const initLenis = async () => {
+      try {
+        const { default: Lenis } = await import("lenis");
+        const lenis = new Lenis({
+          duration: 1.35,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        window.lenis = lenis;
 
-          let rafId;
-          function raf(time) {
-            lenis.raf(time);
-            rafId = requestAnimationFrame(raf);
-          }
+        let rafId;
+        function raf(time) {
+          lenis.raf(time);
           rafId = requestAnimationFrame(raf);
+        }
+        rafId = requestAnimationFrame(raf);
 
-          return () => {
-            cancelAnimationFrame(rafId);
-            lenis.destroy();
-          };
-        })
-        .catch((err) => console.error("Failed to load Lenis:", err));
+        return () => {
+          cancelAnimationFrame(rafId);
+          lenis.destroy();
+        };
+      } catch (err) {
+        console.warn("Lenis initialization failed:", err);
+      }
+    };
+
+    // Load Lenis after content is ready for better performance
+    const timer = setTimeout(() => {
+      initLenis();
     }, 1500);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
