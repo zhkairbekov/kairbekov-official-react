@@ -10,6 +10,18 @@ import { useTranslation } from "react-i18next";
 import HeroCanvas from "./HeroCanvas";
 import RaccoonLogo from "./RaccoonLogo";
 
+function useIsNarrow() {
+  const [isNarrow, setIsNarrow] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => setIsNarrow(e.matches);
+    mq.addEventListener("change", handler);
+    setIsNarrow(mq.matches);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return isNarrow;
+}
+
 function useTypewriter(words) {
   const [idx, setIdx] = useState(0);
   const [text, setText] = useState("");
@@ -66,6 +78,7 @@ function MagBtn({ children, onClick }) {
 
 export default function Hero() {
   const { t } = useTranslation();
+  const isNarrow = useIsNarrow();
   const roles = useMemo(
     () => [t("hero.role1"), t("hero.role2"), t("hero.role3")],
     [t],
@@ -83,15 +96,33 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
   const yUp = useTransform(scrollY, [0, 600], [0, 100]);
+  const [canvasReady, setCanvasReady] = useState(false);
 
+  // Lazy load canvas after initial render for better FCP
   useEffect(() => {
+    const timer = setTimeout(() => setCanvasReady(true), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Debounced mousemove listener - skip on mobile for performance
+  useEffect(() => {
+    if (isNarrow) return; // Disable on mobile
+
+    let timeout;
     const fn = (e) => {
-      rawX.set((e.clientX - window.innerWidth / 2) / window.innerWidth);
-      rawY.set((e.clientY - window.innerHeight / 2) / window.innerHeight);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        rawX.set((e.clientX - window.innerWidth / 2) / window.innerWidth);
+        rawY.set((e.clientY - window.innerHeight / 2) / window.innerHeight);
+      }, 16); // ~60fps throttling
     };
+
     window.addEventListener("mousemove", fn);
-    return () => window.removeEventListener("mousemove", fn);
-  }, [rawX, rawY]);
+    return () => {
+      window.removeEventListener("mousemove", fn);
+      clearTimeout(timeout);
+    };
+  }, [rawX, rawY, isNarrow]);
 
   const LINE_DELAY = [0.15, 0.28, 0.41];
 
@@ -100,7 +131,7 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-background"
     >
-      <HeroCanvas />
+      {canvasReady && <HeroCanvas />}
       <div className="absolute inset-0 scanlines z-[1] pointer-events-none opacity-50" />
 
       <div

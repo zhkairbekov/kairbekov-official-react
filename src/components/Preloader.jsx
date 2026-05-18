@@ -7,9 +7,17 @@ export default function Preloader({ onComplete }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    // Check if preloader was already shown (only show once per session)
+    const preloaderShown = sessionStorage.getItem("preloaderShown");
+    if (preloaderShown) {
+      setDone(true);
+      onComplete();
+      return;
+    }
+
     let current = 0;
     const target = 100;
-    const duration = 2200;
+    const duration = 280; // Further reduced for faster loading
     const interval = duration / target;
 
     const timer = setInterval(() => {
@@ -19,8 +27,9 @@ export default function Preloader({ onComplete }) {
         clearInterval(timer);
         setTimeout(() => {
           setDone(true);
-          setTimeout(onComplete, 950);
-        }, 200);
+          sessionStorage.setItem("preloaderShown", "true");
+          setTimeout(onComplete, 600); // Reduced from 950ms
+        }, 100);
       }
     }, interval);
 
@@ -39,7 +48,10 @@ export default function Preloader({ onComplete }) {
         >
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 50% 50%, hsl(38 95% 60% / 0.06) 0%, transparent 65%)" }}
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 50%, hsl(38 95% 60% / 0.06) 0%, transparent 65%)",
+            }}
           />
 
           <div className="relative flex flex-col items-center gap-10">
@@ -51,7 +63,10 @@ export default function Preloader({ onComplete }) {
             >
               <div
                 className="absolute inset-0 rounded-full blur-3xl"
-                style={{ background: "hsl(38 95% 60% / 0.15)", transform: "scale(1.6)" }}
+                style={{
+                  background: "hsl(38 95% 60% / 0.15)",
+                  transform: "scale(1.6)",
+                }}
               />
               <RaccoonLogo size={110} />
             </motion.div>
@@ -65,13 +80,19 @@ export default function Preloader({ onComplete }) {
               <span className="font-display font-black text-white text-xl sm:text-2xl md:text-3xl tracking-[0.15em] sm:tracking-widest uppercase text-center">
                 Zhanat Kairbekov
               </span>
-              <span className="font-mono-custom text-[10px] tracking-[0.35em] uppercase" style={{ color: "hsl(38 95% 60%)" }}>
+              <span
+                className="font-mono-custom text-[10px] tracking-[0.35em] uppercase"
+                style={{ color: "hsl(38 95% 60%)" }}
+              >
                 Frontend Developer · Designer
               </span>
             </motion.div>
 
             <div className="flex flex-col items-center gap-3 w-56">
-              <div className="relative w-full h-px overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+              <div
+                className="relative w-full h-px overflow-hidden"
+                style={{ background: "rgba(255,255,255,0.08)" }}
+              >
                 <motion.div
                   className="absolute inset-y-0 left-0"
                   style={{ width: `${count}%`, background: "hsl(38 95% 60%)" }}
@@ -79,10 +100,16 @@ export default function Preloader({ onComplete }) {
                 />
               </div>
               <div className="flex items-center justify-between w-full">
-                <span className="font-mono-custom text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(255,255,255,0.25)" }}>
+                <span
+                  className="font-mono-custom text-[10px] tracking-[0.3em] uppercase"
+                  style={{ color: "rgba(255,255,255,0.25)" }}
+                >
                   Loading
                 </span>
-                <span className="font-mono-custom text-[10px] tabular-nums font-bold" style={{ color: "hsl(38 95% 60%)" }}>
+                <span
+                  className="font-mono-custom text-[10px] tabular-nums font-bold"
+                  style={{ color: "hsl(38 95% 60%)" }}
+                >
                   {count}%
                 </span>
               </div>

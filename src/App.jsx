@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Lenis from "lenis";
 import { ThemeProvider } from "./lib/theme-provider";
 import "./lib/i18n";
 import Preloader from "./components/Preloader";
@@ -18,24 +17,35 @@ function AppContent() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.35,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    window.lenis = lenis;
+    // Lazy load Lenis for smooth scrolling (not critical for initial paint)
+    // Load after main content is rendered for better performance
+    const timer = setTimeout(() => {
+      import("lenis")
+        .then((module) => {
+          const Lenis = module.default;
+          const lenis = new Lenis({
+            duration: 1.35,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+          });
+          window.lenis = lenis;
 
-    let rafId;
-    function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
+          let rafId;
+          function raf(time) {
+            lenis.raf(time);
+            rafId = requestAnimationFrame(raf);
+          }
+          rafId = requestAnimationFrame(raf);
 
-    return () => {
-      cancelAnimationFrame(rafId);
-      lenis.destroy();
-    };
+          return () => {
+            cancelAnimationFrame(rafId);
+            lenis.destroy();
+          };
+        })
+        .catch((err) => console.error("Failed to load Lenis:", err));
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (

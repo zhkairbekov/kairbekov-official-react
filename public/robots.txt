@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+Sitemap: https://kairbekov-official.netlify.app/sitemap.xml
+Crawl-delay: 1

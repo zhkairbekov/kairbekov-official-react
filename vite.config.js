@@ -18,6 +18,16 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          animation: ["framer-motion"],
+          "smooth-scroll": ["lenis"],
+          i18n: ["i18next", "react-i18next"],
+          vendor: ["react", "react-dom"],
+        },
+      },
+    },
   },
   server: {
     port: 5173,

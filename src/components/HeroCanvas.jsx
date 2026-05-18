@@ -18,18 +18,65 @@ export default function HeroCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
+    // Throttle mousemove listener for better performance
+    let lastUpdateTime = 0;
+    const throttleDelay = 16; // ~60fps
     const onMove = (e) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
+      const now = Date.now();
+      if (now - lastUpdateTime > throttleDelay) {
+        mouse.current = { x: e.clientX, y: e.clientY };
+        lastUpdateTime = now;
+      }
     };
     window.addEventListener("mousemove", onMove);
 
     const dark = document.documentElement.classList.contains("dark");
 
     const orbs = [
-      { x: el.width * 0.12, y: el.height * 0.3,  vx: 0.16,  vy: 0.11,  r: 340, h: 38,  s: 95, l: dark ? 58 : 38, a: dark ? 0.14 : 0.10 },
-      { x: el.width * 0.72, y: el.height * 0.18, vx: -0.13, vy: 0.15,  r: 300, h: 220, s: 60, l: dark ? 55 : 35, a: dark ? 0.09 : 0.07 },
-      { x: el.width * 0.48, y: el.height * 0.72, vx: 0.10,  vy: -0.12, r: 380, h: 38,  s: 80, l: dark ? 48 : 32, a: dark ? 0.08 : 0.06 },
-      { x: el.width * 0.88, y: el.height * 0.62, vx: -0.08, vy: -0.10, r: 220, h: 28,  s: 90, l: dark ? 60 : 40, a: dark ? 0.11 : 0.08 },
+      {
+        x: el.width * 0.12,
+        y: el.height * 0.3,
+        vx: 0.16,
+        vy: 0.11,
+        r: 340,
+        h: 38,
+        s: 95,
+        l: dark ? 58 : 38,
+        a: dark ? 0.14 : 0.1,
+      },
+      {
+        x: el.width * 0.72,
+        y: el.height * 0.18,
+        vx: -0.13,
+        vy: 0.15,
+        r: 300,
+        h: 220,
+        s: 60,
+        l: dark ? 55 : 35,
+        a: dark ? 0.09 : 0.07,
+      },
+      {
+        x: el.width * 0.48,
+        y: el.height * 0.72,
+        vx: 0.1,
+        vy: -0.12,
+        r: 380,
+        h: 38,
+        s: 80,
+        l: dark ? 48 : 32,
+        a: dark ? 0.08 : 0.06,
+      },
+      {
+        x: el.width * 0.88,
+        y: el.height * 0.62,
+        vx: -0.08,
+        vy: -0.1,
+        r: 220,
+        h: 28,
+        s: 90,
+        l: dark ? 60 : 40,
+        a: dark ? 0.11 : 0.08,
+      },
     ];
 
     const draw = () => {
