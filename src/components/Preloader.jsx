@@ -17,7 +17,7 @@ export default function Preloader({ onComplete }) {
 
     let current = 0;
     const target = 100;
-    const duration = 280; // Further reduced for faster loading
+    const duration = 2000; // Further reduced for faster loading
     const interval = duration / target;
 
     const timer = setInterval(() => {
