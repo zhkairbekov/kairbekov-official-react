@@ -127,7 +127,7 @@ export default function MiniTerminal() {
   const [input, setInput] = useState("");
 
   const [history, setHistory] = useState([
-    "ZhanatOS v2.6.0",
+    "Terminal v1.0.0",
     "Type 'help' to get started.",
   ]);
 
