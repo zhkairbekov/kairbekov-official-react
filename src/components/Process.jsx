@@ -20,7 +20,6 @@ export default function Process() {
 
   return (
     <section id="process" ref={ref} className="relative py-24 md:py-40 overflow-hidden">
-      {/* Accent stripe */}
       <div className="absolute top-0 right-0 w-1 h-full bg-primary/20" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -64,10 +63,8 @@ export default function Process() {
           </motion.p>
         </div>
 
-        {/* Connecting line (scroll-driven) */}
         <div className="relative hidden md:block h-px bg-border mb-0 mx-0">
           <motion.div className="absolute top-0 left-0 h-full bg-primary" style={{ width: lineW }} />
-          {/* Step dots */}
           {(Array.isArray(steps) ? steps : []).map((_, i) => (
             <div
               key={i}
@@ -77,7 +74,6 @@ export default function Process() {
           ))}
         </div>
 
-        {/* Steps grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
           {(Array.isArray(steps) ? steps : []).map((step, i) => (
             <motion.div
@@ -88,10 +84,8 @@ export default function Process() {
               transition={{ duration: 0.6, delay: i * 0.12 }}
               className="group relative border border-border bg-card hover:bg-secondary/30 transition-colors duration-300 p-8 md:p-10"
             >
-              {/* Hover top accent */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-              {/* Number watermark */}
               <div
                 className="absolute bottom-4 right-5 font-display font-black select-none pointer-events-none leading-none text-foreground/[0.04]"
                 style={{ fontSize: "clamp(4rem, 8vw, 6rem)" }}

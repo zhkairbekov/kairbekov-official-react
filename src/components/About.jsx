@@ -14,13 +14,12 @@ function CountUp({ value, inView }) {
     if (!inView || !isNumeric) return;
 
     let startTime = null;
-    const duration = 3000; // 5 seconds
+    const duration = 3000;
 
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
 
-      // Плавное замедление к концу (easeOutCubic)
       const easeOut = 1 - Math.pow(1 - progress, 3);
 
       setDisplay(Math.floor(startVal + (num - startVal) * easeOut));
@@ -94,7 +93,6 @@ export default function About() {
       ref={ref}
       className="relative py-24 md:py-40 overflow-hidden"
     >
-      {/* Wavy amber glow bg */}
       <motion.div
         style={{
           y: bgY,
@@ -107,7 +105,6 @@ export default function About() {
       />
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        {/* Section label */}
         <div className="flex items-center gap-4 mb-16 md:mb-20">
           <motion.p
             initial={{ opacity: 0, x: -20 }}
@@ -126,9 +123,7 @@ export default function About() {
           />
         </div>
 
-        {/* Main two-column layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_440px] gap-16 lg:gap-24 items-center mb-24 md:mb-32">
-          {/* Left: Text */}
           <div>
             <div className="overflow-hidden mb-2">
               <motion.h2
@@ -154,7 +149,6 @@ export default function About() {
               <p>{t("about.bio2")}</p>
             </motion.div>
 
-            {/* CTA */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -181,7 +175,6 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Right: Raccoon in frame */}
           <motion.div
             style={{ y: raccY }}
             initial={{ opacity: 0, x: 40 }}
@@ -192,7 +185,6 @@ export default function About() {
           >
             <div className="relative">
               <div className="relative p-5 sm:p-8 border border-border bg-card/50 backdrop-blur-sm">
-                {/* Corner accents */}
                 {[
                   "top-0 left-0 border-t-2 border-l-2",
                   "top-0 right-0 border-t-2 border-r-2",
@@ -230,7 +222,6 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Stats row */}
         <div
           ref={statsRef}
           className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border"
@@ -257,7 +248,6 @@ export default function About() {
           ))}
         </div>
 
-        {/* Skills marquee */}
         <div className="mt-16 overflow-hidden border-t border-b border-border/50 py-4">
           <div
             className="flex gap-8 animate-marquee whitespace-nowrap"

@@ -16,7 +16,6 @@ const navIds = [
 ];
 const LANGS = ["ru", "kk", "en"];
 
-// Bottom tab bar items (mobile only)
 const BOTTOM_TABS = [
   {
     id: "services",
@@ -122,7 +121,6 @@ export default function Navigation() {
     document.documentElement.classList.contains("dark"),
   );
 
-  // Keep isDark in sync with DOM class changes
   useEffect(() => {
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains("dark"));
@@ -134,14 +132,12 @@ export default function Navigation() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll listener for desktop navbar
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Active section detection via IntersectionObserver
   useEffect(() => {
     const observers = [];
     navIds.forEach((id) => {
@@ -159,7 +155,6 @@ export default function Navigation() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  // Lock body scroll when overlay open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -184,9 +179,6 @@ export default function Navigation() {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // ─────────────────────────────────────────────
-  // Shared icon components
-  // ─────────────────────────────────────────────
   const SunIcon = () => (
     <svg
       width="14"
@@ -223,9 +215,6 @@ export default function Navigation() {
     </svg>
   );
 
-  // ─────────────────────────────────────────────
-  // Full-screen overlay (shared, direction differs per breakpoint)
-  // ─────────────────────────────────────────────
   const Overlay = ({ isMobile }) => (
     <motion.div
       initial={
@@ -246,7 +235,6 @@ export default function Navigation() {
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-40 bg-background flex flex-col overflow-hidden"
     >
-      {/* Amber accent line */}
       <div
         className={`absolute bg-primary ${isMobile ? "bottom-0 left-0 right-0 h-[3px]" : "left-0 top-0 bottom-0 w-[3px]"}`}
       />
@@ -254,7 +242,6 @@ export default function Navigation() {
       <div
         className={`flex-1 max-w-7xl mx-auto w-full px-6 md:px-14 flex flex-col justify-between overflow-y-auto ${isMobile ? "pt-16 pb-28" : "pt-20 pb-6"}`}
       >
-        {/* Nav links */}
         <nav className="flex flex-col mt-0">
           {navIds.map((id, i) => (
             <motion.button
@@ -289,7 +276,6 @@ export default function Navigation() {
           ))}
         </nav>
 
-        {/* Bottom row */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -320,7 +306,6 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Theme toggle inside overlay (mobile) */}
           {isMobile && (
             <button
               onClick={toggleTheme}
@@ -349,9 +334,6 @@ export default function Navigation() {
 
   return (
     <>
-      {/* ══════════════════════════════════════
-          DESKTOP — top navigation bar (md+)
-          ══════════════════════════════════════ */}
       <motion.nav
         initial={{ y: -64, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -363,7 +345,6 @@ export default function Navigation() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between w-full">
-          {/* Logo */}
           <button onClick={() => scroll("home")} className="flex items-center">
             <RaccoonLogo size={50} />
             <div className="flex flex-col leading-none">
@@ -376,9 +357,7 @@ export default function Navigation() {
             </div>
           </button>
 
-          {/* Right controls */}
           <div className="flex items-center gap-2 md:gap-3">
-            {/* Lang */}
             <button
               onClick={cycleLang}
               className="font-mono-custom text-[9px] tracking-[0.22em] uppercase text-muted-foreground hover:text-primary border border-transparent hover:border-border transition-all px-2 py-1.5"
@@ -386,7 +365,6 @@ export default function Navigation() {
               {i18n.language.toUpperCase()}
             </button>
 
-            {/* Theme */}
             <button
               onClick={toggleTheme}
               className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
@@ -405,7 +383,6 @@ export default function Navigation() {
               </AnimatePresence>
             </button>
 
-            {/* Burger */}
             <button
               onClick={() => setOpen((v) => !v)}
               className="flex flex-col justify-center items-end gap-[5px] w-9 h-9 ml-1"
@@ -435,7 +412,6 @@ export default function Navigation() {
         </div>
       </motion.nav>
 
-      {/* Desktop overlay */}
       <AnimatePresence>
         {open && (
           <div className="hidden md:block">
@@ -444,9 +420,6 @@ export default function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* ══════════════════════════════════════
-          MOBILE — top bar (<md)
-          ══════════════════════════════════════ */}
       <motion.div
         initial={{ y: -56, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -458,7 +431,6 @@ export default function Navigation() {
         }`}
       >
         <div className="h-14 flex items-center justify-between px-4">
-          {/* Logo */}
           <button
             onClick={() => scroll("home")}
             className="flex items-center gap-1.5"
@@ -474,7 +446,6 @@ export default function Navigation() {
             </div>
           </button>
 
-          {/* Right controls */}
           <div className="flex items-center gap-1.5">
             <button
               onClick={cycleLang}
@@ -503,19 +474,14 @@ export default function Navigation() {
         </div>
       </motion.div>
 
-      {/* ══════════════════════════════════════
-          MOBILE — bottom tab bar (<md)
-          ══════════════════════════════════════ */}
       <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 2, ease: [0.22, 1, 0.36, 1] }}
         className="md:hidden fixed bottom-0 left-0 right-0 z-50"
       >
-        {/* Glass bar — overflow-visible so the logo can protrude above */}
         <div className="bg-background/92 backdrop-blur-2xl border-t border-border/60 shadow-[0_-4px_32px_rgba(0,0,0,0.12)] overflow-visible">
           <div className="flex items-stretch h-[62px] overflow-visible relative">
-            {/* ── LEFT tabs: services + sites ── */}
             {BOTTOM_TABS.slice(0, 2).map(({ id, icon }) => {
               const isActive = activeSection === id && !open;
               return (
@@ -559,8 +525,6 @@ export default function Navigation() {
               );
             })}
 
-            {/* ── CENTER: protruding logo ── */}
-            {/* Spacer keeps flex layout; button is absolutely lifted above the bar */}
             <div className="relative w-16 shrink-0 flex items-end justify-center">
               <motion.button
                 onClick={() => scroll("home")}
@@ -580,7 +544,6 @@ export default function Navigation() {
                 `}
               >
                 <RaccoonLogo size={30} />
-                {/* Amber pulse ring when home is active */}
                 {activeSection === "home" && !open && (
                   <motion.span
                     className="absolute inset-0 rounded-full border border-primary"
@@ -596,7 +559,6 @@ export default function Navigation() {
               </motion.button>
             </div>
 
-            {/* ── RIGHT tab: contacts ── */}
             {BOTTOM_TABS.slice(2).map(({ id, icon }) => {
               const isActive = activeSection === id && !open;
               return (
@@ -640,7 +602,7 @@ export default function Navigation() {
               );
             })}
 
-            {/* ── RIGHT tab: Menu / Burger ── */}
+
             <button
               onClick={() => setOpen((v) => !v)}
               className="flex-1 flex flex-col items-center justify-center gap-[3px] relative"
@@ -653,7 +615,7 @@ export default function Navigation() {
                 />
               )}
 
-              {/* Burger → X (y=5.5px is geometrically exact for this container) */}
+
               <div className="flex flex-col gap-[4px] items-center justify-center w-6 h-[22px]">
                 <motion.span
                   animate={{ rotate: open ? 45 : 0, y: open ? 5.5 : 0 }}
@@ -696,7 +658,6 @@ export default function Navigation() {
             </button>
           </div>
 
-          {/* iPhone safe area spacer */}
           <div
             className="h-safe-area-inset-bottom"
             style={{ height: "env(safe-area-inset-bottom)" }}
@@ -704,7 +665,6 @@ export default function Navigation() {
         </div>
       </motion.div>
 
-      {/* Mobile overlay (slides up from bottom) */}
       <AnimatePresence>
         {open && (
           <div className="md:hidden">

@@ -35,7 +35,6 @@ export default function Contacts() {
 
   return (
     <section id="contacts" className="relative overflow-hidden">
-      {/* Marquee strip */}
       <div className="bg-primary text-primary-foreground py-3 overflow-hidden border-b border-primary/30">
         <div className="flex gap-0 animate-marquee whitespace-nowrap">
           {Array.from({ length: 8 }).map((_, i) => (
@@ -50,7 +49,6 @@ export default function Contacts() {
       </div>
 
       <div className="relative py-24 md:pt-40 pb-[40px]">
-        {/* Subtle glow */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -80,7 +78,6 @@ export default function Contacts() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-start">
-            {/* Left */}
             <div>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -135,7 +132,6 @@ export default function Contacts() {
               </motion.div>
             </div>
 
-            {/* Right: socials */}
             <div>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -179,7 +175,6 @@ export default function Contacts() {
             </div>
           </div>
 
-          {/* Footer row */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

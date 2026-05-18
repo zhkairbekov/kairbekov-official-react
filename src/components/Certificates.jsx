@@ -38,7 +38,6 @@ export default function Certificates() {
 
   return (
     <section id="certs" className="relative py-24 md:py-40 overflow-hidden bg-secondary/20">
-      {/* Watermark */}
       <div className="absolute top-0 right-0 pointer-events-none select-none">
         <span
           className="font-display font-black text-stroke opacity-[0.025] leading-none whitespace-nowrap"
@@ -79,7 +78,6 @@ export default function Certificates() {
         </motion.h2>
 
         <div ref={containerRef} onMouseMove={onMouseMove} className="relative">
-          {/* Hover preview image */}
           <AnimatePresence>
             {hovered !== null && (
               <motion.div
@@ -116,7 +114,6 @@ export default function Certificates() {
                 className={`group relative bg-background p-8 md:p-10 overflow-hidden ${item.media ? "cursor-pointer" : ""
                   }`}
               >
-                {/* Hover fill */}
                 <motion.div
                   className="absolute inset-0 bg-primary/6"
                   initial={false}
@@ -124,7 +121,6 @@ export default function Certificates() {
                   style={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-                {/* Top accent line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                 <div className="relative z-10">
@@ -145,7 +141,6 @@ export default function Certificates() {
                   <p className="text-sm font-mono-custom text-muted-foreground">{item.org}</p>
                 </div>
 
-                {/* Large background number */}
                 <div className="absolute bottom-3 right-5 font-display font-black text-8xl text-foreground/[0.03] select-none pointer-events-none leading-none">
                   {String(i + 1).padStart(2, "0")}
                 </div>
@@ -155,7 +150,6 @@ export default function Certificates() {
         </div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div

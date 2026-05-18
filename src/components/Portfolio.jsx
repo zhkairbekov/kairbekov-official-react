@@ -180,7 +180,6 @@ export default function Portfolio() {
 
   return (
     <section id="sites" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background count */}
       <div className="absolute top-10 right-6 font-display font-black text-[15vw] text-stroke-primary opacity-[0.03] select-none pointer-events-none leading-none">
         {PROJECTS.length}
       </div>
@@ -220,7 +219,6 @@ export default function Portfolio() {
         </motion.h2>
 
         <div ref={listRef} className="relative" onMouseMove={onMouseMove}>
-          {/* Hover preview image */}
           <AnimatePresence>
             {hovered !== null && (
               <motion.div
@@ -257,7 +255,6 @@ export default function Portfolio() {
               data-cursor-label="VIEW"
               className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 md:py-8 border-b border-border/50 last:border-0 hover:pl-4 transition-all duration-300 overflow-hidden"
             >
-              {/* Row fill on hover */}
               <div className="absolute inset-0 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
               <div className="relative flex items-baseline gap-4 md:gap-6 z-10">
@@ -295,7 +292,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selected && (
           <motion.div
@@ -307,7 +303,7 @@ export default function Portfolio() {
             onClick={() => setSelected(null)}
             data-lenis-prevent="true"
           >
-            <div className="flex min-h-full justify-center pt-[81px] pb-[16px] md:px-4">
+            <div className="flex min-h-full justify-center pt-[81px] pb-[99px] md:px-4">
               <motion.div
                 initial={{ opacity: 0, y: 32, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}

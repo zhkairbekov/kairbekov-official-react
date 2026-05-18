@@ -37,14 +37,12 @@ export default function Preloader({ onComplete }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
         >
-          {/* Subtle radial amber glow */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: "radial-gradient(ellipse at 50% 50%, hsl(38 95% 60% / 0.06) 0%, transparent 65%)" }}
           />
 
           <div className="relative flex flex-col items-center gap-10">
-            {/* Raccoon logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -58,7 +56,6 @@ export default function Preloader({ onComplete }) {
               <RaccoonLogo size={110} />
             </motion.div>
 
-            {/* Name */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -73,7 +70,6 @@ export default function Preloader({ onComplete }) {
               </span>
             </motion.div>
 
-            {/* Progress bar */}
             <div className="flex flex-col items-center gap-3 w-56">
               <div className="relative w-full h-px overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
                 <motion.div

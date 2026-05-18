@@ -20,11 +20,9 @@ export default function Services() {
       id="services"
       className="relative py-24 md:py-40 bg-secondary/20 overflow-hidden"
     >
-      {/* Левый акцент */}
       <div className="absolute top-0 left-0 w-[3px] h-full bg-primary/25" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        {/* Заголовок */}
         <div className="flex items-center gap-4 mb-16 md:mb-20">
           <motion.p
             initial={{ opacity: 0, x: -20 }}
@@ -65,7 +63,6 @@ export default function Services() {
           </motion.p>
         </div>
 
-        {/* Аккордеон */}
         <div className="divide-y divide-border border-t border-border">
           {(Array.isArray(services) ? services : []).map((svc, i) => {
             const isOpen = expanded === i;
@@ -78,17 +75,14 @@ export default function Services() {
                 transition={{ delay: i * 0.08, duration: 0.55 }}
               >
                 <motion.button
-                  // Используем motion.button для поддержки whileHover
                   whileHover="hover"
                   onClick={() => setExpanded(isOpen ? null : i)}
                   className="service-dropdown-btn pr-2 pl-2 group relative w-full flex items-center justify-between gap-6 py-8 md:py-10 text-left overflow-hidden"
                 >
-                  {/* Фоновая заливка (Hover Fill) */}
                   <motion.div
                     className="absolute inset-0 bg-primary origin-left"
-                    style={{ pointerEvents: "none" }} // Чтобы не перехватывал клики
+                    style={{ pointerEvents: "none" }}
                     initial={{ scaleX: 0 }}
-                    // Если открыто — всегда 1, если закрыто — реагирует на hover родителя
                     animate={{ scaleX: isOpen ? 1 : 0 }}
                     variants={{
                       hover: { scaleX: 1 },
@@ -96,7 +90,6 @@ export default function Services() {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   />
 
-                  {/* Контент слева */}
                   <div className="relative flex items-center gap-3 sm:gap-5 md:gap-8 z-10 min-w-0 pointer-events-none">
                     <span
                       className={`font-mono-custom text-xs transition-colors duration-300 shrink-0 ${
@@ -122,7 +115,6 @@ export default function Services() {
                     </span>
                   </div>
 
-                  {/* Иконка справа */}
                   <div
                     className={`relative z-10 shrink-0 transition-colors duration-300 ${
                       isOpen
@@ -134,7 +126,6 @@ export default function Services() {
                   </div>
                 </motion.button>
 
-                {/* Выпадающий контент */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div

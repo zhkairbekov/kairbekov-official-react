@@ -103,7 +103,6 @@ export default function Hero() {
       <HeroCanvas />
       <div className="absolute inset-0 scanlines z-[1] pointer-events-none opacity-50" />
 
-      {/* Subtle grid */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
@@ -119,12 +118,10 @@ export default function Hero() {
         className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 md:px-10 pt-24 md:pt-28 pb-10 md:pb-16"
       >
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-6 items-center">
-          {/* ─── Left: Typography ─── */}
           <motion.div
             style={{ x: txtX }}
             className="flex-1 flex flex-col justify-center w-full"
           >
-            {/* Status */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -140,7 +137,6 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* Stacked headline */}
             {["FRONT", "END", "DEV"].map((word, i) => (
               <div key={word} className="overflow-hidden">
                 <motion.div
@@ -184,7 +180,6 @@ export default function Hero() {
               </div>
             ))}
 
-            {/* Name + role */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -214,7 +209,6 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -246,7 +240,6 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ─── Right: Raccoon ─── */}
           <motion.div
             style={{ x: raccX, y: raccY }}
             className="hidden lg:flex items-center justify-center w-[380px] xl:w-[440px] shrink-0"
@@ -261,7 +254,6 @@ export default function Hero() {
               }}
               className="relative"
             >
-              {/* Glow */}
               <div
                 className="absolute inset-0 rounded-full pointer-events-none"
                 style={{
@@ -271,7 +263,6 @@ export default function Hero() {
                   filter: "blur(20px)",
                 }}
               />
-              {/* Rotating rings */}
               <motion.div
                 className="absolute inset-[-24px] rounded-full border border-dashed"
                 style={{ borderColor: "hsl(var(--primary) / 0.25)" }}
@@ -285,7 +276,6 @@ export default function Hero() {
                 transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
               />
 
-              {/* Raccoon */}
               <motion.div
                 animate={{ y: [0, -14, 0] }}
                 transition={{
@@ -297,7 +287,6 @@ export default function Hero() {
                 <RaccoonLogo size={400} glowing animated />
               </motion.div>
 
-              {/* Floating badges */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

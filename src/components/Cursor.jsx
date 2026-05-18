@@ -33,7 +33,6 @@ function useDevToolsOpen() {
   return isOpen;
 }
 
-/** True on any touch / coarse-pointer device (phones, tablets). */
 function useIsTouch() {
   const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
@@ -42,15 +41,13 @@ function useIsTouch() {
   return isTouch;
 }
 
-/** True when the viewport is narrower than 768 px (Tailwind's `md` breakpoint).
- *  Updates live on resize so rotating a tablet also hides the cursor correctly. */
 function useIsNarrow() {
   const [isNarrow, setIsNarrow] = useState(() => window.innerWidth < 768);
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
     const handler = (e) => setIsNarrow(e.matches);
     mq.addEventListener("change", handler);
-    setIsNarrow(mq.matches); // sync immediately
+    setIsNarrow(mq.matches);
     return () => mq.removeEventListener("change", handler);
   }, []);
   return isNarrow;
@@ -128,8 +125,6 @@ export default function Cursor() {
     };
   }, [mouseX, mouseY, dotX, dotY, isVisible]);
 
-  // Hide on touch devices, narrow viewports (<768px), or when devtools are open.
-  // Native cursor is restored by the CSS change (cursor:none only fires at >=768px).
   if (isTouch || isNarrow || devToolsOpen) return null;
 
   const size = isHovering ? (label ? 88 : 52) : 36;
