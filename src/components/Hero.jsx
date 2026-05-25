@@ -339,7 +339,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 1 }}
         style={{ opacity }}
-        className="absolute bottom-[100px] md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="absolute bottom-[100px] md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 [@media(max-height:779px)]:hidden"
       >
         <button
           onClick={() =>

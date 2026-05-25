@@ -499,6 +499,8 @@ export default function MobileNavigation() {
                 boxShadow: "0 -8px 48px rgba(0,0,0,0.22)",
                 paddingBottom: "calc(100px + env(safe-area-inset-bottom))",
               }}
+              data-lenis-prevent="true"
+              className="fixed left-0 right-0 bottom-0 z-40 flex flex-col"
             >
               <div
                 className="flex-shrink-0 flex flex-col items-center pt-3 pb-2 cursor-grab active:cursor-grabbing"
@@ -533,7 +535,10 @@ export default function MobileNavigation() {
 
               <div className="h-px bg-border/40 mx-5 flex-shrink-0" />
 
-              <div className="flex-1 overflow-y-auto overscroll-contain px-5">
+              <div
+                className="flex-1 overflow-y-auto overscroll-contain px-5"
+                onWheel={(e) => e.stopPropagation()}
+              >
                 <nav className="flex flex-col py-1">
                   {navIds.map((id, i) => (
                     <motion.button

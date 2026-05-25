@@ -262,20 +262,7 @@ export default function MiniTerminal() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
           onClick={() => setOpen(true)}
-          className="
-          fixed right-6 bottom-6 z-[999]
-          hidden xl:flex
-          items-center justify-center
-          w-14 h-14
-          rounded-2xl
-          border border-primary/20
-          bg-black/70 backdrop-blur-xl
-          text-primary
-          hover:scale-105
-          hover:border-primary/40
-          transition-all duration-300
-          shadow-[0_0_30px_rgba(255,180,0,0.15)]
-        "
+          className="fixed right-6 bottom-6 z-[999] hidden xl:flex items-center justify-center w-14 h-14 rounded-2xl border border-primary/20 bg-black/70 backdrop-blur-xl text-primary hover:scale-105 hover:border-primary/40 transition-all duration-300 shadow-[0_0_30px_rgba(255,180,0,0.15)]"
         >
           <Terminal size={20} />
         </motion.button>

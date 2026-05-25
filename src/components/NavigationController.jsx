@@ -9,7 +9,7 @@ export default function NavigationController() {
 
   useEffect(() => {
     if (isMobile) {
-      document.body.style.paddingBottom = "40px";
+      document.body.style.paddingBottom = "62px";
     } else {
       document.body.style.paddingBottom = "";
     }
