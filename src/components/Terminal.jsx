@@ -1,268 +1,82 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Terminal, X } from "lucide-react";
+import { Terminal } from "lucide-react";
 import { DesktopOnly } from "./components/Responsive";
 
-const COMMANDS = {
-  help: `Available commands:
-
-help        show all commands
-about       information about me
-skills      my stack
-projects    featured projects
-journey     career timeline
-contacts    social links
-status      current availability
-stack       tech stack
-clear       clear terminal
-whoami      short bio
-`,
-
-  about: `Zhanat Kairbekov
-Frontend Developer & Graphic Designer
-Astana, Kazakhstan
-
-Student at Alem School (Astana Hub)
-Graduate of OmAEiP — Information Systems & Programming
-
-Building modern interfaces with React, Laravel and motion-driven UX.
-`,
-
-  whoami: `Frontend developer focused on performant UI,
-animations and scalable frontend architecture.
-`,
-
-  skills: `HTML
-CSS / SCSS
-JavaScript
-React
-Tailwind
-Framer Motion
-PHP
-Laravel
-MySQL
-REST API
-Three.js
-Canvas API
-Go
-Docker
-Git
-`,
-
-  stack: `Frontend:
-React, Vite, Tailwind, Framer Motion
-
-Backend:
-PHP, Laravel, MySQL, Go
-
-Tools:
-Git, Figma, Docker
-`,
-
-  projects: `1. Portfolio Website
-2. Downtown Astana
-3. Saukele Online Shop
-4. Velobike Clone
-5. Maze Escape BFS Visualizer
-6. Product Catalog App
-`,
-
-  journey: `2020 → started web & design
-2023 → first Laravel projects
-2025 → Alem School
-2025 → commercial development
-2026 → open for opportunities
-`,
-
-  contacts: `Telegram:
-t.me/kairbekoff
-
-GitHub:
-github.com/zhkairbekov
-
-Portfolio:
-kairbekov-official.netlify.app
-`,
-
-  status: `🟢 AVAILABLE FOR FREELANCE
-🟢 OPEN TO REMOTE WORK
-🟢 OPEN TO COLLABORATION
-`,
-
-  "sudo hire-me": `ACCESS GRANTED 🚀
-Welcome aboard.
-`,
-
-  "rm -rf bugs": `Permission denied.
-Bugs are protected species.
-`,
-
-  "go run main.go": `Compiling portfolio...
-
-✔ React initialized
-✔ Tailwind loaded
-✔ Framer Motion enabled
-✔ Deploying to Netlify...
-`,
-
-  "php artisan inspire": `"Code is poetry."
-— Laravel Terminal
-`,
-
-  coffee: `Brewing coffee...
-██████████ 100%
-☕ ready
-`,
-
-  matrix: `Wake up, Neo...
-The Matrix has you.
-`,
-
-  42: `The answer to life, the universe and everything.
-`,
-};
+import { useTerminal } from "./terminal/useTerminal";
+import { TerminalHeader } from "./terminal/TerminalHeader";
+import { TerminalLine } from "./terminal/TerminalLine";
+import { TerminalInput } from "./terminal/TerminalInput";
+import { GameRenderer } from "./terminal/GameRenderer";
+import {
+  MatrixEffect,
+  HackEffect,
+  DiscoEffect,
+} from "./terminal/SpecialEffects";
 
 export default function MiniTerminal() {
-  const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
+  const [open, setOpen] = React.useState(false);
 
-  const [history, setHistory] = useState([
-    "Terminal v1.0.0",
-    "Type 'help' to get started.",
-  ]);
+  const {
+    input,
+    setInput,
+    history,
+    suggestions,
+    suggestionIndex,
+    setSuggestionIndex,
+    activeGame,
+    specialMode,
+    inputRef,
+    terminalBodyRef,
+    focusInput,
+    executeCommand,
+    handleKeyDown,
+    closeGame,
+  } = useTerminal();
 
-  const [cmdHistory, setCmdHistory] = useState([]);
-  const [cmdIndex, setCmdIndex] = useState(-1);
-
-  const inputRef = useRef(null);
-  const terminalBodyRef = useRef(null);
-  const panelRef = useRef(null);
-
+  // Global keyboard shortcut
   useEffect(() => {
     const handler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen((p) => !p);
       }
-
-      if (e.key === "Escape") {
-        setOpen(false);
-      }
+      if (e.key === "Escape" && !activeGame) setOpen(false);
     };
-
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, []);
+  }, [activeGame]);
 
+  // Lock body scroll when open
   useEffect(() => {
-    if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
+  // Focus input when opened
   useEffect(() => {
-    terminalBodyRef.current?.scrollTo({
-      top: terminalBodyRef.current.scrollHeight,
-      behavior: "smooth",
-    });
-  }, [history]);
+    if (open) setTimeout(() => inputRef.current?.focus(), 120);
+  }, [open, inputRef]);
 
-  const suggestions = useMemo(() => {
-    if (!input) return [];
-    return Object.keys(COMMANDS).filter((cmd) =>
-      cmd.toLowerCase().startsWith(input.toLowerCase()),
-    );
-  }, [input]);
-
-  const executeCommand = () => {
-    const cmd = input.trim();
-    if (!cmd) return;
-
-    if (cmd === "clear") {
-      setHistory(["ZhanatOS v2.6.0", "Terminal cleared."]);
-      setInput("");
-      return;
-    }
-
-    if (cmd === "projects") {
-      document.querySelector("#sites")?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-
-    if (cmd === "about") {
-      document.querySelector("#about")?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-
-    const output = COMMANDS[cmd] || `Command not found: ${cmd}`;
-
-    setHistory((prev) => [...prev, `visitor@zhanat:~$ ${cmd}`, output]);
-
-    setCmdHistory((prev) => [...prev, cmd]);
-    setCmdIndex(-1);
-
-    setInput("");
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      executeCommand();
-      return;
-    }
-
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      if (cmdHistory.length === 0) return;
-
-      const newIndex =
-        cmdIndex === -1 ? cmdHistory.length - 1 : Math.max(0, cmdIndex - 1);
-
-      setCmdIndex(newIndex);
-      setInput(cmdHistory[newIndex]);
-    }
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      if (cmdHistory.length === 0) return;
-
-      if (cmdIndex === -1) return;
-
-      const newIndex = cmdIndex + 1;
-
-      if (newIndex >= cmdHistory.length) {
-        setCmdIndex(-1);
-        setInput("");
-        return;
-      }
-
-      setCmdIndex(newIndex);
-      setInput(cmdHistory[newIndex]);
-    }
+  const handleSuggestionClick = (cmd) => {
+    setInput(cmd);
+    setSuggestionIndex(-1);
+    inputRef.current?.focus();
   };
 
   return (
     <DesktopOnly>
       <>
+        {/* Floating button */}
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
           onClick={() => setOpen(true)}
           className="fixed right-6 bottom-6 z-[999] hidden xl:flex items-center justify-center w-14 h-14 rounded-2xl border border-primary/20 bg-black/70 backdrop-blur-xl text-primary hover:scale-105 hover:border-primary/40 transition-all duration-300 shadow-[0_0_30px_rgba(255,180,0,0.15)]"
+          title="Open terminal (Ctrl+K)"
         >
           <Terminal size={20} />
         </motion.button>
@@ -277,99 +91,71 @@ export default function MiniTerminal() {
               className="fixed inset-0 z-[998] hidden xl:block"
               onMouseDown={() => setOpen(false)}
             >
+              {/* Backdrop */}
               <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
 
+              {/* Terminal Panel */}
               <motion.div
-                ref={panelRef}
-                initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.96 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: 24, scale: 0.95 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                 onMouseDown={(e) => e.stopPropagation()}
+                onClick={focusInput}
                 className="
-                fixed right-6 bottom-24 z-[999]
-                flex flex-col
-                w-[720px] h-[520px]
-                overflow-hidden
-                rounded-3xl
-                border border-primary/20
-                bg-black/90 backdrop-blur-2xl
-                shadow-[0_0_50px_rgba(255,180,0,0.12)]
-              "
-              >
-                <div className="flex items-center justify-between px-5 py-4 border-b border-primary/10 bg-white/[0.02]">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-red-500" />
-                      <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                      <span className="w-3 h-3 rounded-full bg-green-500" />
-                    </div>
-
-                    <span className="text-xs uppercase tracking-[0.25em] text-primary/70 font-mono">
-                      zhanat-terminal
-                    </span>
-                  </div>
-
-                  <button
-                    onClick={() => setOpen(false)}
-                    className="text-primary/60 hover:text-primary transition-colors"
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-
-                <div
-                  ref={terminalBodyRef}
-                  onWheel={(e) => e.stopPropagation()}
-                  className="
-                  flex-1 overflow-y-auto overscroll-contain
-                  px-5 py-5 font-mono text-[14px]
-                  leading-7 text-primary
+                  fixed right-6 bottom-24 z-[999]
+                  flex flex-col
+                  w-[740px]
+                  overflow-hidden
+                  rounded-3xl
+                  border border-primary/20
+                  bg-black/92 backdrop-blur-2xl
+                  shadow-[0_0_60px_rgba(255,180,0,0.10),0_24px_64px_rgba(0,0,0,0.6)]
+                  cursor-default
                 "
-                >
-                  {history.map((line, i) => (
-                    <motion.pre
-                      key={i}
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="whitespace-pre-wrap"
-                    >
-                      {line}
-                    </motion.pre>
-                  ))}
-                </div>
+                style={{ maxHeight: "calc(100vh - 140px)" }}
+              >
+                {/* Special effects overlay */}
+                <AnimatePresence>
+                  {specialMode === "matrix" && <MatrixEffect />}
+                  {specialMode === "hack" && <HackEffect />}
+                  {specialMode === "disco" && <DiscoEffect />}
+                </AnimatePresence>
 
-                {suggestions.length > 0 && input && (
-                  <div className="px-5 py-2 border-t border-primary/10 flex gap-2 flex-wrap">
-                    {suggestions.map((item) => (
-                      <button
-                        key={item}
-                        onClick={() => setInput(item)}
-                        className="px-2 py-1 text-xs rounded-md border border-primary/20 text-primary/70 hover:text-primary hover:border-primary/40 transition-all"
-                      >
-                        {item}
-                      </button>
+                {/* Header */}
+                <TerminalHeader onClose={() => setOpen(false)} />
+
+                {/* History — only shown when no game active */}
+                {!activeGame && (
+                  <div
+                    ref={terminalBodyRef}
+                    onWheel={(e) => e.stopPropagation()}
+                    onClick={focusInput}
+                    className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 font-mono text-[13px] leading-7 text-primary min-h-[200px]"
+                    style={{ maxHeight: "360px" }}
+                  >
+                    {history.map((entry, i) => (
+                      <TerminalLine key={i} entry={entry} index={i} />
                     ))}
                   </div>
                 )}
 
-                <div className="flex items-center gap-3 px-5 py-4 border-t border-primary/10 bg-white/[0.02]">
-                  <span className="font-mono text-sm text-primary/70 whitespace-nowrap">
-                    visitor@zhanat:~$
-                  </span>
+                {/* Game area */}
+                <GameRenderer activeGame={activeGame} onClose={closeGame} />
 
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                {/* Input — hidden during active game */}
+                {!activeGame && (
+                  <TerminalInput
+                    inputRef={inputRef}
+                    input={input}
+                    setInput={setInput}
                     onKeyDown={handleKeyDown}
-                    autoComplete="off"
-                    spellCheck={false}
-                    placeholder="type command..."
-                    className="flex-1 bg-transparent outline-none text-primary placeholder:text-primary/30 font-mono"
+                    suggestions={suggestions}
+                    suggestionIndex={suggestionIndex}
+                    setSuggestionIndex={setSuggestionIndex}
+                    onSuggestionClick={handleSuggestionClick}
                   />
-                </div>
+                )}
               </motion.div>
             </motion.div>
           )}

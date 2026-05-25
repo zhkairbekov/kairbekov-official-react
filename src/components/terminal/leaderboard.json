@@ -1,0 +1,17 @@
+{
+  "snake": [
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." }
+  ],
+  "tetris": [
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." }
+  ],
+  "breakout": [
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." },
+    { "name": "...", "score": "...", "date": "..." }
+  ]
+}
