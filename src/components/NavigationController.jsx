@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Navigation from "./components/Navigation";
 import MobileNavigation from "./components/MobileNavigation";
-import { DesktopOnly, MobileOnly } from "./Responsive";
+import { DesktopOnly, MobileOnly } from "./components/Responsive";
 import { useIsMobile } from "../hooks/use-mobile";
 
 export default function NavigationController() {

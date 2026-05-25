@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Terminal, X } from "lucide-react";
-import { DesktopOnly } from "./Responsive";
+import { DesktopOnly } from "./components/Responsive";
 
 const COMMANDS = {
   help: `Available commands:

@@ -1,3 +1,4 @@
+// ./components/Responsive.jsx
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export function MobileOnly({ children }) {
