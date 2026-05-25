@@ -1,38 +1,28 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navigation from "./components/Navigation";
 import MobileNavigation from "./components/MobileNavigation";
-
-const BREAKPOINT = 762;
+import { DesktopOnly, MobileOnly } from "./Responsive";
+import { useIsMobile } from "../hooks/use-mobile";
 
 export default function NavigationController() {
-  const [isDesktop, setIsDesktop] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth >= BREAKPOINT : true,
-  );
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    const mq = window.matchMedia(`(min-width: ${BREAKPOINT}px)`);
-
-    const handler = (e) => {
-      setIsDesktop(e.matches);
-    };
-
-    mq.addEventListener("change", handler);
-
-    handler(mq);
-
-    return () => {
-      mq.removeEventListener("change", handler);
-      document.body.style.paddingBottom = "";
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) {
-      document.body.style.paddingBottom = "40";
+    if (isMobile) {
+      document.body.style.paddingBottom = "40px";
     } else {
       document.body.style.paddingBottom = "";
     }
-  }, [isDesktop]);
+  }, [isMobile]);
 
-  return isDesktop ? <Navigation /> : <MobileNavigation />;
+  return (
+    <>
+      <DesktopOnly>
+        <Navigation />
+      </DesktopOnly>
+      <MobileOnly>
+        <MobileNavigation />
+      </MobileOnly>
+    </>
+  );
 }

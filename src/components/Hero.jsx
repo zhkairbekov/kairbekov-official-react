@@ -7,20 +7,9 @@ import {
   useScroll,
 } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "../hooks/use-mobile";
 import HeroCanvas from "./HeroCanvas";
 import RaccoonLogo from "./RaccoonLogo";
-
-function useIsNarrow() {
-  const [isNarrow, setIsNarrow] = useState(() => window.innerWidth < 768);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const handler = (e) => setIsNarrow(e.matches);
-    mq.addEventListener("change", handler);
-    setIsNarrow(mq.matches);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return isNarrow;
-}
 
 function useTypewriter(words) {
   const [idx, setIdx] = useState(0);
@@ -78,7 +67,7 @@ function MagBtn({ children, onClick }) {
 
 export default function Hero() {
   const { t } = useTranslation();
-  const isNarrow = useIsNarrow();
+  const isMobile = useIsMobile();
   const roles = useMemo(
     () => [t("hero.role1"), t("hero.role2"), t("hero.role3")],
     [t],
@@ -104,7 +93,7 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    if (isNarrow) return; // Disable on mobile
+    if (isMobile) return; // Disable on mobile
 
     let timeout;
     const fn = (e) => {
@@ -120,7 +109,7 @@ export default function Hero() {
       window.removeEventListener("mousemove", fn);
       clearTimeout(timeout);
     };
-  }, [rawX, rawY, isNarrow]);
+  }, [rawX, rawY, isMobile]);
 
   const LINE_DELAY = [0.15, 0.28, 0.41];
 

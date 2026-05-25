@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Terminal, X } from "lucide-react";
+import { DesktopOnly } from "./Responsive";
 
 const COMMANDS = {
   help: `Available commands:
@@ -122,7 +123,6 @@ The Matrix has you.
 };
 
 export default function MiniTerminal() {
-  const [isDesktop, setIsDesktop] = useState(false);
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
 
@@ -139,15 +139,6 @@ export default function MiniTerminal() {
   const panelRef = useRef(null);
 
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  useEffect(() => {
-    if (!isDesktop) return;
-
     const handler = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -161,7 +152,7 @@ export default function MiniTerminal() {
 
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [isDesktop]);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -263,16 +254,15 @@ export default function MiniTerminal() {
     }
   };
 
-  if (!isDesktop) return null;
-
   return (
-    <>
-      <motion.button
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-        onClick={() => setOpen(true)}
-        className="
+    <DesktopOnly>
+      <>
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1 }}
+          onClick={() => setOpen(true)}
+          className="
           fixed right-6 bottom-6 z-[999]
           hidden xl:flex
           items-center justify-center
@@ -286,30 +276,30 @@ export default function MiniTerminal() {
           transition-all duration-300
           shadow-[0_0_30px_rgba(255,180,0,0.15)]
         "
-      >
-        <Terminal size={20} />
-      </motion.button>
+        >
+          <Terminal size={20} />
+        </motion.button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[998] hidden xl:block"
-            onMouseDown={() => setOpen(false)}
-          >
-            <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
-
+        <AnimatePresence>
+          {open && (
             <motion.div
-              ref={panelRef}
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.96 }}
-              transition={{ duration: 0.25 }}
-              onMouseDown={(e) => e.stopPropagation()}
-              className="
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[998] hidden xl:block"
+              onMouseDown={() => setOpen(false)}
+            >
+              <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
+
+              <motion.div
+                ref={panelRef}
+                initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.96 }}
+                transition={{ duration: 0.25 }}
+                onMouseDown={(e) => e.stopPropagation()}
+                className="
                 fixed right-6 bottom-24 z-[999]
                 flex flex-col
                 w-[720px] h-[520px]
@@ -319,84 +309,85 @@ export default function MiniTerminal() {
                 bg-black/90 backdrop-blur-2xl
                 shadow-[0_0_50px_rgba(255,180,0,0.12)]
               "
-            >
-              <div className="flex items-center justify-between px-5 py-4 border-b border-primary/10 bg-white/[0.02]">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-red-500" />
-                    <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <span className="w-3 h-3 rounded-full bg-green-500" />
+              >
+                <div className="flex items-center justify-between px-5 py-4 border-b border-primary/10 bg-white/[0.02]">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-red-500" />
+                      <span className="w-3 h-3 rounded-full bg-yellow-500" />
+                      <span className="w-3 h-3 rounded-full bg-green-500" />
+                    </div>
+
+                    <span className="text-xs uppercase tracking-[0.25em] text-primary/70 font-mono">
+                      zhanat-terminal
+                    </span>
                   </div>
 
-                  <span className="text-xs uppercase tracking-[0.25em] text-primary/70 font-mono">
-                    zhanat-terminal
-                  </span>
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="text-primary/60 hover:text-primary transition-colors"
+                  >
+                    <X size={18} />
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => setOpen(false)}
-                  className="text-primary/60 hover:text-primary transition-colors"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              <div
-                ref={terminalBodyRef}
-                onWheel={(e) => e.stopPropagation()}
-                className="
+                <div
+                  ref={terminalBodyRef}
+                  onWheel={(e) => e.stopPropagation()}
+                  className="
                   flex-1 overflow-y-auto overscroll-contain
                   px-5 py-5 font-mono text-[14px]
                   leading-7 text-primary
                 "
-              >
-                {history.map((line, i) => (
-                  <motion.pre
-                    key={i}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="whitespace-pre-wrap"
-                  >
-                    {line}
-                  </motion.pre>
-                ))}
-              </div>
-
-              {suggestions.length > 0 && input && (
-                <div className="px-5 py-2 border-t border-primary/10 flex gap-2 flex-wrap">
-                  {suggestions.map((item) => (
-                    <button
-                      key={item}
-                      onClick={() => setInput(item)}
-                      className="px-2 py-1 text-xs rounded-md border border-primary/20 text-primary/70 hover:text-primary hover:border-primary/40 transition-all"
+                >
+                  {history.map((line, i) => (
+                    <motion.pre
+                      key={i}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="whitespace-pre-wrap"
                     >
-                      {item}
-                    </button>
+                      {line}
+                    </motion.pre>
                   ))}
                 </div>
-              )}
 
-              <div className="flex items-center gap-3 px-5 py-4 border-t border-primary/10 bg-white/[0.02]">
-                <span className="font-mono text-sm text-primary/70 whitespace-nowrap">
-                  visitor@zhanat:~$
-                </span>
+                {suggestions.length > 0 && input && (
+                  <div className="px-5 py-2 border-t border-primary/10 flex gap-2 flex-wrap">
+                    {suggestions.map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => setInput(item)}
+                        className="px-2 py-1 text-xs rounded-md border border-primary/20 text-primary/70 hover:text-primary hover:border-primary/40 transition-all"
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  autoComplete="off"
-                  spellCheck={false}
-                  placeholder="type command..."
-                  className="flex-1 bg-transparent outline-none text-primary placeholder:text-primary/30 font-mono"
-                />
-              </div>
+                <div className="flex items-center gap-3 px-5 py-4 border-t border-primary/10 bg-white/[0.02]">
+                  <span className="font-mono text-sm text-primary/70 whitespace-nowrap">
+                    visitor@zhanat:~$
+                  </span>
+
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    autoComplete="off"
+                    spellCheck={false}
+                    placeholder="type command..."
+                    className="flex-1 bg-transparent outline-none text-primary placeholder:text-primary/30 font-mono"
+                  />
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          )}
+        </AnimatePresence>
+      </>
+    </DesktopOnly>
   );
 }
