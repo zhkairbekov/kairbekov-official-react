@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { GraduationCap, Award, BookOpen, ExternalLink, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function getIcon(type) {
   const t = type.toLowerCase();
@@ -17,21 +18,9 @@ function getIcon(type) {
   return <Award size={22} strokeWidth={1.5} />;
 }
 
-const useIsDesktop = () => {
-  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(min-width: 768px)");
-    const handler = (e) => setIsDesktop(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
-
-  return isDesktop;
-};
-
 export default function Certificates() {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const items = t("certs.items", { returnObjects: true });
 
   const [hovered, setHovered] = useState(null);
@@ -40,10 +29,10 @@ export default function Certificates() {
   const containerRef = useRef(null);
 
   const onMouseMove = useCallback((e) => {
-    if (!listRef.current || !isDesktop) return;
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     setImgPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, [isDesktop]);
+  }, []);
 
   useEffect(() => {
     if (selected) {
@@ -55,8 +44,6 @@ export default function Certificates() {
       document.body.style.overflow = "";
     };
   }, [selected]);
-
-  const isDesktop = useIsDesktop();
 
   return (
     <section
@@ -104,7 +91,7 @@ export default function Certificates() {
 
         <div ref={containerRef} onMouseMove={onMouseMove} className="relative">
           <AnimatePresence>
-            {hovered !== null && (
+            {!isMobile && hovered !== null && (
               <motion.div
                 key={hovered}
                 initial={{ opacity: 0, scale: 0.88, y: 8 }}
@@ -132,8 +119,8 @@ export default function Certificates() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.09 }}
-                onMouseEnter={() => isDesktop && setHovered(project.id)}
-                onMouseLeave={() => isDesktop && setHovered(null)}
+                onMouseEnter={() => item.media && !isMobile && setHovered(i)}
+                onMouseLeave={() => !isMobile && setHovered(null)}
                 onClick={() => item.media && setSelected(item)}
                 data-cursor-label={item.media ? "VIEW" : undefined}
                 className={`group relative bg-background p-8 md:p-10 overflow-hidden ${
