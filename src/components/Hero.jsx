@@ -116,7 +116,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="h-[calc(100vh-62px)] min-h-max relative flex items-center overflow-hidden bg-background"
+      className="relative flex items-center overflow-hidden bg-background h-[calc(100vh-62px)] min-h-max md:h-screen md:min-h-screen"
     >
       {canvasReady && <HeroCanvas />}
       <div className="absolute inset-0 scanlines z-[1] pointer-events-none opacity-50" />
