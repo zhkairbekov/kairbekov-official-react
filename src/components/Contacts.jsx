@@ -37,7 +37,7 @@ export default function Contacts() {
   const { t } = useTranslation();
 
   return (
-    <section id="contacts" className="relative overflow-hidden md:pb-16">
+    <section id="contacts" className="relative overflow-hidden">
       <div className="bg-primary text-primary-foreground py-3 overflow-hidden border-b border-primary/30">
         <Marquee ariaHidden={true}>
           {Array.from({ length: 8 }).map((_, i) => (
@@ -51,7 +51,7 @@ export default function Contacts() {
         </Marquee>
       </div>
 
-      <div className="relative py-24 md:pt-40 pb-[40px]">
+      <div className="relative pt-24 md:pt-40 pb-[82px] lg:pb-[40px]">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
