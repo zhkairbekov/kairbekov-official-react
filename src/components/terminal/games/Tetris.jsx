@@ -295,15 +295,33 @@ export function TetrisGame({ onClose }) {
             )}
 
             {!running && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 gap-3">
-                <p className="font-mono text-primary text-sm">
-                  {gameOver ? `Game Over! Score: ${score}` : "🟦 Tetris"}
-                </p>
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/85 gap-4 p-4 text-center w-100 h-100">
+                <div className="space-y-2">
+                  <p className="font-mono text-primary text-sm uppercase tracking-wider">
+                    {gameOver ? "Game Over" : "🟦 Tetris"}
+                  </p>
+
+                  {gameOver && (
+                    <div className="space-y-3">
+                      <p className="font-mono text-primary font-bold text-base">
+                        SCORE: {score}
+                      </p>
+                      <p className="font-mono text-[10px] text-primary/60 leading-relaxed max-w-[140px] mx-auto">
+                        Take a screenshot and send it to me in telegram! I'll add you to the{" "}
+                        <span className="text-primary/90 underline">
+                          leaderboard
+                        </span>
+                        .
+                      </p>
+                    </div>
+                  )}
+                </div>
+
                 <button
                   onClick={reset}
-                  className="font-mono text-xs border border-primary/30 px-3 py-1 text-primary hover:bg-primary/10 transition-colors"
+                  className="font-mono text-xs border border-primary/30 px-4 py-2 text-primary hover:bg-primary/10 transition-colors mt-2"
                 >
-                  {gameOver ? "Play Again" : "Start Game"}
+                  {gameOver ? "TRY AGAIN" : "START GAME"}
                 </button>
               </div>
             )}
