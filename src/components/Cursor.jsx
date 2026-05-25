@@ -125,7 +125,15 @@ export default function Cursor() {
     };
   }, [mouseX, mouseY, dotX, dotY, isVisible]);
 
-  if (isTouch || isNarrow || devToolsOpen) return null;
+  const [terminalOpen, setTerminalOpen] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => setTerminalOpen(e.detail.open);
+    window.addEventListener("terminal:toggle", handler);
+    return () => window.removeEventListener("terminal:toggle", handler);
+  }, []);
+
+  if (isTouch || isNarrow || devToolsOpen || terminalOpen) return null;
 
   const size = isHovering ? (label ? 88 : 52) : 36;
 

@@ -50,6 +50,11 @@ export default function MiniTerminal() {
   // Lock body scroll when open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    document.body.classList.toggle("terminal-open", open); 
+    // Notify cursor
+    window.dispatchEvent(
+      new CustomEvent("terminal:toggle", { detail: { open } }),
+    );
     return () => {
       document.body.style.overflow = "";
     };

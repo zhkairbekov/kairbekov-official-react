@@ -358,3 +358,18 @@
   animation: none;
   mix-blend-mode: normal;
 }
+
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+
+  body.devtools-open,
+  body.devtools-open *,
+  body.terminal-open,
+  /* ← добавить */
+  body.terminal-open * {
+    /* ← добавить */
+    cursor: auto !important;
+  }
+}
