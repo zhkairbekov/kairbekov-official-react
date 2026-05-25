@@ -38,7 +38,7 @@ export function useTerminal() {
   const suggestions = useMemo(() => {
     if (!input) return [];
     return ALL_COMMAND_KEYS.filter((cmd) =>
-      cmd.toLowerCase().startsWith(input.toLowerCase())
+      cmd.toLowerCase().startsWith(input.toLowerCase()),
     );
   }, [input]);
 
@@ -61,7 +61,9 @@ export function useTerminal() {
       }
 
       // Games
-      if (["snake", "tetris", "minesweeper", "2048", "breakout"].includes(cmd)) {
+      if (
+        ["snake", "tetris", "minesweeper", "2048", "breakout"].includes(cmd)
+      ) {
         setActiveGame(cmd);
         addLine([promptEntry, { type: "game", text: cmd }]);
         setCmdHistory((prev) => [...prev, cmd]);
@@ -105,10 +107,14 @@ export function useTerminal() {
 
       // Scroll to section
       if (cmd === "projects") {
-        document.querySelector("#sites")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .querySelector("#sites")
+          ?.scrollIntoView({ behavior: "smooth" });
       }
       if (cmd === "about") {
-        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .querySelector("#about")
+          ?.scrollIntoView({ behavior: "smooth" });
       }
 
       // Weather with city
@@ -117,7 +123,10 @@ export function useTerminal() {
         if (!city) {
           addLine([
             promptEntry,
-            { type: "output", text: "Usage: weather [city]\nExample: weather London\n" },
+            {
+              type: "output",
+              text: "Usage: weather [city]\nExample: weather London\n",
+            },
           ]);
           setCmdHistory((prev) => [...prev, cmd]);
           setCmdIndex(-1);
@@ -130,7 +139,7 @@ export function useTerminal() {
         (async () => {
           try {
             const response = await fetch(
-              `https://wttr.in/${encodeURIComponent(city)}?format=j1`
+              `https://wttr.in/${encodeURIComponent(city)}?format=j1`,
             );
 
             if (!response.ok) {
@@ -273,7 +282,7 @@ ${description}
       setInput("");
       scrollToBottom();
     },
-    [input, addLine, scrollToBottom]
+    [input, addLine, scrollToBottom],
   );
 
   const handleKeyDown = useCallback(
@@ -297,9 +306,7 @@ ${description}
         e.preventDefault();
         if (cmdHistory.length === 0) return;
         const newIndex =
-          cmdIndex === -1
-            ? cmdHistory.length - 1
-            : Math.max(0, cmdIndex - 1);
+          cmdIndex === -1 ? cmdHistory.length - 1 : Math.max(0, cmdIndex - 1);
         setCmdIndex(newIndex);
         setInput(cmdHistory[newIndex]);
         return;
@@ -319,7 +326,7 @@ ${description}
         return;
       }
     },
-    [executeCommand, suggestions, suggestionIndex, cmdHistory, cmdIndex]
+    [executeCommand, suggestions, suggestionIndex, cmdHistory, cmdIndex],
   );
 
   const closeGame = useCallback(() => {

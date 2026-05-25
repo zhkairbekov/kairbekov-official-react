@@ -252,7 +252,7 @@ ${fib.join(", ")}
       "What do you call a programmer's autobiography?\nA stack overflow.",
       "Why do programmers make terrible comedians?\nTheir jokes are not object-oriented.",
       "What's a programmer's idea of a lazy day?\nWhen the code compiles on the first try.",
-      "Why did the programmer bring a pencil to a gunfight?\nHe wanted to draw his own conclusions."
+      "Why did the programmer bring a pencil to a gunfight?\nHe wanted to draw his own conclusions.",
     ];
     return jokes[Math.floor(Math.random() * jokes.length)] + "\n";
   },
@@ -268,7 +268,8 @@ Examples:
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    const hex = `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase();
+    const hex =
+      `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase();
     return `Random color:
 HEX: ${hex}
 RGB: rgb(${r}, ${g}, ${b})
@@ -287,7 +288,21 @@ Example: countdown 10
 
   shuffle: () => {
     const suits = ["♠", "♥", "♦", "♣"];
-    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    const values = [
+      "A",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "J",
+      "Q",
+      "K",
+    ];
     const deck = [];
     suits.forEach((s) => values.forEach((v) => deck.push(`${v}${s}`)));
     for (let i = deck.length - 1; i > 0; i--) {
@@ -354,6 +369,12 @@ But what was the question?
 `,
 };
 
-export const GAME_COMMANDS = ["snake", "tetris", "minesweeper", "2048", "breakout"];
+export const GAME_COMMANDS = [
+  "snake",
+  "tetris",
+  "minesweeper",
+  "2048",
+  "breakout",
+];
 
 export const ALL_COMMAND_KEYS = [...Object.keys(COMMANDS), ...GAME_COMMANDS];
