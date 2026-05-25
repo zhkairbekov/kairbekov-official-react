@@ -493,7 +493,7 @@ export default function MobileNavigation() {
               }}
               className="fixed left-0 right-0 bottom-0 z-40 flex flex-col"
               style={{
-                maxHeight: "82dvh",
+                maxHeight: "90dvh",
                 borderRadius: "20px 20px 0 0",
                 background: "hsl(var(--background))",
                 boxShadow: "0 -8px 48px rgba(0,0,0,0.22)",

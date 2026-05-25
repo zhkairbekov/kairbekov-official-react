@@ -116,7 +116,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+      className="h-[calc(100vh-62px)] min-h-max relative flex items-center overflow-hidden bg-background"
     >
       {canvasReady && <HeroCanvas />}
       <div className="absolute inset-0 scanlines z-[1] pointer-events-none opacity-50" />
@@ -339,7 +339,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2.8, duration: 1 }}
         style={{ opacity }}
-        className="absolute bottom-[100px] md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 [@media(max-height:779px)]:hidden"
+        className="absolute bottom-[28px] md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 [@media(max-height:779px)]:hidden"
       >
         <button
           onClick={() =>
