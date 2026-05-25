@@ -17,6 +17,19 @@ function getIcon(type) {
   return <Award size={22} strokeWidth={1.5} />;
 }
 
+const useIsDesktop = () => {
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const handler = (e) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  return isDesktop;
+};
+
 export default function Certificates() {
   const { t } = useTranslation();
   const items = t("certs.items", { returnObjects: true });
@@ -27,10 +40,10 @@ export default function Certificates() {
   const containerRef = useRef(null);
 
   const onMouseMove = useCallback((e) => {
-    if (!containerRef.current) return;
+    if (!listRef.current || !isDesktop) return;
     const rect = containerRef.current.getBoundingClientRect();
     setImgPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, []);
+  }, [isDesktop]);
 
   useEffect(() => {
     if (selected) {
@@ -42,6 +55,8 @@ export default function Certificates() {
       document.body.style.overflow = "";
     };
   }, [selected]);
+
+  const isDesktop = useIsDesktop();
 
   return (
     <section
@@ -117,8 +132,8 @@ export default function Certificates() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.09 }}
-                onMouseEnter={() => item.media && setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
+                onMouseEnter={() => isDesktop && setHovered(project.id)}
+                onMouseLeave={() => isDesktop && setHovered(null)}
                 onClick={() => item.media && setSelected(item)}
                 data-cursor-label={item.media ? "VIEW" : undefined}
                 className={`group relative bg-background p-8 md:p-10 overflow-hidden ${

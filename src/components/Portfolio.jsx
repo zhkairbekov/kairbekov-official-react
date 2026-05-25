@@ -7,6 +7,20 @@ import SectionTitle from "./components/SectionTitle";
 import InfoBlock from "./components/InfoBlock";
 import TagBadge from "./components/TagBadge";
 
+// Добавь этот хук после импортов или прямо в компонент
+const useIsDesktop = () => {
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    const handler = (e) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  return isDesktop;
+};
+
 const PROJECTS = [
   {
     id: 1,
@@ -137,10 +151,10 @@ export default function Portfolio() {
   const listRef = useRef(null);
 
   const onMouseMove = useCallback((e) => {
-    if (!listRef.current) return;
+    if (!listRef.current || !isDesktop) return;
     const rect = listRef.current.getBoundingClientRect();
     setImgPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, []);
+  }, [isDesktop]);
 
   useEffect(() => {
     if (selected) {
@@ -158,6 +172,8 @@ export default function Portfolio() {
     window.addEventListener("nav-scroll", handleNavScroll);
     return () => window.removeEventListener("nav-scroll", handleNavScroll);
   }, []);
+
+  const isDesktop = useIsDesktop();
 
   return (
     <section id="sites" className="relative py-24 md:py-32 overflow-hidden">
@@ -207,8 +223,8 @@ export default function Portfolio() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.06 }}
-              onMouseEnter={() => setHovered(project.id)}
-              onMouseLeave={() => setHovered(null)}
+              onMouseEnter={() => isDesktop && setHovered(project.id)}
+              onMouseLeave={() => isDesktop && setHovered(null)}
               onClick={() => setSelected(project)}
               data-cursor-label="VIEW"
               className="group relative flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 md:py-8 border-b border-border/50 last:border-0 hover:pl-4 transition-all duration-300 overflow-hidden"
