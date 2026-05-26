@@ -78,6 +78,47 @@
     <meta name="apple-mobile-web-app-title" content="Kairbekov" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
 
+    <!-- Critical styles for Yandex Metrika Web Visor -->
+    <style>
+      :root {
+        --background: #0a0a0a;
+        --foreground: #fafafa;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+
+      #root {
+        width: 100%;
+        min-height: 100vh;
+      }
+
+      /* Default content visibility (enable content without JS) */
+      .content-wrapper {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+
+      /* Hide preloader after JS loads */
+      .js-ready .preloader {
+        display: none !important;
+      }
+    </style>
+
     <!-- Fonts (Existing) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -124,14 +165,6 @@
         trackLinks: true,
       });
     </script>
-    <noscript
-      ><div>
-        <img
-          src="https://mc.yandex.ru/watch/109376616"
-          style="position: absolute; left: -9999px"
-          alt=""
-        /></div
-    ></noscript>
     <!-- /Yandex.Metrika counter -->
 
     <!-- Schema.org -->
@@ -160,5 +193,15 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Yandex.Metrika noscript fallback -->
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/109376616"
+          style="position: absolute; left: -9999px"
+          alt=""
+        />
+      </div>
+    </noscript>
   </body>
 </html>

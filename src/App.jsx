@@ -22,6 +22,11 @@ function AppContent() {
   useHtmlLang();
 
   useEffect(() => {
+    // Mark document as JS-ready for CSS
+    document.documentElement.classList.add("js-ready");
+  }, []);
+
+  useEffect(() => {
     const initLenis = async () => {
       try {
         const { default: Lenis } = await import("lenis");
@@ -67,9 +72,9 @@ function AppContent() {
       <Cursor />
 
       <div
+        className="content-wrapper"
         style={{
-          opacity: ready ? 1 : 0,
-          transition: "opacity 0.6s ease 0.1s",
+          opacity: 1,
           pointerEvents: ready ? "auto" : "none",
         }}
       >
