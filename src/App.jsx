@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "./lib/theme-provider";
 import "./lib/i18n";
 import { useHtmlLang } from "./lib/use-html-lang";
-import { useYandexMetrika } from "./hooks/useYandexMetrika";
 import Preloader from "./components/Preloader";
 import Cursor from "./components/Cursor";
 import Navigation from "./components/NavigationController";
@@ -21,7 +20,6 @@ function AppContent() {
   const [ready, setReady] = useState(false);
 
   useHtmlLang();
-  useYandexMetrika();
 
   useEffect(() => {
     const initLenis = async () => {
