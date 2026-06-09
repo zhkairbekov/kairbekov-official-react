@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSwipeGestures } from "./useSwipeGestures";
 
 const SIZE = 4;
 
@@ -109,6 +110,9 @@ export function Game2048({ onClose }) {
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [status, setStatus] = useState("idle");
+
+  const containerRef = useRef(null);
+  const swipeGestures = useSwipeGestures(containerRef);
 
   const startGame = useCallback(() => {
     let g = emptyGrid();
@@ -236,8 +240,10 @@ export function Game2048({ onClose }) {
       )}
 
       <div
+        ref={containerRef}
         className="grid gap-1.5 p-2 bg-white/5 rounded-lg border border-primary/10"
         style={{ gridTemplateColumns: `repeat(${SIZE}, 64px)` }}
+        {...swipeGestures}
       >
         {grid?.flat().map((val, i) => {
           const colors = TILE_COLORS[val] || TILE_COLORS[2048];

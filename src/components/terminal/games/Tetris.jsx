@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Leaderboard } from "../Leaderboard";
+import { useSwipeGestures } from "./useSwipeGestures";
 
 const COLS = 10;
 const ROWS = 20;
@@ -90,6 +91,9 @@ export function TetrisGame({ onClose }) {
   pieceRef.current = piece;
   const posRef = useRef(pos);
   posRef.current = pos;
+
+  const containerRef = useRef(null);
+  const swipeGestures = useSwipeGestures(containerRef);
 
   const spawnPiece = useCallback((b) => {
     const p = randomPiece();
@@ -274,8 +278,10 @@ export function TetrisGame({ onClose }) {
           </div>
 
           <div
+            ref={containerRef}
             className="relative border border-primary/20 bg-black/50"
             style={{ width: COLS * CELL, height: ROWS * CELL }}
+            {...swipeGestures}
           >
             {displayBoard.map((row, r) =>
               row.map((cell, c) => (

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Leaderboard } from "../Leaderboard";
+import { useSwipeGestures } from "./useSwipeGestures";
 
 const COLS = 20;
 const ROWS = 16;
@@ -53,6 +54,9 @@ export function SnakeGame({ onClose }) {
 
   const dirRef = useRef(dir);
   dirRef.current = dir;
+  
+  const containerRef = useRef(null);
+  const swipeGestures = useSwipeGestures(containerRef);
 
   const reset = () => {
     const s = [{ x: 10, y: 8 }];
@@ -157,8 +161,10 @@ export function SnakeGame({ onClose }) {
         </div>
 
         <div
+          ref={containerRef}
           className="relative border border-primary/20 bg-black/50"
           style={{ width: COLS * CELL, height: ROWS * CELL }}
+          {...swipeGestures}
         >
           {/* Grid dots */}
           {Array.from({ length: ROWS }).map((_, r) =>

@@ -15,6 +15,7 @@ const resources = {
         contacts: "Контакты",
         menu: "Меню",
         closeMenu: "Закрыть",
+        games: "Игры",
       },
       hero: {
         tagline: "Разработка сайтов и графический дизайн",
@@ -297,6 +298,7 @@ const resources = {
         contacts: "Байланыс",
         menu: "Мәзір",
         closeMenu: "Жабу",
+        games: "Ойындар",
       },
       hero: {
         tagline: "Сайт жасау және графикалық дизайн",
@@ -573,6 +575,7 @@ const resources = {
         contacts: "Contact",
         menu: "Menu",
         closeMenu: "Close",
+        games: "Games",
       },
       hero: {
         tagline: "Website development and graphic design",

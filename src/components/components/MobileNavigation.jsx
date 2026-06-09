@@ -5,6 +5,7 @@ import { useTheme } from "../../lib/theme-provider";
 import RaccoonLogo from "../RaccoonLogo";
 import { useHaptic } from "../../hooks/useHaptic";
 import { useThemeTransition } from "../../hooks/useThemeTransition";
+import { MobileGameModal } from "./MobileGameModal";
 
 const navIds = [
   "home",
@@ -149,6 +150,14 @@ const MoonIcon = () => (
   </svg>
 );
 
+const GAMES = [
+  { id: "snake", label: "Snake", icon: "🐍" },
+  { id: "tetris", label: "Tetris", icon: "🎮" },
+  { id: "minesweeper", label: "Minesweeper", icon: "💣" },
+  { id: "2048", label: "2048", icon: "🔢" },
+  { id: "breakout", label: "Breakout", icon: "⚾" },
+];
+
 export default function MobileNavigation() {
   const { t, i18n } = useTranslation();
   const haptic = useHaptic();
@@ -158,6 +167,7 @@ export default function MobileNavigation() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [activeGame, setActiveGame] = useState(null);
   const [isDark, setIsDark] = useState(
     document.documentElement.classList.contains("dark"),
   );
@@ -406,7 +416,13 @@ export default function MobileNavigation() {
             })}
 
             <button
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => {
+                setOpen((v) => !v);
+                // Close game when opening menu
+                if (!open) {
+                  setActiveGame(null);
+                }
+              }}
               className="flex-1 flex flex-col items-center justify-center gap-[3px] relative"
               aria-label="Menu"
             >
@@ -535,6 +551,49 @@ export default function MobileNavigation() {
 
               <div className="h-px bg-border/40 mx-5 flex-shrink-0" />
 
+              {/* Languages & Theme Section - MOVED TO TOP */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.15, duration: 0.35 }}
+                className="flex items-center justify-between px-5 py-3 border-b border-border/20 flex-shrink-0"
+              >
+                <div className="flex gap-1.5">
+                  {["RU", "KK", "EN"].map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => i18n.changeLanguage(lang.toLowerCase())}
+                      className={`font-mono-custom text-[8px] tracking-[0.2em] uppercase px-2 py-1 border transition-colors ${
+                        i18n.language.toUpperCase() === lang
+                          ? "border-primary text-primary bg-primary/10"
+                          : "border-border text-muted-foreground hover:border-primary hover:text-primary"
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  ref={btnRef}
+                  onClick={() => toggleTheme(btnRef.current)}
+                  className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
+                  aria-label="Toggle theme"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={isDark ? "sun" : "moon"}
+                      initial={{ rotate: -60, opacity: 0, scale: 0.7 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: 60, opacity: 0, scale: 0.7 }}
+                      transition={{ duration: 0.22 }}
+                    >
+                      {isDark ? <SunIcon /> : <MoonIcon />}
+                    </motion.span>
+                  </AnimatePresence>
+                </button>
+              </motion.div>
+
               <div
                 className="flex-1 overflow-y-auto overscroll-contain px-5"
                 onWheel={(e) => e.stopPropagation()}
@@ -607,63 +666,58 @@ export default function MobileNavigation() {
                       </motion.svg>
                     </motion.button>
                   ))}
-                </nav>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.42, duration: 0.35 }}
-                  className="flex items-center justify-between pt-4 pb-3 mt-1 border-t border-border/20"
-                >
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-mono-custom text-[8.5px] tracking-[0.18em] uppercase text-muted-foreground">
-                      kairbekov.official@gmail.com
-                    </span>
-                    <span className="font-mono-custom text-[8.5px] tracking-[0.18em] uppercase text-muted-foreground">
-                      Astana, KZ · {new Date().getFullYear()}
-                    </span>
-                  </div>
-
-                  <div className="flex gap-1.5">
-                    {["RU", "KK", "EN"].map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => i18n.changeLanguage(lang.toLowerCase())}
-                        className={`font-mono-custom text-[8px] tracking-[0.2em] uppercase px-2 py-1 border transition-colors ${
-                          i18n.language.toUpperCase() === lang
-                            ? "border-primary text-primary bg-primary/10"
-                            : "border-border text-muted-foreground hover:border-primary hover:text-primary"
-                        }`}
-                      >
-                        {lang}
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    ref={btnRef}
-                    onClick={() => toggleTheme(btnRef.current)}
-                    className="w-8 h-8 flex items-center justify-center border border-border hover:border-primary text-muted-foreground hover:text-primary transition-colors"
-                    aria-label="Toggle theme"
+                  {/* Games Section */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      delay: 0.3 + navIds.length * 0.04,
+                      duration: 0.35,
+                    }}
+                    className="border-t border-border/20 mt-2 pt-2"
                   >
-                    <AnimatePresence mode="wait" initial={false}>
-                      <motion.span
-                        key={isDark ? "sun" : "moon"}
-                        initial={{ rotate: -60, opacity: 0, scale: 0.7 }}
-                        animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                        exit={{ rotate: 60, opacity: 0, scale: 0.7 }}
-                        transition={{ duration: 0.22 }}
-                      >
-                        {isDark ? <SunIcon /> : <MoonIcon />}
-                      </motion.span>
-                    </AnimatePresence>
-                  </button>
-                </motion.div>
+                    <div className="px-5 py-2 mb-1">
+                      <span className="font-mono-custom text-[8px] tracking-[0.28em] uppercase text-muted-foreground">
+                        {t("nav.games") || "Games"}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 px-1">
+                      {GAMES.map((game, i) => (
+                        <motion.button
+                          key={game.id}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            delay: 0.35 + navIds.length * 0.04 + i * 0.05,
+                            duration: 0.3,
+                          }}
+                          onClick={() => {
+                            haptic("light");
+                            setActiveGame(game.id);
+                            setOpen(false);
+                          }}
+                          className="p-3 rounded-lg border border-border/40 hover:border-primary text-left transition-all duration-200 active:bg-primary/10 group"
+                        >
+                          <div className="text-2xl mb-1">{game.icon}</div>
+                          <span className="font-display font-black text-sm group-hover:text-primary transition-colors">
+                            {game.label}
+                          </span>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                </nav>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      <MobileGameModal 
+        gameId={activeGame} 
+        onClose={() => setActiveGame(null)} 
+      />
     </div>
   );
 }

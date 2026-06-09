@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Leaderboard } from "../Leaderboard";
+import { useSwipeGestures } from "./useSwipeGestures";
 
 const W = 360;
 const H = 280;
@@ -36,6 +37,9 @@ export function BreakoutGame({ onClose }) {
   const [status, setStatus] = useState("idle");
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const keysRef = useRef({});
+
+  const containerRef = useRef(null);
+  const swipeGestures = useSwipeGestures(containerRef);
 
   const startGame = () => {
     stateRef.current = initState();
@@ -230,8 +234,10 @@ export function BreakoutGame({ onClose }) {
         </div>
 
         <div
+          ref={containerRef}
           className="relative border border-primary/20 overflow-hidden"
           style={{ width: W, height: H }}
+          {...swipeGestures}
         >
           <canvas ref={canvasRef} width={W} height={H} className="block" />
 
