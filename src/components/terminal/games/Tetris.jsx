@@ -279,8 +279,8 @@ export function TetrisGame({ onClose }) {
 
           <div
             ref={containerRef}
-            className="relative border border-primary/20 bg-black/50"
-            style={{ width: COLS * CELL, height: ROWS * CELL }}
+            className="relative border border-primary/20 bg-black/50 touch-none"
+            style={{ width: COLS * CELL, height: ROWS * CELL, touchAction: "none" }}
             {...swipeGestures}
           >
             {displayBoard.map((row, r) =>

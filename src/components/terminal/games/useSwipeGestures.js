@@ -31,12 +31,14 @@ export function useSwipeGestures(containerRef) {
   };
 
   const handleTouchStart = (e) => {
+    e.preventDefault();
     const touch = e.touches[0];
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
   };
 
   const handleTouchEnd = (e) => {
+    e.preventDefault();
     const touch = e.changedTouches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
