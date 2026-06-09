@@ -313,7 +313,8 @@ export function TetrisGame({ onClose }) {
                         SCORE: {score}
                       </p>
                       <p className="font-mono text-[10px] text-primary/60 leading-relaxed max-w-[140px] mx-auto">
-                        Take a screenshot and send it to me in telegram! I'll add you to the{" "}
+                        Take a screenshot and send it to me in telegram! I'll
+                        add you to the{" "}
                         <span className="text-primary/90 underline">
                           leaderboard
                         </span>

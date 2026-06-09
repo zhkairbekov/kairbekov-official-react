@@ -1,5 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, RotateCw } from "lucide-react";
+import {
+  ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  RotateCw,
+} from "lucide-react";
 
 /**
  * Компонент сенсорных кнопок управления для мобильных игр
@@ -17,7 +23,7 @@ export function GameControlsPad({ gameType = "snake" }) {
           code: key,
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
     } else {
       pressRef.current[key] = false;
@@ -27,7 +33,7 @@ export function GameControlsPad({ gameType = "snake" }) {
           code: key,
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
     }
   };
@@ -86,7 +92,11 @@ export function GameControlsPad({ gameType = "snake" }) {
               className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/20 border border-primary/40 hover:bg-primary/30 active:bg-primary/40 transition-all"
               aria-label="Left"
             >
-              <ChevronLeft size={24} strokeWidth={2.5} className="text-primary" />
+              <ChevronLeft
+                size={24}
+                strokeWidth={2.5}
+                className="text-primary"
+              />
             </button>
 
             {/* Right */}
@@ -98,7 +108,11 @@ export function GameControlsPad({ gameType = "snake" }) {
               className="w-12 h-12 flex items-center justify-center rounded-lg bg-primary/20 border border-primary/40 hover:bg-primary/30 active:bg-primary/40 transition-all"
               aria-label="Right"
             >
-              <ChevronRight size={24} strokeWidth={2.5} className="text-primary" />
+              <ChevronRight
+                size={24}
+                strokeWidth={2.5}
+                className="text-primary"
+              />
             </button>
           </div>
 
@@ -137,7 +151,9 @@ export function GameControlsPad({ gameType = "snake" }) {
           <div className="flex flex-col gap-2 pb-1">
             {/* Info */}
             <div className="text-[10px] text-muted-foreground text-center px-2 py-1 border border-border/40 rounded bg-primary/5">
-              Свайп или<br />стрелки
+              Свайп или
+              <br />
+              стрелки
             </div>
           </div>
         )}

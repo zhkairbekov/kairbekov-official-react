@@ -15,7 +15,7 @@ export function useSwipeGestures(containerRef) {
         code: key,
         bubbles: true,
         cancelable: true,
-      })
+      }),
     );
     // Небольшая задержка перед отпусканием клавиши
     setTimeout(() => {
@@ -25,7 +25,7 @@ export function useSwipeGestures(containerRef) {
           code: key,
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
     }, 50);
   };

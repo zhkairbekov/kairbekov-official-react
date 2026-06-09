@@ -714,9 +714,9 @@ export default function MobileNavigation() {
         )}
       </AnimatePresence>
 
-      <MobileGameModal 
-        gameId={activeGame} 
-        onClose={() => setActiveGame(null)} 
+      <MobileGameModal
+        gameId={activeGame}
+        onClose={() => setActiveGame(null)}
       />
     </div>
   );

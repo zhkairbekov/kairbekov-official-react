@@ -54,7 +54,7 @@ export function SnakeGame({ onClose }) {
 
   const dirRef = useRef(dir);
   dirRef.current = dir;
-  
+
   const containerRef = useRef(null);
   const swipeGestures = useSwipeGestures(containerRef);
 
