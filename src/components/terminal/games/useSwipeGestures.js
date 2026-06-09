@@ -80,20 +80,43 @@ export function useSwipeGestures(containerRef) {
   };
 
   useEffect(() => {
-    const element = containerRef.current;
-    if (!element) return;
+    let intervalId = null;
+    let listenersAttached = false;
 
-    // Добавляем event listeners с { passive: false } чтобы можно было вызывать preventDefault
-    element.addEventListener("touchstart", handleTouchStart, { passive: false });
-    element.addEventListener("touchmove", handleTouchMove, { passive: false });
-    element.addEventListener("touchend", handleTouchEnd, { passive: false });
+    const attachListeners = () => {
+      const element = containerRef.current;
+      if (!element || listenersAttached) return;
 
-    return () => {
+      // Добавляем event listeners с { passive: false } чтобы можно было вызывать preventDefault
+      element.addEventListener("touchstart", handleTouchStart, { passive: false });
+      element.addEventListener("touchmove", handleTouchMove, { passive: false });
+      element.addEventListener("touchend", handleTouchEnd, { passive: false });
+      listenersAttached = true;
+    };
+
+    const detachListeners = () => {
+      const element = containerRef.current;
+      if (!element || !listenersAttached) return;
+
       element.removeEventListener("touchstart", handleTouchStart);
       element.removeEventListener("touchmove", handleTouchMove);
       element.removeEventListener("touchend", handleTouchEnd);
+      listenersAttached = false;
     };
-  }, [containerRef]);
+
+    // Проверяем наличие элемента периодически (для игр где элемент появляется позже)
+    intervalId = setInterval(() => {
+      attachListeners();
+    }, 100);
+
+    // Первая попытка сразу
+    attachListeners();
+
+    return () => {
+      clearInterval(intervalId);
+      detachListeners();
+    };
+  }, []);
 
   return {};
 }

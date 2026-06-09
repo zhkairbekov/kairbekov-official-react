@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const ROWS = 10;
 const COLS = 14;
@@ -78,6 +78,9 @@ export function MinesweeperGame({ onClose }) {
   const [status, setStatus] = useState("idle"); // idle | playing | won | lost
   const [flags, setFlags] = useState(0);
   const [time, setTime] = useState(0);
+  const longPressTimerRef = useRef(null);
+  const touchStartPosRef = useRef(null);
+  const longPressTriggeredRef = useRef(false);
 
   useEffect(() => {
     const handler = (e) => {
@@ -101,6 +104,10 @@ export function MinesweeperGame({ onClose }) {
   };
 
   const handleClick = (r, c) => {
+    if (longPressTriggeredRef.current) {
+      longPressTriggeredRef.current = false;
+      return;
+    }
     if (status !== "playing") return;
     const cell = board[r][c];
     if (cell.revealed || cell.flagged) return;
@@ -137,6 +144,42 @@ export function MinesweeperGame({ onClose }) {
     newBoard[r][c].flagged = !newBoard[r][c].flagged;
     setFlags((f) => f + (newBoard[r][c].flagged ? 1 : -1));
     setBoard(newBoard);
+  };
+
+  const handleTouchStart = (e, r, c) => {
+    if (status !== "playing") return;
+    const touch = e.touches[0];
+    touchStartPosRef.current = { x: touch.clientX, y: touch.clientY };
+    longPressTriggeredRef.current = false;
+    longPressTimerRef.current = setTimeout(() => {
+      const cell = board[r][c];
+      if (!cell.revealed) {
+        const newBoard = board.map((row) => row.map((cell) => ({ ...cell })));
+        newBoard[r][c].flagged = !newBoard[r][c].flagged;
+        setFlags((f) => f + (newBoard[r][c].flagged ? 1 : -1));
+        setBoard(newBoard);
+      }
+      longPressTriggeredRef.current = true;
+      longPressTimerRef.current = null;
+    }, 500);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!longPressTimerRef.current) return;
+    const touch = e.touches[0];
+    const dx = Math.abs(touch.clientX - touchStartPosRef.current.x);
+    const dy = Math.abs(touch.clientY - touchStartPosRef.current.y);
+    if (dx > 10 || dy > 10) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
   };
 
   if (!board || status === "idle") {
@@ -223,6 +266,9 @@ export function MinesweeperGame({ onClose }) {
               style={{ width: CELL, height: CELL, color: textColor }}
               onClick={() => handleClick(cell.r, cell.c)}
               onContextMenu={(e) => handleRightClick(e, cell.r, cell.c)}
+              onTouchStart={(e) => handleTouchStart(e, cell.r, cell.c)}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               {content}
             </button>
@@ -240,7 +286,7 @@ export function MinesweeperGame({ onClose }) {
       )}
 
       <p className="font-mono text-[10px] text-primary/30">
-        Left click reveal · Right click flag
+        Left click reveal · Right click or long-press flag
       </p>
     </div>
   );

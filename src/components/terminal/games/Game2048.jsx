@@ -252,7 +252,7 @@ export function Game2048({ onClose }) {
           return (
             <div
               key={i}
-              className="flex items-center justify-center rounded font-mono font-bold text-sm transition-all duration-100"
+              className="flex items-center justify-center rounded font-mono font-bold text-sm transition-all duration-100 pointer-events-none"
               style={{
                 width: 64,
                 height: 64,
