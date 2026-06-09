@@ -237,7 +237,6 @@ export function BreakoutGame({ onClose }) {
           ref={containerRef}
           className="relative border border-primary/20 overflow-hidden touch-none"
           style={{ width: W, height: H, touchAction: "none" }}
-          {...swipeGestures}
         >
           <canvas ref={canvasRef} width={W} height={H} className="block" />
 

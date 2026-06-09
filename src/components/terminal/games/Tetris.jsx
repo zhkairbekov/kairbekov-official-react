@@ -285,7 +285,6 @@ export function TetrisGame({ onClose }) {
               height: ROWS * CELL,
               touchAction: "none",
             }}
-            {...swipeGestures}
           >
             {displayBoard.map((row, r) =>
               row.map((cell, c) => (

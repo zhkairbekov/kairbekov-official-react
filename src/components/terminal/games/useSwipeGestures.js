@@ -2,6 +2,7 @@
  * Утилита для обработки свайп-жестов на мобильных устройствах
  * Эмулирует нажатия клавиш на основе направления свайпа
  */
+import { useEffect } from "react";
 
 export function useSwipeGestures(containerRef) {
   const touchStartX = { current: 0 };
@@ -31,16 +32,12 @@ export function useSwipeGestures(containerRef) {
   };
 
   const handleTouchStart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
     const touch = e.touches[0];
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
   };
 
   const handleTouchEnd = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
     const touch = e.changedTouches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
@@ -51,31 +48,52 @@ export function useSwipeGestures(containerRef) {
 
     // Проверяем пороги свайпа
     if (absDeltaX > SWIPE_THRESHOLD && absDeltaX > absDeltaY) {
-      // Горизонтальный свайп
+      // Горизонтальный свайп - предотвращаем стандартное поведение
+      e.preventDefault();
       if (deltaX > 0) {
         simulateKeyPress("ArrowRight");
       } else {
         simulateKeyPress("ArrowLeft");
       }
     } else if (absDeltaY > SWIPE_THRESHOLD && absDeltaY > absDeltaX) {
-      // Вертикальный свайп
+      // Вертикальный свайп - предотвращаем стандартное поведение
+      e.preventDefault();
       if (deltaY > 0) {
         simulateKeyPress("ArrowDown");
       } else {
         simulateKeyPress("ArrowUp");
       }
     }
+    // Если это не свайп (короткое нажатие), не предотвращаем default - позволяет кликам работать
   };
 
   const handleTouchMove = (e) => {
-    // Максимальное предотвращение скролла во время свайпа
-    e.preventDefault();
-    e.stopPropagation();
+    // Предотвращаем скролл только если есть движение
+    const touch = e.touches[0];
+    const deltaX = Math.abs(touch.clientX - touchStartX.current);
+    const deltaY = Math.abs(touch.clientY - touchStartY.current);
+
+    // Если движение превышает небольшой порог, предотвращаем скролл
+    if (deltaX > 5 || deltaY > 5) {
+      e.preventDefault();
+    }
   };
 
-  return {
-    onTouchStart: handleTouchStart,
-    onTouchMove: handleTouchMove,
-    onTouchEnd: handleTouchEnd,
-  };
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    // Добавляем event listeners с { passive: false } чтобы можно было вызывать preventDefault
+    element.addEventListener("touchstart", handleTouchStart, { passive: false });
+    element.addEventListener("touchmove", handleTouchMove, { passive: false });
+    element.addEventListener("touchend", handleTouchEnd, { passive: false });
+
+    return () => {
+      element.removeEventListener("touchstart", handleTouchStart);
+      element.removeEventListener("touchmove", handleTouchMove);
+      element.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [containerRef]);
+
+  return {};
 }

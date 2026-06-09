@@ -168,7 +168,6 @@ export function SnakeGame({ onClose }) {
             height: ROWS * CELL,
             touchAction: "none",
           }}
-          {...swipeGestures}
         >
           {/* Grid dots */}
           {Array.from({ length: ROWS }).map((_, r) =>

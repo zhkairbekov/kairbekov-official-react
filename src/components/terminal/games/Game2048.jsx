@@ -246,7 +246,6 @@ export function Game2048({ onClose }) {
           gridTemplateColumns: `repeat(${SIZE}, 64px)`,
           touchAction: "none",
         }}
-        {...swipeGestures}
       >
         {grid?.flat().map((val, i) => {
           const colors = TILE_COLORS[val] || TILE_COLORS[2048];
