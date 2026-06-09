@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 const ROWS = 10;
 const COLS = 14;
@@ -78,7 +78,6 @@ export function MinesweeperGame({ onClose }) {
   const [status, setStatus] = useState("idle"); // idle | playing | won | lost
   const [flags, setFlags] = useState(0);
   const [time, setTime] = useState(0);
-  const longPressRef = useRef({ timer: null, r: null, c: null });
 
   useEffect(() => {
     const handler = (e) => {
@@ -131,10 +130,6 @@ export function MinesweeperGame({ onClose }) {
 
   const handleRightClick = (e, r, c) => {
     e.preventDefault();
-    toggleFlag(r, c);
-  };
-
-  const toggleFlag = (r, c) => {
     if (status !== "playing") return;
     const cell = board[r][c];
     if (cell.revealed) return;
@@ -142,21 +137,6 @@ export function MinesweeperGame({ onClose }) {
     newBoard[r][c].flagged = !newBoard[r][c].flagged;
     setFlags((f) => f + (newBoard[r][c].flagged ? 1 : -1));
     setBoard(newBoard);
-  };
-
-  const handleTouchStart = (r, c) => {
-    longPressRef.current = {
-      timer: setTimeout(() => toggleFlag(r, c), 500),
-      r,
-      c,
-    };
-  };
-
-  const handleTouchEnd = () => {
-    if (longPressRef.current.timer) {
-      clearTimeout(longPressRef.current.timer);
-    }
-    longPressRef.current = { timer: null, r: null, c: null };
   };
 
   if (!board || status === "idle") {
@@ -243,8 +223,6 @@ export function MinesweeperGame({ onClose }) {
               style={{ width: CELL, height: CELL, color: textColor }}
               onClick={() => handleClick(cell.r, cell.c)}
               onContextMenu={(e) => handleRightClick(e, cell.r, cell.c)}
-              onTouchStart={() => handleTouchStart(cell.r, cell.c)}
-              onTouchEnd={handleTouchEnd}
             >
               {content}
             </button>
