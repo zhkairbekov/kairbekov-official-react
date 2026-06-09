@@ -144,7 +144,7 @@ export function TetrisGame({ onClose }) {
     }
   }, [lockPiece, spawnPiece]);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     const b = emptyBoard();
     setBoard(b);
     setScore(0);
@@ -152,7 +152,7 @@ export function TetrisGame({ onClose }) {
     setGameOver(false);
     setRunning(true);
     spawnPiece(b);
-  };
+  }, [spawnPiece]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -341,6 +341,64 @@ export function TetrisGame({ onClose }) {
           <p className="font-mono text-[10px] text-primary/30">
             WASD or Arrows move/rotate · Space hard drop
           </p>
+
+          {/* Mobile Controls */}
+          <div className="grid grid-cols-3 gap-1 w-full max-w-[120px] mx-auto md:hidden">
+            <div />
+            <button
+              onMouseDown={() => {
+                const evt = new KeyboardEvent("keydown", { key: "ArrowUp" });
+                window.dispatchEvent(evt);
+              }}
+              onMouseUp={() => {
+                const evt = new KeyboardEvent("keyup", { key: "ArrowUp" });
+                window.dispatchEvent(evt);
+              }}
+              className="bg-primary/20 hover:bg-primary/30 text-primary text-xs font-bold py-2 border border-primary/30"
+            >
+              ↑
+            </button>
+            <div />
+            <button
+              onMouseDown={() => {
+                const evt = new KeyboardEvent("keydown", { key: "ArrowLeft" });
+                window.dispatchEvent(evt);
+              }}
+              onMouseUp={() => {
+                const evt = new KeyboardEvent("keyup", { key: "ArrowLeft" });
+                window.dispatchEvent(evt);
+              }}
+              className="bg-primary/20 hover:bg-primary/30 text-primary text-xs font-bold py-2 border border-primary/30"
+            >
+              ←
+            </button>
+            <button
+              onMouseDown={() => {
+                const evt = new KeyboardEvent("keydown", { key: "ArrowDown" });
+                window.dispatchEvent(evt);
+              }}
+              onMouseUp={() => {
+                const evt = new KeyboardEvent("keyup", { key: "ArrowDown" });
+                window.dispatchEvent(evt);
+              }}
+              className="bg-primary/20 hover:bg-primary/30 text-primary text-xs font-bold py-2 border border-primary/30"
+            >
+              ↓
+            </button>
+            <button
+              onMouseDown={() => {
+                const evt = new KeyboardEvent("keydown", { key: "ArrowRight" });
+                window.dispatchEvent(evt);
+              }}
+              onMouseUp={() => {
+                const evt = new KeyboardEvent("keyup", { key: "ArrowRight" });
+                window.dispatchEvent(evt);
+              }}
+              className="bg-primary/20 hover:bg-primary/30 text-primary text-xs font-bold py-2 border border-primary/30"
+            >
+              →
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-col gap-3 pt-6 font-mono text-xs">

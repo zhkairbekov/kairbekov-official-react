@@ -58,7 +58,7 @@ export function SnakeGame({ onClose }) {
   const containerRef = useRef(null);
   const swipeGestures = useSwipeGestures(containerRef);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     const s = [{ x: 10, y: 8 }];
     setSnake(s);
     setDir({ x: 1, y: 0 });
@@ -66,7 +66,7 @@ export function SnakeGame({ onClose }) {
     setScore(0);
     setGameOver(false);
     setRunning(true);
-  };
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {
