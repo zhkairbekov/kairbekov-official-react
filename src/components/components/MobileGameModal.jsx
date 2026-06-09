@@ -5,14 +5,12 @@ import { SnakeGame } from "../terminal/games/Snake";
 import { TetrisGame } from "../terminal/games/Tetris";
 import { MinesweeperGame } from "../terminal/games/Minesweeper";
 import { Game2048 } from "../terminal/games/Game2048";
-import { BreakoutGame } from "../terminal/games/Breakout";
 
 const GAME_MAP = {
   snake: { component: SnakeGame, label: "Snake" },
   tetris: { component: TetrisGame, label: "Tetris" },
   minesweeper: { component: MinesweeperGame, label: "Minesweeper" },
   2048: { component: Game2048, label: "2048" },
-  breakout: { component: BreakoutGame, label: "Breakout" },
 };
 
 export function MobileGameModal({ gameId, onClose }) {

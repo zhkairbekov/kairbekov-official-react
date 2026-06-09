@@ -32,6 +32,7 @@ export function useSwipeGestures(containerRef) {
 
   const handleTouchStart = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const touch = e.touches[0];
     touchStartX.current = touch.clientX;
     touchStartY.current = touch.clientY;
@@ -39,6 +40,7 @@ export function useSwipeGestures(containerRef) {
 
   const handleTouchEnd = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     const touch = e.changedTouches[0];
     const deltaX = touch.clientX - touchStartX.current;
     const deltaY = touch.clientY - touchStartY.current;
@@ -65,8 +67,15 @@ export function useSwipeGestures(containerRef) {
     }
   };
 
+  const handleTouchMove = (e) => {
+    // Максимальное предотвращение скролла во время свайпа
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
   return {
     onTouchStart: handleTouchStart,
+    onTouchMove: handleTouchMove,
     onTouchEnd: handleTouchEnd,
   };
 }

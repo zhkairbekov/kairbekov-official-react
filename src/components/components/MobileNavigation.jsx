@@ -155,7 +155,6 @@ const GAMES = [
   { id: "tetris", label: "Tetris", icon: "🎮" },
   { id: "minesweeper", label: "Minesweeper", icon: "💣" },
   { id: "2048", label: "2048", icon: "🔢" },
-  { id: "breakout", label: "Breakout", icon: "⚾" },
 ];
 
 export default function MobileNavigation() {
