@@ -163,7 +163,11 @@ export function SnakeGame({ onClose }) {
         <div
           ref={containerRef}
           className="relative border border-primary/20 bg-black/50 touch-none"
-          style={{ width: COLS * CELL, height: ROWS * CELL, touchAction: "none" }}
+          style={{
+            width: COLS * CELL,
+            height: ROWS * CELL,
+            touchAction: "none",
+          }}
           {...swipeGestures}
         >
           {/* Grid dots */}

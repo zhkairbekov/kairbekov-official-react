@@ -242,7 +242,10 @@ export function Game2048({ onClose }) {
       <div
         ref={containerRef}
         className="grid gap-1.5 p-2 bg-white/5 rounded-lg border border-primary/10 touch-none"
-        style={{ gridTemplateColumns: `repeat(${SIZE}, 64px)`, touchAction: "none" }}
+        style={{
+          gridTemplateColumns: `repeat(${SIZE}, 64px)`,
+          touchAction: "none",
+        }}
         {...swipeGestures}
       >
         {grid?.flat().map((val, i) => {
