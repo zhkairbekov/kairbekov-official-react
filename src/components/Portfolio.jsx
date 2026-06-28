@@ -31,16 +31,24 @@ const PROJECTS = [
   },
   {
     id: 3,
+    title: "NOMAD Academy",
+    subtitle: "Choreography academy portal",
+    image: "/img/mockup/nomad_mockup.avif",
+    site: "https://whoopee-pout-isolated.ngrok-free.dev/",
+    tags: ["Laravel", "Inertia.js", "Vue.js", "MySQL", "Docker"],
+    year: "2026",
+  },
+  {
+    id: 4,
     title: "Saukele.ru",
     subtitle: "National accessories online shop",
     image: "https://kairbekov-official.netlify.app/img/mockup/image78.webp",
     github: "https://github.com/zhkairbekov/saukele_online-shop",
-    site: "https://www.kairbekoff.kz/saukele/",
     tags: ["Laravel", "PHP", "MySQL"],
     year: "2023",
   },
   {
-    id: 4,
+    id: 5,
     title: "Velobike",
     subtitle: "Responsive site clone",
     image:
@@ -51,7 +59,7 @@ const PROJECTS = [
     year: "2025",
   },
   {
-    id: 5,
+    id: 6,
     title: "Maze Escape Game",
     subtitle: "Browser-based maze game",
     image:
@@ -62,7 +70,7 @@ const PROJECTS = [
     year: "2025",
   },
   {
-    id: 6,
+    id: 7,
     title: "Product Catalog",
     subtitle: "Product listing web app",
     image:

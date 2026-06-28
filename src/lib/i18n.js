@@ -167,6 +167,20 @@ const resources = {
             note: "Проект демонстрирует full-stack навыки: от проектирования БД и backend-логики до фронтенда и деплоя.",
           },
           3: {
+            h2: "NOMAD Academy — Академия хореографии в Астане (Цифровая экосистема)",
+            intro:
+              "Премиальная Академия Хореографии с единой цифровой экосистемой (SPA на Inertia + Vue 3 с поддержкой SSR). Объединяет B2C личные кабинеты учеников, B2B-портал Nomad Awards для аккредитации танцевальных коллективов со всего Казахстана и маркетплейс брендовой одежды Nomad Wear.",
+            featuresLabel: "Ключевые особенности и функционал:",
+            features: [
+              "B2B Портал Nomad Awards: создание базы участников (ростер), подача сценических заявок (Nomination Wizard), управление облачной фонограммой с таймингом запуска, верификация взносов.",
+              "Раздельные личные кабинеты по ролям: Роль с аналитикой, Роль для учебного процесса (Excel импорт/экспорт), Роль для Nomad Awards (модерация, оценки жюри), Роль для магазина (заказы), Роль для изменения контента (CMS).",
+              "Каталог Nomad Wear: розничная и оптовая витрина, автоматический калькулятор размеров по меркам, корзина на LocalStorage и интеграция WhatsApp-чекаута.",
+              "Прокси-роутер файлов (Storage Fallback) для безопасного скачивания музыки, PDF-регламентов и финансовых квитанций.",
+              "SEO-оптимизация: разметка Schema.org (JSON-LD), мета-теги Open Graph, и Inertia SSR для мгновенного индексирования поисковиками.",
+            ],
+            note: "Проект успешно решает задачи автоматизации крупных фестивалей, обеспечивая бесшовный B2B/B2C опыт и гибкое управление контентом студии.",
+          },
+          4: {
             h2: "Saukele Online Shop",
             intro:
               "Профессиональное E-commerce решение для Омской общественной организации «Казахи Омска» — полноценная платформа для реализации продукции с национальным колоритом.",
@@ -181,7 +195,7 @@ const resources = {
             legalText:
               "Авторские права на код и дизайн принадлежат разработчику Каирбекову Жанату. Заказчик: ОРОО «Казахи Омска».",
           },
-          4: {
+          5: {
             h2: "Velobike.kz — Adaptive Clone",
             intro:
               "Детальная реплика популярного сервиса проката велосипедов в рамках учебного проекта. Основной упор — pixel-perfect вёрстка и чистый пользовательский опыт.",
@@ -196,7 +210,7 @@ const resources = {
             disclaimerText:
               "Проект создан исключительно в образовательных целях. Все права на контент и бренд принадлежат оригинальному сервису Velobike.kz.",
           },
-          5: {
+          6: {
             h2: "The Maze Escape: Алгоритмический визуализатор",
             intro:
               "Интерактивное приложение для визуализации алгоритма BFS (Breadth-First Search). Решает задачу поиска кратчайшего пути в лабиринте с пошаговой демонстрацией логики.",
@@ -211,7 +225,7 @@ const resources = {
             csText:
               "Демонстрирует навыки работы с графами, понимание временной сложности O(V + E) и перевод математических абстракций в визуальный интерфейс.",
           },
-          6: {
+          7: {
             h2: "Современный каталог товаров",
             intro:
               "Динамическое веб-приложение с продвинутой работой React и анимаций, интегрированное с внешним API для получения актуальных данных о товарах.",
@@ -503,6 +517,20 @@ const resources = {
             uxText:
               "Микро‑өзара әрекеттер мен интерфейс күйлеріне (empty states, loading skeleton) ерекше назар аударылған.",
           },
+          7: {
+            h2: "NOMAD Academy — Астанадағы хореография академиясы (Цифрлық экожүйе)",
+            intro:
+              "Бірыңғай цифрлық экожүйесі бар премиум Хореография Академиясы (SSR қолдауы бар Inertia + Vue 3 негезіндегі SPA). Студенттердің B2C жеке кабинеттерін, Қазақстанның түкпір-түкпірінен келген би ұжымдарын аккредитациялауға арналған Nomad Awards B2B порталын және Nomad Wear брендтік киім маркетплейсін біріктіреді.",
+            featuresLabel: "Негізгі мүмкіндіктер мен функционал:",
+            features: [
+              "Nomad Awards B2B порталы: қатысушылар базасын жасау (ростер), сахналық өтінімдерді беру (Nomination Wizard), уақыты реттелетін бұлтты фонограммаларды басқару, жарналарды тексеру.",
+              "Рөлдер бойынша бөлінген жеке кабинеттер: Директор (аналитика), Жетекші (оқу процесі, Excel импорт/экспорт), Конкурс әкімшісі (модерация, қазылар алқасының бағалары), Дүкен менеджері (тапсырыстар), Контент-менеджер (CMS).",
+              "Nomad Wear каталогы: бөлшек және көтерме сауда витринасы, өлшемдер бойынша автоматты калькулятор, LocalStorage негізіндегі себет және WhatsApp-чекаут интеграциясы.",
+              "Файлдарды қауіпсіз жүктеуге арналған прокси-роутер (Storage Fallback) — музыка, PDF ережелері мен төлем түбіртектерінің 100% қолжетімділігін қамтамасыз етеді.",
+              "SEO-оңтайландыру: Schema.org (JSON-LD) микробелгілеуі, Open Graph мета-тегтері және іздеу жүйелерінде жылдам индекстелу үшін Inertia SSR.",
+            ],
+            note: "Жоба ірі фестивальдерді автоматтандыру міндеттерін сәтті шешеді, B2B/B2C интерфейсін және студия мазмұнын икемді басқаруды қамтамасыз етеді.",
+          },
         },
       },
       certs: {
@@ -779,6 +807,20 @@ const resources = {
             uxTitle: "✨ UX/UI focus:",
             uxText:
               "Special attention to micro‑interactions and interface states (empty states, loading skeleton) for a premium feel.",
+          },
+          7: {
+            h2: "NOMAD Academy — Choreography Academy in Astana (Digital Ecosystem)",
+            intro:
+              "A premium Choreography Academy platform featuring a unified digital ecosystem (Inertia.js + Vue 3 SPA with SSR support). It integrates B2C student portals, the B2B Nomad Awards accreditation portal for dance groups across Kazakhstan, and the Nomad Wear brand merchandise marketplace.",
+            featuresLabel: "Key Features and Technical Solutions:",
+            features: [
+              "Nomad Awards B2B Portal: comprehensive roster management, step-by-step nomination wizard, cloud music player with performance start-time cues, and fee payment verification.",
+              "Role-based Dashboard System: Director (analytics & sales), Supervisor (schedule/branch management, Excel import/export), Contest Admin (moderation, judges scoring), Wear Manager (sales & inventory), and Content Manager (CMS).",
+              "Nomad Wear Storefront: retail and wholesale catalogs, automatic size calculator based on child height/chest measurements, LocalStorage cart, and smooth WhatsApp checkout flow.",
+              "Secure Storage Fallback: custom file-proxy routing for bulletproof delivery of audio tracks, PDF regulations, and payment receipts without breaking symlinks.",
+              "SEO & Social Integration: rich Schema.org (JSON-LD) structured metadata, Open Graph / Twitter cards, and Inertia SSR for lightning-fast search engine indexing.",
+            ],
+            note: "This application streamlines large-scale dance festival registrations and academy management while delivering a cohesive B2B/C experience and a customizable CMS.",
           },
         },
       },
