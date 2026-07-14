@@ -22,8 +22,8 @@ const socials = [
   {
     icon: <Instagram size={18} strokeWidth={1.5} />,
     label: "Instagram",
-    handle: "@kairbekov.official",
-    href: "https://www.instagram.com/kairbekov.official/",
+    handle: "@kairbekoffzhanat",
+    href: "https://www.instagram.com/kairbekoffzhanat/",
   },
   {
     icon: <Linkedin size={18} strokeWidth={1.5} />,
