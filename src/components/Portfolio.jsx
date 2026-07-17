@@ -34,7 +34,7 @@ const PROJECTS = [
     title: "NOMAD Academy",
     subtitle: "Choreography academy portal",
     image: "/img/mockup/nomad_mockup.webp",
-    site: "https://pauper-undertow-freeway.ngrok-free.dev/",
+    site: "https://plural-justify-awaken.ngrok-free.dev",
     tags: ["Laravel", "Inertia.js", "Vue.js", "MySQL", "Docker"],
     year: "2026",
   },
