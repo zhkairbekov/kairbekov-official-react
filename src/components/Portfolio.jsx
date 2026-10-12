@@ -13,8 +13,7 @@ const PROJECTS = [
     id: 1,
     title: "Kairbekov Official",
     subtitle: "Personal portfolio website",
-    image:
-      "https://kairbekov-official.netlify.app/img/mockup/kairbekov-official.webp",
+    image: "https://kairbekoff.netlify.app/img/mockup/kairbekov-official.webp",
     github: "https://github.com/zhkairbekov/kairbekov-official-react",
     tags: ["React", "Vite", "i18n", "CSS3"],
     year: "2022",
@@ -23,8 +22,7 @@ const PROJECTS = [
     id: 2,
     title: "Downtown Astana",
     subtitle: "Business center website",
-    image:
-      "https://kairbekov-official.netlify.app/img/mockup/downtown_mockup.webp",
+    image: "https://kairbekoff.netlify.app/img/mockup/downtown_mockup.webp",
     site: "https://downtownastana.com/",
     tags: ["HTML5", "SCSS", "JavaScript"],
     year: "2026",

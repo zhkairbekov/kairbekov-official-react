@@ -4,5 +4,5 @@ Disallow: /admin/
 Disallow: /*.json$
 Disallow: /*.xml$
 
-Sitemap: https://kairbekov-official.netlify.app/sitemap.xml
+Sitemap: https://kairbekoff.netlify.app/sitemap.xml
 Crawl-delay: 1
