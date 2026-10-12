@@ -40,45 +40,13 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "Saukele.ru",
-    subtitle: "National accessories online shop",
-    image: "https://kairbekov-official.netlify.app/img/mockup/image78.webp",
-    github: "https://github.com/zhkairbekov/saukele_online-shop",
-    tags: ["Laravel", "PHP", "MySQL"],
-    year: "2023",
-  },
-  {
-    id: 5,
-    title: "Velobike",
-    subtitle: "Responsive site clone",
-    image:
-      "https://kairbekov-official.netlify.app/img/mockup/velobike_mockup.webp",
-    github: "https://github.com/zhkairbekov/velobike",
-    site: "https://kairbekov-velobike.netlify.app/",
-    tags: ["HTML", "CSS", "JS"],
-    year: "2025",
-  },
-  {
-    id: 6,
-    title: "Maze Escape Game",
-    subtitle: "Browser-based maze game",
-    image:
-      "https://kairbekov-official.netlify.app/img/mockup/maze-escape-game_mockup.webp",
-    github: "https://github.com/zhkairbekov/alem-project-js-1",
-    site: "https://kairbekov-alem-js-1.netlify.app/",
-    tags: ["JavaScript", "Canvas API"],
-    year: "2025",
-  },
-  {
-    id: 7,
-    title: "Product Catalog",
-    subtitle: "Product listing web app",
-    image:
-      "https://kairbekov-official.netlify.app/img/mockup/product-catalog_mockup.webp",
-    github: "https://github.com/zhkairbekov/product-catalog",
-    site: "https://kairbekov-product-catalog.netlify.app/",
-    tags: ["React", "API"],
-    year: "2025",
+    title: "WedPeople",
+    subtitle: "Wedding & event agency website",
+    image: "/img/mockup/wedpeople_mockup.webp",
+    github: "https://github.com/zhkairbekov/wedpeople",
+    site: "https://kairbekoff-wedpeople.netlify.app/",
+    tags: ["React", "Vite", "Tailwind CSS", "i18n"],
+    year: "2026",
   },
 ];
 

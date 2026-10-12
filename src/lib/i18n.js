@@ -181,64 +181,18 @@ const resources = {
             note: "Проект успешно решает задачи автоматизации крупных фестивалей, обеспечивая бесшовный B2B/B2C опыт и гибкое управление контентом студии.",
           },
           4: {
-            h2: "Saukele Online Shop",
+            h2: "WedPeople — Свадебное и event-агентство полного цикла (Астана & Алматы)",
             intro:
-              "Профессиональное E-commerce решение для Омской общественной организации «Казахи Омска» — полноценная платформа для реализации продукции с национальным колоритом.",
-            featuresLabel: "Технические характеристики:",
+              "Премиальный веб-сайт свадебного и event-агентства в эстетике Warm Editorial Atelier с акцентом на журнальную типографику, современное переосмысление казахского культурного кода (Қыз ұзату) и мгновенную конверсию в WhatsApp.",
+            featuresLabel: "Ключевые особенности и функционал:",
             features: [
-              "Разработано на PHP-фреймворке Laravel.",
-              "Шаблонизатор Blade для динамических и быстрых интерфейсов.",
-              "Защищённая система управления корзиной и заказами.",
-              "Уникальный дизайн, адаптированный под брендинг организации.",
+              "Двуязычный интерфейс (RU / ҚАЗ): полная локализация всех секций, манифеста, кейсов портфолио и культурного блока с сохранением в LocalStorage.",
+              "Кураторское портфолио (CaseDrawerModal): фильтрация по категориям и детальные карточки кейсов с интерактивной фотогалереей, историей реализации и списком подрядчиков (Credits).",
+              "Concierge Dispatch в WhatsApp: формы записи автоматически формируют персонализированное сообщение на выбранном языке и открывают диалог в WhatsApp без лишних полей.",
+              "Эстетика Warm Editorial Atelier: акцентная антиква (Playfair Display, Cormorant Garamond), кастомная сетка hairline и оптимизация под prefers-reduced-motion.",
+              "Продуманный Mobile-First UX: адаптивные таблицы форматов (аккордеон на мобильных) и умная плавающая панель быстрой связи.",
             ],
-            legalTitle: "Правовая информация:",
-            legalText:
-              "Авторские права на код и дизайн принадлежат разработчику Каирбекову Жанату. Заказчик: ОРОО «Казахи Омска».",
-          },
-          5: {
-            h2: "Velobike.kz — Adaptive Clone",
-            intro:
-              "Детальная реплика популярного сервиса проката велосипедов в рамках учебного проекта. Основной упор — pixel-perfect вёрстка и чистый пользовательский опыт.",
-            featuresLabel: "Реализованный функционал:",
-            features: [
-              "Multilingual: полная поддержка русского и казахского языков.",
-              "Custom JS: самописный слайдер, адаптивное бургер-меню и dropdown.",
-              "Layout: сложная адаптивная сетка для всех устройств (Mobile First).",
-              "Performance: полностью статический проект с оптимизированными ассетами.",
-            ],
-            disclaimerTitle: "Disclaimer:",
-            disclaimerText:
-              "Проект создан исключительно в образовательных целях. Все права на контент и бренд принадлежат оригинальному сервису Velobike.kz.",
-          },
-          6: {
-            h2: "The Maze Escape: Алгоритмический визуализатор",
-            intro:
-              "Интерактивное приложение для визуализации алгоритма BFS (Breadth-First Search). Решает задачу поиска кратчайшего пути в лабиринте с пошаговой демонстрацией логики.",
-            featuresLabel: "Технические детали:",
-            features: [
-              "Algorithm: BFS гарантирует нахождение кратчайшего пути в невзвешенном графе.",
-              "Data Structure: очереди и родительские узлы для восстановления пути.",
-              "Visualization: состояния матрицы — 0 (свободно), 1 (стена), 2 (посещено), 3 (путь).",
-              "Scalability: поддержка карт от 5×5 до 30×30.",
-            ],
-            csTitle: "Computer Science Case:",
-            csText:
-              "Демонстрирует навыки работы с графами, понимание временной сложности O(V + E) и перевод математических абстракций в визуальный интерфейс.",
-          },
-          7: {
-            h2: "Современный каталог товаров",
-            intro:
-              "Динамическое веб-приложение с продвинутой работой React и анимаций, интегрированное с внешним API для получения актуальных данных о товарах.",
-            featuresLabel: "Технологический стек:",
-            features: [
-              "Framer Motion: оркестрованные анимации — появление, фильтрация, hover-эффекты.",
-              "API Integration: асинхронное взаимодействие с FakeStoreAPI через Fetch API.",
-              "SCSS & БЭМ: модульная архитектура стилей для масштабируемости.",
-              "Responsive Design: адаптивная сетка для всех типов экранов.",
-            ],
-            uxTitle: "UX/UI Focus:",
-            uxText:
-              "Особое внимание уделено микровзаимодействиям и состояниям интерфейса (empty states, loading skeleton).",
+            note: "Проект сочетает эмоциональный сторителлинг люксового event-бренда с высокой скоростью работы на стеке React 19 + Vite + Tailwind CSS.",
           },
         },
       },
@@ -436,91 +390,37 @@ const resources = {
         close: "Жабу",
         projects: {
           1: {
-            h2: "🚀 Жеке портфолио сайты",
-            p1: "Классикалық стектен <1>React 18</1> және <3>Vite</3> жұбына көшірілген заманауи Single Page Application (SPA).",
-            p2: "<1>Негізгі ерекшеліктер:</1>",
+            h2: "Жеке портфолио веб-сайты",
+            intro:
+              "Классикалық стектен React 18 және Vite жұбына көшірілген заманауи Single Page Application (SPA).",
+            featuresLabel: "Негізгі ерекшеліктер:",
             features: [
               "Кодты қолдауды жеңілдететін компоненттік архитектура.",
-              "Күй мен анимацияны басқаруға <1>React Hooks</1> (useState, useEffect) қолдану.",
+              "Күй мен анимацияны басқаруға React Hooks (useState, useEffect) қолдану.",
               "Vite арқылы жылдам жүктелетін оңтайландырылған жинақ.",
-              "Интерактивті <1>Custom Cursor</1> және күрделі CSS эффектілері.",
-              "Толық адаптивтілік және <1>Netlify</1> арқылы автоматты деплой.",
+              "Интерактивті Custom Cursor және күрделі CSS эффектілері.",
+              "Толық адаптивтілік және Netlify арқылы автоматты деплой.",
             ],
           },
           2: {
-            h2: "🏢 downtownastana.com — Laravel-тағы бизнес-орталық сайты (Docker + Make)",
-            p1: "Контентті, арендаттарды, қызмет тапсырыстарын және т.б. басқаруға арналған админ-панелі бар толыққанды сайт. <1>Laravel</1> фреймворкінде жасалған, масштабталу, қауіпсіздік және ыңғайлы әкімшілендіруге басымдық берілген.",
-            p2: "<1>Техникалық ерекшеліктер:</1>",
+            h2: "Laravel-дегі бизнес-орталық сайты (Docker + Make)",
+            intro:
+              "Контентті, жалға алушыларды және тапсырыстарды басқаруға арналған кіріктірілген админ-панелі бар толыққанды сайт. Масштабталу мен қауіпсіздікке басымдық бере отырып Laravel-де әзірленген.",
+            featuresLabel: "Техникалық ерекшеліктер:",
             features: [
-              "<1>Инфрақұрылым:</1> <3>Docker</3> және <5>Docker Compose</5> арқылы контейнерлеу (PHP, Nginx, MySQL/PostgreSQL, Redis).",
-              "<1>Автоматтандыру:</1> <3>Makefile</3> — build, миграциялар, seed, deploy (SSH немесе GitHub Actions арқылы).",
-              "<1>Админ-панель:</1> <3>Filament PHP</3> — CRUD, аналитика және рөлдер.",
-              "<1>Сақтау және медиа:</1> <3>Storage Link</3>, S3‑үйлесімді сақтау, суреттерді оңтайландыру, құжат жүктеу.",
-              "<1>Backend:</1> Eloquent модельдері/миграциялар, Artisan командалары, queues, хабарландырулар, төлемдер, PDF генерациясы.",
-              "<1>Қосымша:</1> API, Redis кэш, Telescope, қауіпсіздік (CSRF, rate limiting), SEO meta-тегтер.",
+              "Инфрақұрылым: Docker және Docker Compose арқылы контейнерлеу (PHP, Nginx, MySQL, Redis).",
+              "Автоматтандыру: Makefile — жинау, миграциялар, сидинг және деплой.",
+              "Админ-панель: Filament PHP — CRUD, аналитика, рөлдер (admin, manager, tenant).",
+              "Сақтау: S3‑үйлесімді қойма, суреттерді оңтайландыру, құжаттарды жүктеу.",
+              "Backend: Eloquent, Artisan командалары, кезектер, хабарламалар, төлемдер, PDF генерациясы.",
+              "Қосымша: API, Redis кэш, Telescope, CSRF, rate limiting, SEO.",
             ],
-            note: "Бұл жоба full‑stack дағдыларды көрсетеді: дерекқор мен backend логикасынан бастап frontend және деплойға дейін — Астанадағы нақты бизнес қажеттіліктеріне бағытталған.",
+            note: "Бұл жоба full‑stack дағдыларды көрсетеді: дерекқор мен backend логикасынан бастап frontend және деплойға дейін.",
           },
           3: {
-            h2: "🛍️ Saukele Online Shop",
-            p1: "Омбы аймақтық қоғамдық ұйымы <3>«Омбы қазақтары»</3> үшін жасалған кәсіби <1>E-commerce</1> шешімі — ұлттық колориті бар өнімдерді сатуға арналған платформа.",
-            p2: "<1>Техникалық сипаттамалар:</1>",
-            features: [
-              "Қуатты PHP фреймворкі <1>Laravel</1> негізінде жасалған.",
-              "Жылдам және динамикалық интерфейс үшін <1>Blade</1> қолдану.",
-              "Қауіпсіз себет және тапсырыс басқаруы.",
-              "Ұйым брендингіне сай бірегей дизайн.",
-            ],
-            legalTitle: "Құқықтық ақпарат:",
-            legalText:
-              "Жоба зияткерлік меншік болып табылады. Код пен дизайнға авторлық құқық әзірлеуші <1> Жанат Қайырбековке</1> тиесілі. Тапсырыс беруші: ОҚҰ «Омбы қазақтары».",
-          },
-          4: {
-            h2: "🚲 Velobike.kz — Adaptive Clone",
-            p1: "Танымал велосипед жалға беру сервисінің оқу жобасы ретінде жасалған детальды көшірмесі. Негізгі назар: <1>pixel‑perfect</1> верстка және таза UX.",
-            p2: "<1>Іске асқан функционал:</1>",
-            features: [
-              "<1>Multilingual:</1> Орыс және қазақ тілдерін толық қолдау.",
-              "<1>Custom JS:</1> Самописный слайдер, адаптивті бургер мәзір және dropdown тізімдер.",
-              "<1>Layout:</1> Барлық құрылғыларда дұрыс жұмыс істейтін күрделі адаптивті тор (Mobile First).",
-              "<1>Performance:</1> Оңтайландырылған ассеттері бар толық статикалық жоба.",
-            ],
-            disclaimerTitle: "Disclaimer:",
-            disclaimerText:
-              "Жоба тек оқу мақсатында жасалған. Контент пен бренд құқықтары бастапқы Velobike.kz сервисіне тиесілі.",
-          },
-          5: {
-            h2: "🧩 The Maze Escape: Алгоритм визуализаторы",
-            p1: "<1>BFS (Breadth‑First Search)</1> алгоритмін визуализациялайтын интерактивті қосымша. Лабиринтте ең қысқа жолды тауып, қадам‑қадамымен көрсетеді.",
-            p2: "<1>Техникалық мәліметтер:</1>",
-            features: [
-              "<1>Algorithm:</1> BFS салмақсыз графта ең қысқа жолды табуға кепіл береді.",
-              "<1>Data Structure:</1> Queue және parent node арқылы жолды қалпына келтіру.",
-              "<1>Visualization:</1> Матрица күйлері: <3>0</3> бос, <5>1</5> қабырға, <7>2</7> барылған, <9>3</9> финал жол.",
-              "<1>Scalability:</1> 5x5-тен 30x30-ға дейінгі карталарды өңдеу.",
-            ],
-            csTitle: "💡 Computer Science Case:",
-            csText:
-              "Жоба графтармен жұмыс дағдыларын, уақыт күрделілігін <1>O(V + E)</1> түсінуді және математикалық абстракцияларды UI-ға айналдыруды көрсетеді.",
-          },
-          6: {
-            h2: "🛒 Заманауи тауарлар каталогы",
-            p1: "<1>React</1> және анимация кітапханаларымен алдыңғы қатарлы жұмыс көрсететін динамикалық веб‑қосымша. Өзекті деректерді алу үшін сыртқы API-мен интеграция жасалған.",
-            p2: "<1>Стек және шешімдер:</1>",
-            features: [
-              "<1>Framer Motion:</1> Күрделі анимациялар (stagger, фильтрлеу кезіндегі smooth өтулер, hover эффектілер).",
-              "<1>API Integration:</1> <3>FakeStoreAPI</3> арқылы Fetch API-мен асинхронды жұмыс, loading/error күйлері.",
-              "<1>SCSS & БЭМ:</1> Масштабталатын модульді стиль архитектурасы.",
-              "<1>Responsive Design:</1> Барлық экрандарға бейімделген тор.",
-            ],
-            uxTitle: "✨ UX/UI Focus:",
-            uxText:
-              "Микро‑өзара әрекеттер мен интерфейс күйлеріне (empty states, loading skeleton) ерекше назар аударылған.",
-          },
-          7: {
             h2: "NOMAD Academy — Астанадағы хореография академиясы (Цифрлық экожүйе)",
             intro:
-              "Бірыңғай цифрлық экожүйесі бар премиум Хореография Академиясы (SSR қолдауы бар Inertia + Vue 3 негезіндегі SPA). Студенттердің B2C жеке кабинеттерін, Қазақстанның түкпір-түкпірінен келген би ұжымдарын аккредитациялауға арналған Nomad Awards B2B порталын және Nomad Wear брендтік киім маркетплейсін біріктіреді.",
+              "Бірыңғай цифрлық экожүйесі бар премиум Хореография Академиясы (SSR қолдауы бар Inertia + Vue 3 негізіндегі SPA). Студенттердің B2C жеке кабинеттерін, Қазақстанның түкпір-түкпірінен келген би ұжымдарын аккредитациялауға арналған Nomad Awards B2B порталын және Nomad Wear брендтік киім маркетплейсін біріктіреді.",
             featuresLabel: "Негізгі мүмкіндіктер мен функционал:",
             features: [
               "Nomad Awards B2B порталы: қатысушылар базасын жасау (ростер), сахналық өтінімдерді беру (Nomination Wizard), уақыты реттелетін бұлтты фонограммаларды басқару, жарналарды тексеру.",
@@ -530,6 +430,20 @@ const resources = {
               "SEO-оңтайландыру: Schema.org (JSON-LD) микробелгілеуі, Open Graph мета-тегтері және іздеу жүйелерінде жылдам индекстелу үшін Inertia SSR.",
             ],
             note: "Жоба ірі фестивальдерді автоматтандыру міндеттерін сәтті шешеді, B2B/B2C интерфейсін және студия мазмұнын икемді басқаруды қамтамасыз етеді.",
+          },
+          4: {
+            h2: "WedPeople — Толық циклді үйлену тойы және ивент-агенттігі (Астана & Алматы)",
+            intro:
+              "Warm Editorial Atelier эстетикасында жасалған үйлену тойы мен ивент-агенттігінің премиум веб-сайты. Журналдық типографикаға, қазақтың мәдени кодын заманауи тұрғыдан қайта пайымдауға (Қыз ұзату) және WhatsApp-қа жылдам конверсияға басымдық берілген.",
+            featuresLabel: "Негізгі мүмкіндіктер мен функционал:",
+            features: [
+              "Қос тілді интерфейс (RU / ҚАЗ): барлық секциялардың, манифесттің, портфолио кейстерінің және мәдени блоктың толық локализациясы (LocalStorage-та сақталады).",
+              "Кураторлық портфолио (CaseDrawerModal): санаттар бойынша сүзгілеу және интерактивті фотогалереясы, іске асыру тарихы мен мердігерлер тізімі (Credits) бар кейс карточкалары.",
+              "WhatsApp-қа Concierge Dispatch: жазылу формалары таңдалған тілде жекелендірілген хабарламаны автоматты түрде дайындап, WhatsApp диалогын бірден ашады.",
+              "Warm Editorial Atelier эстетикасы: акценттік антиква (Playfair Display, Cormorant Garamond), кастомды hairline торы және prefers-reduced-motion оңтайландыруы.",
+              "Ойластырылған Mobile-First UX: бейімделгіш формат кестелері (мобильді құрылғыларда аккордеон) және жылдам байланысқа арналған ақылды қалқымалы панель.",
+            ],
+            note: "Жоба люкс деңгейіндегі ивент-брендтің эмоционалды сторителлингін React 19 + Vite + Tailwind CSS стегіндегі жоғары жылдамдықпен үйлестіреді.",
           },
         },
       },
@@ -727,88 +641,34 @@ const resources = {
         close: "Close",
         projects: {
           1: {
-            h2: "🚀 Personal portfolio website",
-            p1: "A modern Single Page Application (SPA), rebuilt from a classic stack to a powerful combo of <1>React 18</1> and <3>Vite</3>.",
-            p2: "<1>Key highlights:</1>",
+            h2: "Personal portfolio website",
+            intro:
+              "A modern Single Page Application (SPA), rebuilt from a classic stack to a powerful combo of React 18 and Vite.",
+            featuresLabel: "Key highlights:",
             features: [
               "Component architecture for easier maintenance.",
-              "Using <1>React Hooks</1> (useState, useEffect) for state and animations.",
+              "Using React Hooks (useState, useEffect) for state and animations.",
               "Optimized Vite build for fast loading.",
-              "Interactive <1>Custom Cursor</1> and advanced CSS effects.",
-              "Fully responsive and deployed via <1>Netlify</1>.",
+              "Interactive Custom Cursor and advanced CSS effects.",
+              "Fully responsive and deployed via Netlify.",
             ],
           },
           2: {
-            h2: "🏢 downtownastana.com — Business center website on Laravel (Docker + Make)",
-            p1: "A full-featured business center website with an admin panel for managing content, tenants, service orders and more. Built with <1>Laravel</1>, focusing on scalability, security and convenient administration.",
-            p2: "<1>Technical details:</1>",
+            h2: "Business center website on Laravel (Docker + Make)",
+            intro:
+              "A full-featured business center website with an integrated admin panel for managing content, tenants, and orders. Built with Laravel with a focus on scalability and security.",
+            featuresLabel: "Technical details:",
             features: [
-              "<1>Infrastructure:</1> Containerization with <3>Docker</3> and <5>Docker Compose</5> for easy deployment and scaling (PHP, Nginx, MySQL/PostgreSQL, Redis).",
-              "<1>Automation:</1> <3>Makefile</3> for common tasks: build, migrations, seeding, deploy (SSH or CI/CD with GitHub Actions).",
-              "<1>Admin panel:</1> <3>Filament PHP</3> with custom CRUD, analytics and role support.",
-              "<1>Storage & media:</1> <3>Storage Link</3>, S3-compatible storage, image optimization, document uploads.",
-              "<1>Backend:</1> Eloquent models/migrations, Artisan commands, queues, notifications, payments, PDF generation.",
-              "<1>Extra:</1> APIs for mobile, Redis caching, Telescope, security (CSRF, rate limiting), SEO meta tags.",
+              "Infrastructure: Containerization with Docker and Docker Compose (PHP, Nginx, MySQL, Redis).",
+              "Automation: Makefile for build, migrations, seeding, and deployment.",
+              "Admin panel: Filament PHP with custom CRUD, analytics, and roles (admin, manager, tenant).",
+              "Storage & media: S3-compatible storage, image optimization, and document uploads.",
+              "Backend: Eloquent models/migrations, Artisan commands, queues, notifications, payments, and PDF generation.",
+              "Extra: APIs, Redis caching, Telescope, security (CSRF, rate limiting), and SEO.",
             ],
-            note: "This project showcases full‑stack skills: from database and backend logic to frontend and deployment — focused on real business needs in Astana.",
+            note: "This project showcases full‑stack skills: from database design and backend logic to frontend and deployment.",
           },
           3: {
-            h2: "🛍️ Saukele Online Shop",
-            p1: "A professional <1>E-commerce</1> solution built for the Omsk regional public organization <3>“Kazakhs of Omsk”</3> — a full platform for selling products with national identity.",
-            p2: "<1>Technical specs:</1>",
-            features: [
-              "Built with the powerful PHP framework <1>Laravel</1>.",
-              "Using <1>Blade</1> templates for fast, dynamic UI.",
-              "Secure cart and order management.",
-              "A unique custom design aligned with the organization’s branding.",
-            ],
-            legalTitle: "Legal information:",
-            legalText:
-              "This project is intellectual property. Copyright for the code and design belongs to the developer <1> Zhanat Kairbekov</1>. Client: “Kazakhs of Omsk”.",
-          },
-          4: {
-            h2: "🚲 Velobike.kz — Adaptive clone",
-            p1: "A detailed replica of a popular bike rental service, made as a learning project. Main focus: <1>pixel‑perfect</1> layout and clean UX.",
-            p2: "<1>Implemented features:</1>",
-            features: [
-              "<1>Multilingual:</1> Full Russian and Kazakh support via separate structures.",
-              "<1>Custom JS:</1> Custom slider, responsive burger menu and interactive dropdowns.",
-              "<1>Layout:</1> Complex responsive grid working across all devices (Mobile First).",
-              "<1>Performance:</1> Fully static project with optimized assets for fast loading.",
-            ],
-            disclaimerTitle: "Disclaimer:",
-            disclaimerText:
-              "Created for educational purposes only. All content and brand rights belong to the original Velobike.kz service.",
-          },
-          5: {
-            h2: "🧩 The Maze Escape: Algorithm visualizer",
-            p1: "An interactive app visualizing <1>BFS (Breadth‑First Search)</1>. It finds the shortest path in a maze and shows the algorithm step by step.",
-            p2: "<1>Technical details:</1>",
-            features: [
-              "<1>Algorithm:</1> BFS guarantees the shortest path in an unweighted graph.",
-              "<1>Data structure:</1> Queues and parent nodes for efficient path reconstruction.",
-              "<1>Visualization:</1> Step-by-step matrix states: <3>0</3> free, <5>1</5> wall, <7>2</7> visited, <9>3</9> final path.",
-              "<1>Scalability:</1> Supports maps from simple 5x5 to complex 30x30 mazes.",
-            ],
-            csTitle: "💡 Computer Science case:",
-            csText:
-              "This project demonstrates graph skills, understanding of time complexity <1>O(V + E)</1>, and translating math abstractions into UI.",
-          },
-          6: {
-            h2: "🛒 Modern product catalog",
-            p1: "A dynamic web app showing advanced work with <1>React</1> and animation libraries. It integrates with an external API to fetch up-to-date product data.",
-            p2: "<1>Stack & solutions:</1>",
-            features: [
-              "<1>Framer Motion:</1> Orchestrated animations (staggered list, smooth filtering transitions, hover micro-interactions).",
-              "<1>API integration:</1> Async work with <3>FakeStoreAPI</3> via Fetch API, with loading and error states.",
-              "<1>SCSS & BEM:</1> Modular styling architecture for maintainability.",
-              "<1>Responsive design:</1> Adaptive grid for all screen sizes.",
-            ],
-            uxTitle: "✨ UX/UI focus:",
-            uxText:
-              "Special attention to micro‑interactions and interface states (empty states, loading skeleton) for a premium feel.",
-          },
-          7: {
             h2: "NOMAD Academy — Choreography Academy in Astana (Digital Ecosystem)",
             intro:
               "A premium Choreography Academy platform featuring a unified digital ecosystem (Inertia.js + Vue 3 SPA with SSR support). It integrates B2C student portals, the B2B Nomad Awards accreditation portal for dance groups across Kazakhstan, and the Nomad Wear brand merchandise marketplace.",
@@ -821,6 +681,20 @@ const resources = {
               "SEO & Social Integration: rich Schema.org (JSON-LD) structured metadata, Open Graph / Twitter cards, and Inertia SSR for lightning-fast search engine indexing.",
             ],
             note: "This application streamlines large-scale dance festival registrations and academy management while delivering a cohesive B2B/C experience and a customizable CMS.",
+          },
+          4: {
+            h2: "WedPeople — Full-Service Wedding & Event Agency (Astana & Almaty)",
+            intro:
+              "A bespoke website for a luxury wedding and event agency crafted in a Warm Editorial Atelier aesthetic, featuring expressive magazine typography, a modern reinterpretation of Kazakh cultural heritage (Qyz Uzatu), and instant WhatsApp conversion.",
+            featuresLabel: "Key Features and Functionality:",
+            features: [
+              "Bilingual Interface (RU / KAZ): full localization across all sections, brand manifesto, portfolio case studies, and cultural blocks with LocalStorage persistence.",
+              "Curated Portfolio (CaseDrawerModal): category filtering and detailed case cards with interactive photo galleries, storytelling, and full vendor credits.",
+              "WhatsApp Concierge Dispatch: friction-free booking forms that automatically compose a personalized message in the active language and open WhatsApp directly.",
+              "Warm Editorial Atelier Aesthetic: high-contrast serif typography (Playfair Display, Cormorant Garamond), custom hairline grid utilities, and prefers-reduced-motion support.",
+              "Thoughtful Mobile-First UX: adaptive event format layouts (mobile accordion to desktop table) and a context-aware floating quick-contact bar.",
+            ],
+            note: "Combines the emotional storytelling of a luxury event brand with blazing-fast performance on React 19, Vite, and Tailwind CSS.",
           },
         },
       },
