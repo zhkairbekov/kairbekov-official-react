@@ -41,7 +41,6 @@ const PROJECTS = [
     title: "WedPeople",
     subtitle: "Wedding & event agency website",
     image: "/img/mockup/wedpeople_mockup.webp",
-    github: "https://github.com/zhkairbekov/wedpeople",
     site: "https://kairbekoff-wedpeople.netlify.app/",
     tags: ["React", "Vite", "Tailwind CSS", "i18n"],
     year: "2026",
