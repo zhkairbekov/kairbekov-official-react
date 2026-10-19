@@ -10,6 +10,7 @@ const resources = {
         services: "Услуги",
         process: "Процесс",
         sites: "Работы",
+        testimonials: "Отзывы",
         journey: "История",
         certs: "Образование",
         contacts: "Контакты",
@@ -179,6 +180,10 @@ const resources = {
               "SEO-оптимизация: разметка Schema.org (JSON-LD), мета-теги Open Graph, и Inertia SSR для мгновенного индексирования поисковиками.",
             ],
             note: "Проект успешно решает задачи автоматизации крупных фестивалей, обеспечивая бесшовный B2B/B2C опыт и гибкое управление контентом студии.",
+            testimonialLabel: "Отзыв заказчика",
+            testimonialAuthor: "NOMAD Academy of Choreography · academynomad.com",
+            testimonial:
+              "Жанат сам вышел на нас с предложением разработать сайт для NOMAD Academy of Choreography - academynomad.com. Всю разработку - от вёрстки до реализации - выполнил полностью самостоятельно, от начала и до конца.\n\nДизайн обсуждали вместе: мы вносили правки, что-то добавляли, что-то убирали - Жанат всегда был на связи и помогал определиться с решением, если мы сомневались. Видно, что у него отличный вкус - и как у дизайнера, и как у разработчика в целом: по нашему запросу сделал дизайн сайта, продумав всё до мелочей, и по ходу работы уточнял каждый момент, чтобы не возникало косяков и недопониманий.\n\nВ итоге сайт получился именно таким, каким мы его задумывали - современным, аккуратным и полностью рабочим, без лишних затягиваний по срокам.\n\nОтдельно отмечу - с ним легко работать: понимает задачи с полуслова, всегда на связи, не нужно по десять раз объяснять одно и то же.\n\nРекомендуем как надёжного разработчика для тех, кто ищет человека, способного сделать сайт «под ключ» самостоятельно, с хорошим вкусом и вниманием к деталям.",
           },
           4: {
             h2: "WedPeople — Свадебное и event-агентство полного цикла (Астана & Алматы)",
@@ -195,6 +200,40 @@ const resources = {
             note: "Проект сочетает эмоциональный сторителлинг люксового event-бренда с высокой скоростью работы на стеке React 19 + Vite + Tailwind CSS.",
           },
         },
+      },
+      testimonials: {
+        sectionLabel: "Отзывы",
+        title: "Что говорят клиенты",
+        subtitle:
+          "Честная обратная связь от заказчиков о совместной работе, подходе к разработке и результатах реализованных проектов.",
+        verifiedBadge: "Верифицированный клиент",
+        viewProject: "Открыть проект",
+        items: [
+          {
+            id: "nomad",
+            clientName: "NOMAD Academy of Choreography",
+            clientRole: "Руководство академии",
+            projectTitle: "academynomad.com",
+            projectUrl: "https://academynomad.com/",
+            projectType: "Веб-платформа и цифровая экосистема",
+            year: "2026",
+            rating: 5,
+            tags: [
+              "Разработка «под ключ»",
+              "UI/UX и дизайн сайта",
+              "Внимание к деталям",
+              "Соблюдение сроков",
+              "Понимание с полуслова",
+            ],
+            text: [
+              "Жанат сам вышел на нас с предложением разработать сайт для NOMAD Academy of Choreography - academynomad.com. Всю разработку - от вёрстки до реализации - выполнил полностью самостоятельно, от начала и до конца.",
+              "Дизайн обсуждали вместе: мы вносили правки, что-то добавляли, что-то убирали - Жанат всегда был на связи и помогал определиться с решением, если мы сомневались. Видно, что у него отличный вкус - и как у дизайнера, и как у разработчика в целом: по нашему запросу сделал дизайн сайта, продумав всё до мелочей, и по ходу работы уточнял каждый момент, чтобы не возникало косяков и недопониманий.",
+              "В итоге сайт получился именно таким, каким мы его задумывали - современным, аккуратным и полностью рабочим, без лишних затягиваний по срокам.",
+              "Отдельно отмечу - с ним легко работать: понимает задачи с полуслова, всегда на связи, не нужно по десять раз объяснять одно и то же.",
+              "Рекомендуем как надёжного разработчика для тех, кто ищет человека, способного сделать сайт «под ключ» самостоятельно, с хорошим вкусом и вниманием к деталям.",
+            ],
+          },
+        ],
       },
       certs: {
         sectionLabel: "Образование",
@@ -261,6 +300,7 @@ const resources = {
         services: "Қызметтер",
         process: "Процесс",
         sites: "Жұмыстар",
+        testimonials: "Пікірлер",
         journey: "Тарих",
         certs: "Білім",
         contacts: "Байланыс",
@@ -430,6 +470,10 @@ const resources = {
               "SEO-оңтайландыру: Schema.org (JSON-LD) микробелгілеуі, Open Graph мета-тегтері және іздеу жүйелерінде жылдам индекстелу үшін Inertia SSR.",
             ],
             note: "Жоба ірі фестивальдерді автоматтандыру міндеттерін сәтті шешеді, B2B/B2C интерфейсін және студия мазмұнын икемді басқаруды қамтамасыз етеді.",
+            testimonialLabel: "Тапсырыс берушінің пікірі",
+            testimonialAuthor: "NOMAD Academy of Choreography · academynomad.com",
+            testimonial:
+              "Жанат бізге NOMAD Academy of Choreography - academynomad.com үшін сайт әзірлеу ұсынысымен өзі шықты. Барлық әзірлеуді — беттеуден бастап жүзеге асыруға дейін — басынан аяғына дейін толықтай өз бетінше орындап шықты.\n\nДизайнды бірге талқыладық: біз түзетулер енгіздік, бірдеңе қостық, бірдеңе алып тастадық — Жанат әрдайым байланыста болып, күмәнданған кезде дұрыс шешім қабылдауға көмектесті. Оның дизайнер ретінде де, жалпы әзірлеуші ретінде де талғамы керемет екені бірден байқалады: біздің сұранысымыз бойынша барлық ұсақ-түйекті ойластырып сайт дизайнын жасады және жұмыс барысында қателіктер мен түсінбеушіліктер болмас үшін әрбір сәтті нақтылап отырды.\n\nНәтижесінде сайт дәл біз ойлағандай — заманауи, ұқыпты және мерзімді созбай толық жұмыс істейтін болып шықты.\n\nБөлек атап өтерлігі — онымен жұмыс істеу өте жеңіл: тапсырмаларды жарты сөзден түсінеді, үнемі байланыста, бір нәрсені он рет түсіндірудің қажеті жоқ.\n\nЖақсы талғамымен, ұсақ-түйекке дейін көңіл бөліп, сайтты өз бетінше «нөлден бастап кілтке дейін» тапсыра алатын адамды іздеп жүргендерге сенімді әзірлеуші ретінде шын жүректен ұсынамыз.",
           },
           4: {
             h2: "WedPeople — Толық циклді үйлену тойы және ивент-агенттігі (Астана & Алматы)",
@@ -446,6 +490,40 @@ const resources = {
             note: "Жоба люкс деңгейіндегі ивент-брендтің эмоционалды сторителлингін React 19 + Vite + Tailwind CSS стегіндегі жоғары жылдамдықпен үйлестіреді.",
           },
         },
+      },
+      testimonials: {
+        sectionLabel: "Пікірлер",
+        title: "Тапсырыс берушілер лебізі",
+        subtitle:
+          "Бірлескен жұмыс, әзірлеу сапасы және жүзеге асқан жобалардың нәтижесі туралы тапсырыс берушілердің шынайы пікірі.",
+        verifiedBadge: "Расталған тапсырыс беруші",
+        viewProject: "Жобаны ашу",
+        items: [
+          {
+            id: "nomad",
+            clientName: "NOMAD Academy of Choreography",
+            clientRole: "Академия басшылығы",
+            projectTitle: "academynomad.com",
+            projectUrl: "https://academynomad.com/",
+            projectType: "Веб-платформа және цифрлық экожүйе",
+            year: "2026",
+            rating: 5,
+            tags: [
+              "«Кілтке дейін» әзірлеу",
+              "UI/UX және сайт дизайны",
+              "Бөлшектерге назар аудару",
+              "Мерзімді сақтау",
+              "Жарты сөзден түсіну",
+            ],
+            text: [
+              "Жанат бізге NOMAD Academy of Choreography - academynomad.com үшін сайт әзірлеу ұсынысымен өзі шықты. Барлық әзірлеуді — беттеуден бастап жүзеге асыруға дейін — басынан аяғына дейін толықтай өз бетінше орындап шықты.",
+              "Дизайнды бірге талқыладық: біз түзетулер енгіздік, бірдеңе қостық, бірдеңе алып тастадық — Жанат әрдайым байланыста болып, күмәнданған кезде дұрыс шешім қабылдауға көмектесті. Оның дизайнер ретінде де, жалпы әзірлеуші ретінде де талғамы керемет екені бірден байқалады: біздің сұранысымыз бойынша барлық ұсақ-түйекті ойластырып сайт дизайнын жасады және жұмыс барысында қателіктер мен түсінбеушіліктер болмас үшін әрбір сәтті нақтылап отырды.",
+              "Нәтижесінде сайт дәл біз ойлағандай — заманауи, ұқыпты және мерзімді созбай толық жұмыс істейтін болып шықты.",
+              "Бөлек атап өтерлігі — онымен жұмыс істеу өте жеңіл: тапсырмаларды жарты сөзден түсінеді, үнемі байланыста, бір нәрсені он рет түсіндірудің қажеті жоқ.",
+              "Жақсы талғамымен, ұсақ-түйекке дейін көңіл бөліп, сайтты өз бетінше «нөлден бастап кілтке дейін» тапсыра алатын адамды іздеп жүргендерге сенімді әзірлеуші ретінде шын жүректен ұсынамыз.",
+            ],
+          },
+        ],
       },
       certs: {
         sectionLabel: "Білім",
@@ -512,6 +590,7 @@ const resources = {
         services: "Services",
         process: "Process",
         sites: "Work",
+        testimonials: "Testimonials",
         journey: "Journey",
         certs: "Education",
         contacts: "Contact",
@@ -681,6 +760,10 @@ const resources = {
               "SEO & Social Integration: rich Schema.org (JSON-LD) structured metadata, Open Graph / Twitter cards, and Inertia SSR for lightning-fast search engine indexing.",
             ],
             note: "This application streamlines large-scale dance festival registrations and academy management while delivering a cohesive B2B/C experience and a customizable CMS.",
+            testimonialLabel: "Client Review",
+            testimonialAuthor: "NOMAD Academy of Choreography · academynomad.com",
+            testimonial:
+              "Zhanat reached out to us proactively with a proposal to develop the website for NOMAD Academy of Choreography - academynomad.com. He handled the entire development process — from layout to final implementation — completely independently, from start to finish.\n\nWe collaborated closely on the design: we provided feedback, added and refined elements — Zhanat was always available and helped us find the right solutions whenever we were in doubt. It's clear that he has exceptional taste — both as a designer and as an engineer: based on our vision, he crafted the site design thinking through every detail, clarifying each nuance along the way to eliminate any oversights or misunderstandings.\n\nIn the end, the website turned out exactly as we envisioned — modern, polished, and fully functional, delivered strictly on time without delays.\n\nI'd particularly highlight how effortless it is to work with him: he grasps tasks instantly, stays responsive, and never requires repetitive explanations.\n\nWe highly recommend him as a reliable developer for anyone looking for someone who can deliver an end-to-end turnkey website with great taste and meticulous attention to detail.",
           },
           4: {
             h2: "WedPeople — Full-Service Wedding & Event Agency (Astana & Almaty)",
@@ -697,6 +780,40 @@ const resources = {
             note: "Combines the emotional storytelling of a luxury event brand with blazing-fast performance on React 19, Vite, and Tailwind CSS.",
           },
         },
+      },
+      testimonials: {
+        sectionLabel: "Testimonials",
+        title: "Client Feedback",
+        subtitle:
+          "Direct feedback from clients on collaboration, engineering craftsmanship, and project outcomes.",
+        verifiedBadge: "Verified Client",
+        viewProject: "Visit Project",
+        items: [
+          {
+            id: "nomad",
+            clientName: "NOMAD Academy of Choreography",
+            clientRole: "Academy Leadership",
+            projectTitle: "academynomad.com",
+            projectUrl: "https://academynomad.com/",
+            projectType: "Web Platform & Digital Ecosystem",
+            year: "2026",
+            rating: 5,
+            tags: [
+              "Turnkey Development",
+              "UI/UX & Website Design",
+              "Attention to Detail",
+              "Deadlines Met",
+              "Seamless Communication",
+            ],
+            text: [
+              "Zhanat reached out to us proactively with a proposal to develop the website for NOMAD Academy of Choreography - academynomad.com. He handled the entire development process — from layout to final implementation — completely independently, from start to finish.",
+              "We collaborated closely on the design: we provided feedback, added and refined elements — Zhanat was always available and helped us find the right solutions whenever we were in doubt. It's clear that he has exceptional taste — both as a designer and as an engineer: based on our vision, he crafted the site design thinking through every detail, clarifying each nuance along the way to eliminate any oversights or misunderstandings.",
+              "In the end, the website turned out exactly as we envisioned — modern, polished, and fully functional, delivered strictly on time without delays.",
+              "I'd particularly highlight how effortless it is to work with him: he grasps tasks instantly, stays responsive, and never requires repetitive explanations.",
+              "We highly recommend him as a reliable developer for anyone looking for someone who can deliver an end-to-end turnkey website with great taste and meticulous attention to detail.",
+            ],
+          },
+        ],
       },
       certs: {
         sectionLabel: "Education",

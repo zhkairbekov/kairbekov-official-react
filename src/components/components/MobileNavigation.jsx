@@ -13,6 +13,7 @@ const navIds = [
   "services",
   "process",
   "sites",
+  "testimonials",
   "journey",
   "certs",
   "contacts",
@@ -515,7 +516,6 @@ export default function MobileNavigation() {
                 paddingBottom: "calc(100px + env(safe-area-inset-bottom))",
               }}
               data-lenis-prevent="true"
-              className="fixed left-0 right-0 bottom-0 z-40 flex flex-col"
             >
               <div
                 className="flex-shrink-0 flex flex-col items-center pt-3 pb-2 cursor-grab active:cursor-grabbing"

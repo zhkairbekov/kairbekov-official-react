@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ExternalLink, Github, X, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Github, X, ArrowUpRight, Quote } from "lucide-react";
 import SectionHeader from "./components/SectionHeader";
 import SectionTitle from "./components/SectionTitle";
 import InfoBlock from "./components/InfoBlock";
@@ -99,6 +99,25 @@ function ProjectDescription({ projectId }) {
           text={t(`${key}.${block.textKey}`)}
         />
       ))}
+
+      {i18n.exists(`${key}.testimonial`) && (
+        <div className="relative mt-8 p-6 md:p-8 bg-secondary/35 border border-border/70 border-l-4 border-l-primary space-y-4">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-2 text-primary">
+              <Quote size={16} />
+              <span className="font-mono-custom text-xs tracking-[0.18em] uppercase font-bold">
+                {t(`${key}.testimonialLabel`)}
+              </span>
+            </div>
+            <span className="text-xs text-muted-foreground font-mono-custom">
+              {t(`${key}.testimonialAuthor`)}
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed italic whitespace-pre-line font-sans">
+            "{t(`${key}.testimonial`)}"
+          </p>
+        </div>
+      )}
     </div>
   );
 }

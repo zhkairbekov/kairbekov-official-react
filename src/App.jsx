@@ -12,6 +12,7 @@ import Process from "./components/Process";
 import Journey from "./components/Journey";
 import Certificates from "./components/Certificates";
 import Portfolio from "./components/Portfolio";
+import Testimonials from "./components/Testimonials";
 import Contacts from "./components/Contacts";
 import NavigationController from "./components/NavigationController";
 import Terminal from "./components/Terminal";
@@ -86,6 +87,7 @@ function AppContent() {
           <Services />
           <Process />
           <Portfolio />
+          <Testimonials />
           <Journey />
           <Certificates />
           <Contacts />

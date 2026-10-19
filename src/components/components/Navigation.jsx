@@ -11,6 +11,7 @@ const navIds = [
   "services",
   "process",
   "sites",
+  "testimonials",
   "journey",
   "certs",
   "contacts",
